@@ -23,13 +23,18 @@ namespace MIS4200_Team_Project.Controllers
         }
 
         // GET: UserDetails/Details/5
-        public ActionResult Details(Guid? id)
+        public ActionResult Details()
         {
-            if (id == null)
+            string uid = User.Identity.GetUserId();
+            Guid userID;
+            Guid.TryParse(uid, out userID);
+
+            if (uid == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            UserDetails userDetails = db.userDetails.Find(id);
+
+            UserDetails userDetails = db.userDetails.Find(userID);
             if (userDetails == null)
             {
                 return HttpNotFound();
@@ -54,7 +59,7 @@ namespace MIS4200_Team_Project.Controllers
             {
                 Guid memberID;
                 Guid.TryParse(User.Identity.GetUserId(), out memberID);
-                userDetails.ID = Guid.NewGuid();
+                userDetails.ID = memberID;
                 db.userDetails.Add(userDetails);
                 try
                 {

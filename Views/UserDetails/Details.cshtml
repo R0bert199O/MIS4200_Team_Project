@@ -6,69 +6,82 @@
 
 <h2>Details</h2>
 
-<div>
-    <h4>UserDetails</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Email)
-        </dt>
+<br />
 
-        <dd>
-            @Html.DisplayFor(model => model.Email)
-        </dd>
+<div class="row">
+    <div class="col-md-2">
 
-        <dt>
-            @Html.DisplayNameFor(model => model.firstName)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.firstName)
-        </dd>
+        <div class="panel panel-default">
+            <div align="center" class="panel-heading"><strong>Profile Picture</strong></div>
+            <div class="panel-body">
+                <center><img src="~/Images/Avatar.png" width="100" alt="Profile Picture" /></center>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-5">      
 
-        <dt>
-            @Html.DisplayNameFor(model => model.lastName)
-        </dt>
+        <div class="panel panel-default">
+            <div align="center" class="panel-heading"><strong>User Details</strong></div>
+            <div class="panel-body">
+                <dl class="dl-horizontal">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Email)
+                    </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.lastName)
-        </dd>
+                    <dd>
+                        @Html.DisplayFor(model => model.Email)
+                    </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.PhoneNumber)
-        </dt>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.firstName)
+                    </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.PhoneNumber)
-        </dd>
+                    <dd>
+                        @Html.DisplayFor(model => model.firstName)
+                    </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.BusinessUnit)
-        </dt>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.lastName)
+                    </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.BusinessUnit)
-        </dd>
+                    <dd>
+                        @Html.DisplayFor(model => model.lastName)
+                    </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Title)
-        </dt>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.PhoneNumber)
+                    </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Title)
-        </dd>
+                    <dd>
+                        @Html.DisplayFor(model => model.PhoneNumber)
+                    </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.hireDate)
-        </dt>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.BusinessUnit)
+                    </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.hireDate)
-        </dd>
+                    <dd>
+                        @Html.DisplayFor(model => model.BusinessUnit)
+                    </dd>
 
-    </dl>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Title)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Title)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.hireDate)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.hireDate)
+                    </dd>
+                </dl>
+            </div>
+        </div>
+    </div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
