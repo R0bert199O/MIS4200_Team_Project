@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
 using MIS4200_Team_Project.DAL;
 using MIS4200_Team_Project.Models;
 
@@ -24,6 +25,14 @@ namespace MIS4200_Team_Project.Controllers
         // GET: UserDetails/Details/5
         public ActionResult Details(Guid? id)
         {
+            Guid userID;
+            Guid.TryParse(User.Identity.GetUserId(), out userID);
+
+            if (id == null)
+            {
+                id = userID;
+            }
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -51,7 +60,9 @@ namespace MIS4200_Team_Project.Controllers
         {
             if (ModelState.IsValid)
             {
-                userDetails.ID = Guid.NewGuid();
+                Guid userID;
+                Guid.TryParse(User.Identity.GetUserId(), out userID);
+                userDetails.ID = userID;
                 db.userDetails.Add(userDetails);
                 db.SaveChanges();
                 return RedirectToAction("Index");
