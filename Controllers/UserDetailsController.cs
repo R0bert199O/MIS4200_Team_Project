@@ -18,7 +18,7 @@ namespace MIS4200_Team_Project.Controllers
 
         // GET: UserDetails
         public ActionResult Index()
-        {
+        {  
             return View(db.userDetails.ToList());
         }
 
