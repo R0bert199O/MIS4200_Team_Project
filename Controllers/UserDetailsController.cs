@@ -6,7 +6,6 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using Microsoft.AspNet.Identity;
 using MIS4200_Team_Project.DAL;
 using MIS4200_Team_Project.Models;
 
@@ -14,7 +13,7 @@ namespace MIS4200_Team_Project.Controllers
 {
     public class UserDetailsController : Controller
     {
-        private Context db = new Context();
+        private Context2 db = new Context2();
 
         // GET: UserDetails
         public ActionResult Index()
@@ -48,23 +47,14 @@ namespace MIS4200_Team_Project.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,Email,firstName,lastName,PhoneNumber,BusinessUnit,Title,hireDate")] UserDetails userDetails)
+        public ActionResult Create([Bind(Include = "ID,firstName,lastName,birthDate,Email,PhoneNumber,startDate,JobTitle,operatingGroups,locations")] UserDetails userDetails)
         {
             if (ModelState.IsValid)
             {
-                Guid memberID;
-                Guid.TryParse(User.Identity.GetUserId(), out memberID);
                 userDetails.ID = Guid.NewGuid();
                 db.userDetails.Add(userDetails);
-                try
-                {
-                    db.SaveChanges();
-                    return RedirectToAction("Index");
-                }
-                catch (Exception)
-                {
-                    return View("DuplicateUser");
-                }
+                db.SaveChanges();
+                return RedirectToAction("Index");
             }
 
             return View(userDetails);
@@ -90,7 +80,7 @@ namespace MIS4200_Team_Project.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,Email,firstName,lastName,PhoneNumber,BusinessUnit,Title,hireDate")] UserDetails userDetails)
+        public ActionResult Edit([Bind(Include = "ID,firstName,lastName,birthDate,Email,PhoneNumber,startDate,JobTitle,operatingGroups,locations")] UserDetails userDetails)
         {
             if (ModelState.IsValid)
             {
