@@ -6,67 +6,107 @@
 
 <h2>Details</h2>
 
-<div>
-    <h4>UserDetails</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Email)
-        </dt>
+<div class="row">
+    <div class="col-md-2">
 
-        <dd>
-            @Html.DisplayFor(model => model.Email)
-        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.firstName)
-        </dt>
+        <div class="panel panel-default">
+            <div align="center" class="panel-heading"><strong>Profile Picture</strong></div>
+            <div class="panel-body">
+                <center><img src="~/Images/Avatar.png" width="100" alt="Profile Picture" /></center>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-5">
+        <div class="panel panel-default">
+            <div align="center" class="panel-heading"><strong>User Details</strong></div>
+            <div class="panel-body">
+                <dl class="dl-horizontal">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.firstName)
+                    </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.firstName)
-        </dd>
+                    <dd>
+                        @Html.DisplayFor(model => model.firstName)
+                    </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.lastName)
-        </dt>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.lastName)
+                    </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.lastName)
-        </dd>
+                    <dd>
+                        @Html.DisplayFor(model => model.lastName)
+                    </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.PhoneNumber)
-        </dt>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.birthDate)
+                    </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.PhoneNumber)
-        </dd>
+                    <dd>
+                        @Html.DisplayFor(model => model.birthDate)
+                    </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.BusinessUnit)
-        </dt>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Email)
+                    </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.BusinessUnit)
-        </dd>
+                    <dd>
+                        @Html.DisplayFor(model => model.Email)
+                    </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Title)
-        </dt>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.PhoneNumber)
+                    </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Title)
-        </dd>
+                    <dd>
+                        @Html.DisplayFor(model => model.PhoneNumber)
+                    </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.hireDate)
-        </dt>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.startDate)
+                    </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.hireDate)
-        </dd>
+                    <dd>
+                        @Html.DisplayFor(model => model.startDate)
+                    </dd>
 
-    </dl>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.JobTitle)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.JobTitle)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.operatingGroups)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.operatingGroups)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.locations)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.locations)
+                    </dd>
+
+                </dl>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-5">
+        <div class="panel panel-default">
+            <div align="center" class="panel-heading"><strong>Core Value Badges</strong></div>
+            <div class="panel-body">
+                Badges
+            </div>
+        </div>
+    </div>
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |

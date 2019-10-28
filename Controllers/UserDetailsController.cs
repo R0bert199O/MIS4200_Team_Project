@@ -14,17 +14,56 @@ namespace MIS4200_Team_Project.Controllers
 {
     public class UserDetailsController : Controller
     {
-        private Context db = new Context();
+        private Context2 db = new Context2();
 
         // GET: UserDetails
-        public ActionResult Index()
-        {
+        public ActionResult Index(string searchString)
+        {  
+                        var testusers = from u in db.userDetails select u;
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                testusers = testusers.Where(u => u.lastName.Contains(searchString) || u.firstName.Contains(searchString));
+                // if here, users were found so view them
+                return View(testusers.ToList());
+
+            }
+
+            
+
+            var userSearch = from o in db.userDetails select o;
+            string[] userNames; // declare the array to hold pieces of the string
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                userNames = searchString.Split(' '); // split the string on spaces
+                if (userNames.Count() == 1) // there is only one string so it could be
+                                            // either the first or last name
+                {
+                    userSearch = userSearch.Where(c => c.lastName.Contains(searchString) ||
+                   c.firstName.Contains(searchString)).OrderBy(c => c.lastName);
+                }
+                else //if you get here there were at least two strings so extract them and test
+                {
+                    string s1 = userNames[0];
+                    string s2 = userNames[1];
+                    userSearch = userSearch.Where(c => c.lastName.Contains(s2) &&
+                   c.firstName.Contains(s1)).OrderBy(c => c.lastName); // note that this uses &&, not ||
+                }
+                return View(userSearch.ToList());
+            }
             return View(db.userDetails.ToList());
         }
 
         // GET: UserDetails/Details/5
         public ActionResult Details(Guid? id)
         {
+            Guid userID;
+            Guid.TryParse(User.Identity.GetUserId(), out userID);
+
+            if (id == null)
+            {
+                id = userID;
+            }
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -48,23 +87,16 @@ namespace MIS4200_Team_Project.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,Email,firstName,lastName,PhoneNumber,BusinessUnit,Title,hireDate")] UserDetails userDetails)
+        public ActionResult Create([Bind(Include = "ID,firstName,lastName,birthDate,Email,PhoneNumber,startDate,JobTitle,operatingGroups,locations")] UserDetails userDetails)
         {
             if (ModelState.IsValid)
             {
-                Guid memberID;
-                Guid.TryParse(User.Identity.GetUserId(), out memberID);
-                userDetails.ID = Guid.NewGuid();
+                Guid userID;
+                Guid.TryParse(User.Identity.GetUserId(), out userID);
+                userDetails.ID = userID;
                 db.userDetails.Add(userDetails);
-                try
-                {
-                    db.SaveChanges();
-                    return RedirectToAction("Index");
-                }
-                catch (Exception)
-                {
-                    return View("DuplicateUser");
-                }
+                db.SaveChanges();
+                return RedirectToAction("Index");
             }
 
             return View(userDetails);
@@ -90,7 +122,7 @@ namespace MIS4200_Team_Project.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,Email,firstName,lastName,PhoneNumber,BusinessUnit,Title,hireDate")] UserDetails userDetails)
+        public ActionResult Edit([Bind(Include = "ID,firstName,lastName,birthDate,Email,PhoneNumber,startDate,JobTitle,operatingGroups,locations")] UserDetails userDetails)
         {
             if (ModelState.IsValid)
             {
