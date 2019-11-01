@@ -51,7 +51,6 @@ namespace MIS4200_Team_Project.Controllers
         {
             if (ModelState.IsValid)
             {
-                userDetails.ID = Guid.NewGuid();
                 db.userDetails.Add(userDetails);
                 db.SaveChanges();
                 return RedirectToAction("Index");
