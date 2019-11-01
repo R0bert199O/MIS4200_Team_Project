@@ -7,41 +7,49 @@
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.firstName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.lastName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.birthDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Email)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PhoneNumber)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.startDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.JobTitle)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.operatingGroups)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.locations)
-        </th>
-        <th></th>
-    </tr>
+    <!-- @Html.ActionLink("Create New", "Create") -->
+    @using (Html.BeginForm("Index", "userDetails", FormMethod.Get))
+    {
+    <p>
+        Find by name: @Html.TextBox("searchString")
+        <input type="submit" value="Search" />
+    </p>
+}
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.firstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.lastName)
+            </th>
+            <!--<th>
+       @Html.DisplayNameFor(model => model.birthDate)
+    </th> -->
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PhoneNumber)
+            </th>
+            <!--<th>
+        @Html.DisplayNameFor(model => model.startDate)
+    </th> -->
+            <th>
+                @Html.DisplayNameFor(model => model.JobTitle)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.operatingGroups)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.locations)
+            </th>
+            <th></th>
+        </tr>
 
-@foreach (var item in Model) {
+    @foreach (var item in Model)
+    {
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.firstName)
@@ -49,33 +57,33 @@
         <td>
             @Html.DisplayFor(modelItem => item.lastName)
         </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.birthDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Email)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PhoneNumber)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.startDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.JobTitle)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.operatingGroups)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.locations)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+        <!--<td>
+        @Html.DisplayFor(modelItem => item.birthDate)
+    </td> -->
+    <td>
+        @Html.DisplayFor(modelItem => item.Email)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.PhoneNumber)
+    </td>
+    <!--<td>
+        @Html.DisplayFor(modelItem => item.startDate)
+    </td>-->
+    <td>
+        @Html.DisplayFor(modelItem => item.JobTitle)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.operatingGroups)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.locations)
+    </td>
+    <td>
+        <!-- @Html.ActionLink("Edit", "Edit", new { id = item.ID }) | -->
+        @Html.ActionLink("View Profile", "Details", new { id = item.ID })
+        <!--@Html.ActionLink("Delete", "Delete", new { id = item.ID }) -->
         </td>
     </tr>
-}
+        }
 
-</table>
+    </table>
