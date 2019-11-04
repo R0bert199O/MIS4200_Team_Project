@@ -91,9 +91,7 @@ namespace MIS4200_Team_Project.Controllers
         {
             if (ModelState.IsValid)
             {
-                Guid userID;
-                Guid.TryParse(User.Identity.GetUserId(), out userID);
-                userDetails.ID = userID;
+                userDetails.ID = Guid.NewGuid();
                 db.userDetails.Add(userDetails);
                 db.SaveChanges();
                 return RedirectToAction("Index");
