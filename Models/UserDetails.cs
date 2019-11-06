@@ -8,45 +8,69 @@ namespace MIS4200_Team_Project.Models
 {
     public class UserDetails
     {
-        [Required]
         public Guid ID { get; set; }
-        [Required]
+
+
         [Display(Name = "First Name")]
+        [Required]
         [RegularExpression(@"^[a-zA-Z]+$", ErrorMessage = "Please use only letters A - Z")]
+        [StringLength(30)]
         public string firstName { get; set; }
-        [Required]
+
+
+
         [Display(Name = "Last Name")]
-        [RegularExpression(@"^[a-zA-Z]+$", ErrorMessage = "Please use only letters A - Z")]
-        public string lastName { get; set; }
         [Required]
+        [RegularExpression(@"^[a-zA-Z]+$", ErrorMessage = "Please use only letters A - Z")]
+        [StringLength(30)]
+        public string lastName { get; set; }
+
+
         [Display(Name = "Date of Birth")]
+        [Required]
         [DisplayFormat(DataFormatString = "{0:d}", ApplyFormatInEditMode = true)]
         public DateTime birthDate { get; set; }
+
+
+        [Display(Name = "Centric Email")]
         [Required]
         [EmailAddress]
-        [Display(Name = "Centric Email")]
         public string Email { get; set; }
-        [Required]
+
+
         [Display(Name = "Primary Phone")]
+        [Required]
         [DataType(DataType.PhoneNumber)]
         [RegularExpression(@"^([0-9]{3})-([0-9]{3})-([0-9]{4})$",
                    ErrorMessage = "Please enter phone number in format xxx-xxx-xxxx.")]
         //[DisplayFormat(DataFormatString = "\\d{3}-\\d{3}-\\d{4}", ApplyFormatInEditMode = true)]
-
         public string PhoneNumber { get; set; }
-        [Required]
+
+
         [Display(Name = "Start Date")]
+        [Required]
         [DisplayFormat(DataFormatString = "{0:d}", ApplyFormatInEditMode = true)]
         public DateTime startDate { get; set; }
-        [Required]
+
+
         [Display(Name = "Job Title")]
+        [Required]
         public jobTitle JobTitle { get; set; }
-        [Required]
+
+
         [Display(Name = "Operating Group")]
-        public operatingGroup operatingGroups { get; set; }
         [Required]
+        public operatingGroup operatingGroups { get; set; }
+
+
         [Display(Name = "Location")]
+        [Required]
         public location locations { get; set; }
+
+
+        [Display(Name = "Profile Picture")]
+        public string photo { get; set; }
+
 
         public enum jobTitle
         {

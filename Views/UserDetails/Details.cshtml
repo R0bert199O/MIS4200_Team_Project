@@ -13,7 +13,9 @@
         <div class="panel panel-default">
             <div align="center" class="panel-heading"><strong>Profile Picture</strong></div>
             <div class="panel-body">
-                <center><img src="~/Images/Avatar.png" width="100" alt="Profile Picture" /></center>
+                <center>
+                    <img src="@Url.Content("~/Images/")@Model.photo" height="100" />
+                </center>
             </div>
         </div>
     </div>

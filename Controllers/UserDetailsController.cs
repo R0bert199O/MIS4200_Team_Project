@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -87,13 +88,32 @@ namespace MIS4200_Team_Project.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,firstName,lastName,birthDate,Email,PhoneNumber,startDate,JobTitle,operatingGroups,locations")] UserDetails userDetails)
+        public ActionResult Create([Bind(Include = "ID,firstName,lastName,birthDate,Email,PhoneNumber,startDate,JobTitle,operatingGroups,locations,photo")] UserDetails userDetails)
         {
             if (ModelState.IsValid)
             {
                 Guid userID;
                 Guid.TryParse(User.Identity.GetUserId(), out userID);
                 userDetails.ID = userID;
+
+                HttpPostedFileBase file = Request.Files["UploadedImage"]; //(A) – see notes below
+                if (file != null && file.FileName != null && file.FileName != "") //(B)
+                {
+                    FileInfo fi = new FileInfo(file.FileName); //(C)
+                    if (fi.Extension != ".png" && fi.Extension != ".jpg" && fi.Extension != ".gif") //(D)
+                    {
+                        TempData["Errormsg"] = "Image File Extension is not valid"; //(E)
+                        return View(userDetails);
+                    }
+                    else
+                    {
+                        // this saves the file as the user’s ID and file extension
+                        userDetails.photo = userDetails.ID + fi.Extension; //(F)
+                        file.SaveAs(Server.MapPath("~/Images/" + userDetails.photo)); //(G)
+                    }
+                }
+
+
                 db.userDetails.Add(userDetails);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -122,7 +142,7 @@ namespace MIS4200_Team_Project.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,firstName,lastName,birthDate,Email,PhoneNumber,startDate,JobTitle,operatingGroups,locations")] UserDetails userDetails)
+        public ActionResult Edit([Bind(Include = "ID,firstName,lastName,birthDate,Email,PhoneNumber,startDate,JobTitle,operatingGroups,locations,photo")] UserDetails userDetails)
         {
             if (ModelState.IsValid)
             {
