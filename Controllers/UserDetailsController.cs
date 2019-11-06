@@ -169,15 +169,18 @@ namespace MIS4200_Team_Project.Controllers
         }
 
         // POST: UserDetails/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(Guid id)
+       [HttpPost, ActionName("Delete")]
+       [ValidateAntiForgeryToken]
+       public ActionResult DeleteConfirmed(Guid id)
         {
             UserDetails userDetails = db.userDetails.Find(id);
             db.userDetails.Remove(userDetails);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+
+       
+
 
         protected override void Dispose(bool disposing)
         {
