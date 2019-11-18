@@ -111,6 +111,40 @@
     </div>
 </div>
 <p>
-    <!--@Html.ActionLink("Edit", "Edit", new { id = Model.ID }) | -->
-    @Html.ActionLink("Back to Directory", "Index")
+    @{
+
+        if (id == null)
+        {
+            return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        }
+        User user = db.UserDetails.Find(id);
+        if (user == null)
+        {
+            return HttpNotFound();
+        }
+        Guid memberID;
+        Guid.TryParse(User.Identity.GetUserId(), out memberID);
+        if (user.ID == memberID)
+        {
+            @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+
+}
+else
+{
+@Html.ActionLink("Back to Directory", "Index")
+}
+
+
+
+
+
+
+
+    }
+
+
+
+
+
+
 </p>
