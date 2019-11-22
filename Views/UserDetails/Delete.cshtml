@@ -10,6 +10,30 @@
 <div>
     <h4>UserDetails</h4>
     <hr />
+
+    @{
+        string strFilePath = Convert.ToString(@Url.Content("~/Images/"));
+        string strFilePath2 = Convert.ToString(@Html.DisplayFor(model => model.photo));
+
+        string strFilePathFull = strFilePath + strFilePath2;
+
+        string strProfilePicture = "";
+
+
+        if (strFilePathFull == "/Images/")
+        {
+            strProfilePicture = "Avatar.png";
+        }
+        else
+        {
+            strProfilePicture = strFilePath2;
+        }
+    }
+
+    <img src="@Url.Content("~/Images/")@strProfilePicture" width="125" />
+
+    <br /><br />
+
     <dl class="dl-horizontal">
         <dt>
             @Html.DisplayNameFor(model => model.firstName)
@@ -85,7 +109,8 @@
 
     </dl>
 
-    @using (Html.BeginForm()) {
+    @using (Html.BeginForm())
+    {
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">

@@ -19,8 +19,8 @@ namespace MIS4200_Team_Project.Controllers
 
         // GET: UserDetails
         public ActionResult Index(string searchString)
-        {  
-                        var testusers = from u in db.UserDetails select u;
+        {
+            var testusers = from u in db.UserDetails select u;
             if (!string.IsNullOrEmpty(searchString))
             {
                 testusers = testusers.Where(u => u.lastName.Contains(searchString) || u.firstName.Contains(searchString));
@@ -29,7 +29,7 @@ namespace MIS4200_Team_Project.Controllers
 
             }
 
-            
+
 
             var userSearch = from o in db.UserDetails select o;
             string[] userNames; // declare the array to hold pieces of the string
@@ -112,14 +112,6 @@ namespace MIS4200_Team_Project.Controllers
                         file.SaveAs(Server.MapPath("~/Images/" + userDetails.photo)); //(G)
                     }
                 }
-                
-                if (file == null)
-                {
-
-                    userDetails.photo = Server.MapPath("~Images/Avatar.png");
-
-                }
-
 
                 db.UserDetails.Add(userDetails);
                 db.SaveChanges();
@@ -129,19 +121,32 @@ namespace MIS4200_Team_Project.Controllers
             return View(userDetails);
         }
 
-        // GET: UserDetails/Edit/5
+        // GET: userDetails/Edit/5
         public ActionResult Edit(Guid? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            UserDetails userDetails = db.UserDetails.Find(id);
-            if (userDetails == null)
+            UserDetails user = db.UserDetails.Find(id);
+            if (user == null)
             {
                 return HttpNotFound();
             }
-            return View(userDetails);
+            Guid memberID;
+            Guid.TryParse(User.Identity.GetUserId(), out memberID);
+            if (user.ID == memberID)
+            {
+                // find the user's record
+                var currentUser = db.UserDetails.Find(memberID);
+                // save the current photo into TempData
+                TempData["oldPhoto"] = currentUser.photo; // save the current photo info
+                return View(user);
+            }
+            else
+            {
+                return View("NotAuthorized");
+            }
         }
 
         // POST: UserDetails/Edit/5
@@ -154,11 +159,66 @@ namespace MIS4200_Team_Project.Controllers
             if (ModelState.IsValid)
             {
                 db.Entry(userDetails).State = EntityState.Modified;
+                HttpPostedFileBase file = Request.Files["UploadedImage"];
+                if (file != null && file.FileName != null && file.FileName != "")
+                {
+                    FileInfo fi = new FileInfo(file.FileName);
+                    if (fi.Extension != ".png" && fi.Extension != ".jpg" && fi.Extension != "gif")
+                {
+                        TempData["Errormsg"] = "Image File Extension is not valid";
+                        return View(userDetails);
+                    }
+else
+                    {
+                        // the following statement prevents the File statements from throwing Exceptions if the file isn't found
+                        string imageName = "none";
+                        // if the old photo isn't null, load it's name into imageName
+                        if (TempData["oldPhoto"] != null)
+                        {
+                            imageName = TempData["oldPhoto"].ToString();
+                        }
+                        string path = Server.MapPath("~/Images/" + imageName);
+                        // there may not be a file, so use try/catch
+                        try
+                        {
+                            if (System.IO.File.Exists(path))
+                            {
+                                System.IO.File.Delete(path);
+                            }
+                            else
+                            {
+                                // must already be deleted
+                            }
+                        }
+                        catch (Exception Ex)
+                        {
+                            // delete failed - probably not a real issue
+                        }
+                        // now upload the new image
+                        if (fi.Name != null && fi.Name != "") // i.e., there was a file selected
+                        {
+                            //update the stored file name, if there is one
+                            //the file name is changed to the userID, to avoid name conflicts
+                            userDetails.photo = userDetails.ID + fi.Extension;
+                            file.SaveAs(Server.MapPath("~/Images/" + userDetails.photo));
+                        }
+                    }
+                }
+                else
+                {
+                    // no file was selected, so set the photo field back to its original value
+                    if (TempData["oldPhoto"] != null)
+                    {
+                        userDetails.photo = TempData["oldPhoto"].ToString();
+                    }
+                }
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
             return View(userDetails);
         }
+
+
 
         // GET: UserDetails/Delete/5
         public ActionResult Delete(Guid? id)
@@ -176,11 +236,32 @@ namespace MIS4200_Team_Project.Controllers
         }
 
         // POST: UserDetails/Delete/5
+
        [HttpPost, ActionName("Delete")]
        [ValidateAntiForgeryToken]
        public ActionResult DeleteConfirmed(Guid id)
         {
             UserDetails userDetails = db.UserDetails.Find(id);
+
+            string imageName = userDetails.photo;
+            string path = Server.MapPath("~/Images/") + imageName;
+            // there may not be a file so use try/catch
+            try
+            {
+                if (System.IO.File.Exists(path))
+                {
+                    System.IO.File.Delete(path);
+                }
+                else
+                {
+                    // must already be deleted
+                }
+            }
+            catch (Exception)
+            {
+                // delete failed - probably not a real issue
+            }
+
             db.UserDetails.Remove(userDetails);
             db.SaveChanges();
             return RedirectToAction("Index");

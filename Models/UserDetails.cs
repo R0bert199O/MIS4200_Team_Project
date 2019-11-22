@@ -68,7 +68,9 @@ namespace MIS4200_Team_Project.Models
         public location locations { get; set; }
 
 
-        [Display(Name = "Profile Picture")]
+        [Display(Name = "Profile Picture (optional)")]
+
+        [RegularExpression(@"([a-zA-Z0-9\s_\\.\-:])+(.png|.jpg|.gif)$", ErrorMessage = "Only JPG, GIF, or PNG are accepted.")]
         public string photo { get; set; }
 
 
@@ -141,4 +143,12 @@ namespace MIS4200_Team_Project.Models
         }
         public ICollection<CoreValueLeaderboard> Users { get; set; }
     }
+
+
+
+
+
+
+
+
 }

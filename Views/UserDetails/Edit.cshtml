@@ -91,7 +91,28 @@
     <div class="form-group">
         @Html.LabelFor(model => model.photo, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            <img src="~/Images/@Model.photo" height="400" />
+
+            @{
+                string strFilePath = Convert.ToString(@Url.Content("~/Images/"));
+                string strFilePath2 = Convert.ToString(@Html.DisplayFor(model => model.photo));
+
+                string strFilePathFull = strFilePath + strFilePath2;
+
+                string strProfilePicture = "";
+
+
+                if (strFilePathFull == "/Images/")
+                {
+                    strProfilePicture = "Avatar.png";
+                }
+                else
+                {
+                    strProfilePicture = strFilePath2;
+                }
+            }
+
+            <img src="@Url.Content("~/Images/")@strProfilePicture" width="125" />
+
             <input id="UploadedImage" type="file" name="UploadedImage" />
         </div>
     </div>
