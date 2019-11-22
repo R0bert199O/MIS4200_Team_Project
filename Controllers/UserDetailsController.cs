@@ -112,6 +112,13 @@ namespace MIS4200_Team_Project.Controllers
                         file.SaveAs(Server.MapPath("~/Images/" + userDetails.photo)); //(G)
                     }
                 }
+                
+                if (file == null)
+                {
+
+                    userDetails.photo = Server.MapPath("~Images/Avatar.png");
+
+                }
 
 
                 db.UserDetails.Add(userDetails);
