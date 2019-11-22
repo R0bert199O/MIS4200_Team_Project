@@ -4,10 +4,174 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Leaderboard</h2>
+<table>
+    @{
+        ViewBag.Title = "Leaderboard";
+    }
 
+
+    <!-- <div class="jumbotron text-center" style="background-color:gray;color:blueviolet;background-image:url(https://cdn.pixabay.com/photo/2015/11/08/17/10/banner-1033936_1280.jpg)">
+         <h1>Centric's Values at their Core</h1>
+         <p></p>
+     </div>
+     -->
+
+    <!DOCTYPE HTML>
+    <html>
+
+    <div class="container">
+
+        <head>
+            <script>
+                window.onload = function () {
+
+                    var chart = new CanvasJS.Chart("chartContainer", {
+                        animationEnabled: true,
+                        title: {
+                            text: "Centric's Top 5",
+                            fontFamily: "arial black",
+                            fontColor: "#695A42"
+                        },
+                        axisX: {
+                            interval: 1,
+                            intervalType: "Team Members"
+                        },
+                        axisY: {
+                            valueFormatString: "$#0bn",
+                            gridColor: "#B6B1A8",
+                            tickColor: "#B6B1A8"
+                        },
+                        toolTip: {
+                            shared: true,
+                            content: toolTipContent
+                        },
+                        data: [{
+                            type: "stackedColumn",
+                            showInLegend: true,
+                            color: "#F906CD",
+                            name: "Stewardship",
+                            dataPoints: [
+                                { y: 6.75, x: new Date(2010, 0) },
+                                { y: 8.57, x: new Date(2011, 0) },
+                                { y: 10.64, x: new Date(2012, 0) },
+                                { y: 13.97, x: new Date(2013, 0) },
+                                { y: 15.42, x: new Date(2014, 0) },
+                                { y: 17.26, x: new Date(2015, 0) },
+                                { y: 20.26, x: new Date(2016, 0) }
+                            ]
+                        },
+                        {
+                            type: "stackedColumn",
+                            showInLegend: true,
+                            name: "Delivery Excellence",
+                            color: "#F71A32",
+                            dataPoints: [
+                                { y: 6.82, x: new Date(2010, 0) },
+                                { y: 9.02, x: new Date(2011, 0) },
+                                { y: 11.80, x: new Date(2012, 0) },
+                                { y: 14.11, x: new Date(2013, 0) },
+                                { y: 15.96, x: new Date(2014, 0) },
+                                { y: 17.73, x: new Date(2015, 0) },
+                                { y: 21.5, x: new Date(2016, 0) }
+                            ]
+                        },
+                        {
+                            type: "stackedColumn",
+                            showInLegend: true,
+                            name: "Innovation",
+                            color: "#07B423",
+                            dataPoints: [
+                                { y: 7.28, x: new Date(2010, 0) },
+                                { y: 9.72, x: new Date(2011, 0) },
+                                { y: 13.30, x: new Date(2012, 0) },
+                                { y: 14.9, x: new Date(2013, 0) },
+                                { y: 18.10, x: new Date(2014, 0) },
+                                { y: 18.68, x: new Date(2015, 0) },
+                                { y: 22.45, x: new Date(2016, 0) }
+                            ]
+                        },
+                        {
+                            type: "stackedColumn",
+                            showInLegend: true,
+                            name: "Culture",
+                            color: "#A30147",
+                            dataPoints: [
+                                { y: 8.44, x: new Date(2010, 0) },
+                                { y: 10.58, x: new Date(2011, 0) },
+                                { y: 14.41, x: new Date(2012, 0) },
+                                { y: 16.86, x: new Date(2013, 0) },
+                                { y: 10.64, x: new Date(2014, 0) },
+                                { y: 21.32, x: new Date(2015, 0) },
+                                { y: 26.06, x: new Date(2016, 0) }
+                            ]
+                        },
+                        {
+                            type: "stackedColumn",
+                            showInLegend: true,
+                            name: "Greater Good",
+                            color: "#1E00F3",
+                            dataPoints: [
+                                { y: 8.44, x: new Date(2010, 0) },
+                                { y: 10.58, x: new Date(2011, 0) },
+                                { y: 14.41, x: new Date(2012, 0) },
+                                { y: 16.86, x: new Date(2013, 0) },
+                                { y: 10.64, x: new Date(2014, 0) },
+                                { y: 21.32, x: new Date(2015, 0) },
+                                { y: 26.06, x: new Date(2016, 0) }
+                            ]
+                        },
+                        {
+                            type: "stackedColumn",
+                            showInLegend: true,
+                            name: "Integrity and Openness",
+                            color: "#F3EF00",
+                            dataPoints: [
+                                { y: 8.44, x: new Date(2010, 0) },
+                                { y: 10.58, x: new Date(2011, 0) },
+                                { y: 14.41, x: new Date(2012, 0) },
+                                { y: 16.86, x: new Date(2013, 0) },
+                                { y: 10.64, x: new Date(2014, 0) },
+                                { y: 21.32, x: new Date(2015, 0) },
+                                { y: 26.06, x: new Date(2016, 0) }
+                            ]
+                        }]
+                    });
+                    chart.render();
+
+                    function toolTipContent(e) {
+                        var str = "";
+                        var total = 0;
+                        var str2, str3;
+                        for (var i = 0; i < e.entries.length; i++) {
+                            var str1 = "<span style= \"color:" + e.entries[i].dataSeries.color + "\"> " + e.entries[i].dataSeries.name + "</span>: $<strong>" + e.entries[i].dataPoint.y + "</strong>bn<br/>";
+                            total = e.entries[i].dataPoint.y + total;
+                            str = str.concat(str1);
+                        }
+                        str2 = "<span style = \"color:DodgerBlue;\"><strong>" + (e.entries[0].dataPoint.x).getFullYear() + "</strong></span><br/>";
+                        total = Math.round(total * 100) / 100;
+                        str3 = "<span style = \"color:Tomato\">Total:</span><strong> $" + total + "</strong>bn<br/>";
+                        return (str2.concat(str)).concat(str3);
+                    }
+
+                }
+            </script>
+        </head>
+        <body>
+            <div id="chartContainer" style="height: 370px; width: 100%;"></div>
+            <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+        </body>
+</html>
+
+
+</div>
+</table>
 <p>
-    @Html.ActionLink("Create New", "Create")
+    </br>
+    </br>
+    <h2>All Employees</h2>
+    </br>
+    <!--   @Html.ActionLink("Create New", "Create")-->
 </p>
 <table class="table">
     <tr>
@@ -35,7 +199,6 @@
         <th>
             @Html.DisplayNameFor(model => model.Balance)
         </th>
-        <th></th>
          <th>
             @Html.DisplayNameFor(model => model.TotalPoints)
         </th>
@@ -80,164 +243,4 @@
     }
 
 </table>
-<table>
-    @{
-        ViewBag.Title = "Leaderboard";
-    }
-    <h2>@ViewBag.Title</h2>
 
-    <div class="jumbotron text-center" style="background-color:gray;color:blueviolet;background-image:url(https://cdn.pixabay.com/photo/2015/11/08/17/10/banner-1033936_1280.jpg)">
-        <h1>Centric's Values at their Core</h1>
-        <p></p>
-    </div>
-
-
-    <!DOCTYPE HTML>
-    <html>
-
-    <div class="container">
-
-        <head>
-            <script>
-            window.onload = function () {
-
-                var chart = new CanvasJS.Chart("chartContainer", {
-                    animationEnabled: true,
-                    title: {
-                        text: "Centric's Top 5",
-                        fontFamily: "arial black",
-                        fontColor: "#695A42"
-                    },
-                    axisX: {
-                        interval: 1,
-                        intervalType: "Team Members"
-                    },
-                    axisY: {
-                        valueFormatString: "$#0bn",
-                        gridColor: "#B6B1A8",
-                        tickColor: "#B6B1A8"
-                    },
-                    toolTip: {
-                        shared: true,
-                        content: toolTipContent
-                    },
-                    data: [{
-                        type: "stackedColumn",
-                        showInLegend: true,
-                        color: "#F906CD",
-                        name: "Stewardship",
-                        dataPoints: [
-                            { y: 6.75, x: new Date(2010, 0) },
-                            { y: 8.57, x: new Date(2011, 0) },
-                            { y: 10.64, x: new Date(2012, 0) },
-                            { y: 13.97, x: new Date(2013, 0) },
-                            { y: 15.42, x: new Date(2014, 0) },
-                            { y: 17.26, x: new Date(2015, 0) },
-                            { y: 20.26, x: new Date(2016, 0) }
-                        ]
-                    },
-                    {
-                        type: "stackedColumn",
-                        showInLegend: true,
-                        name: "Delivery Excellence",
-                        color: "#F71A32",
-                        dataPoints: [
-                            { y: 6.82, x: new Date(2010, 0) },
-                            { y: 9.02, x: new Date(2011, 0) },
-                            { y: 11.80, x: new Date(2012, 0) },
-                            { y: 14.11, x: new Date(2013, 0) },
-                            { y: 15.96, x: new Date(2014, 0) },
-                            { y: 17.73, x: new Date(2015, 0) },
-                            { y: 21.5, x: new Date(2016, 0) }
-                        ]
-                    },
-                    {
-                        type: "stackedColumn",
-                        showInLegend: true,
-                        name: "Innovation",
-                        color: "#07B423",
-                        dataPoints: [
-                            { y: 7.28, x: new Date(2010, 0) },
-                            { y: 9.72, x: new Date(2011, 0) },
-                            { y: 13.30, x: new Date(2012, 0) },
-                            { y: 14.9, x: new Date(2013, 0) },
-                            { y: 18.10, x: new Date(2014, 0) },
-                            { y: 18.68, x: new Date(2015, 0) },
-                            { y: 22.45, x: new Date(2016, 0) }
-                        ]
-                        },
-                     {
-                        type: "stackedColumn",
-                        showInLegend: true,
-                        name: "Culture",
-                        color: "#A30147",
-                        dataPoints: [
-                            { y: 8.44, x: new Date(2010, 0) },
-                            { y: 10.58, x: new Date(2011, 0) },
-                            { y: 14.41, x: new Date(2012, 0) },
-                            { y: 16.86, x: new Date(2013, 0) },
-                            { y: 10.64, x: new Date(2014, 0) },
-                            { y: 21.32, x: new Date(2015, 0) },
-                            { y: 26.06, x: new Date(2016, 0) }
-                        ]
-                        },
-                      {
-                        type: "stackedColumn",
-                        showInLegend: true,
-                        name: "Greater Good",
-                        color: "#1E00F3",
-                        dataPoints: [
-                            { y: 8.44, x: new Date(2010, 0) },
-                            { y: 10.58, x: new Date(2011, 0) },
-                            { y: 14.41, x: new Date(2012, 0) },
-                            { y: 16.86, x: new Date(2013, 0) },
-                            { y: 10.64, x: new Date(2014, 0) },
-                            { y: 21.32, x: new Date(2015, 0) },
-                            { y: 26.06, x: new Date(2016, 0) }
-                        ]
-                    },
-                    {
-                        type: "stackedColumn",
-                        showInLegend: true,
-                        name: "Integrity and Openness",
-                        color: "#F3EF00",
-                        dataPoints: [
-                            { y: 8.44, x: new Date(2010, 0) },
-                            { y: 10.58, x: new Date(2011, 0) },
-                            { y: 14.41, x: new Date(2012, 0) },
-                            { y: 16.86, x: new Date(2013, 0) },
-                            { y: 10.64, x: new Date(2014, 0) },
-                            { y: 21.32, x: new Date(2015, 0) },
-                            { y: 26.06, x: new Date(2016, 0) }
-                        ]
-                    }]
-                });
-                chart.render();
-
-                function toolTipContent(e) {
-                    var str = "";
-                    var total = 0;
-                    var str2, str3;
-                    for (var i = 0; i < e.entries.length; i++) {
-                        var str1 = "<span style= \"color:" + e.entries[i].dataSeries.color + "\"> " + e.entries[i].dataSeries.name + "</span>: $<strong>" + e.entries[i].dataPoint.y + "</strong>bn<br/>";
-                        total = e.entries[i].dataPoint.y + total;
-                        str = str.concat(str1);
-                    }
-                    str2 = "<span style = \"color:DodgerBlue;\"><strong>" + (e.entries[0].dataPoint.x).getFullYear() + "</strong></span><br/>";
-                    total = Math.round(total * 100) / 100;
-                    str3 = "<span style = \"color:Tomato\">Total:</span><strong> $" + total + "</strong>bn<br/>";
-                    return (str2.concat(str)).concat(str3);
-                }
-
-            }
-            </script>
-        </head>
-        <body>
-            <div id="chartContainer" style="height: 370px; width: 100%;"></div>
-            <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
-        </body>
-</html>
-
-
-</div>
-</table>
