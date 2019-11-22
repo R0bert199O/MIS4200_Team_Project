@@ -102,7 +102,7 @@ namespace MIS4200_Team_Project.Controllers
                     FileInfo fi = new FileInfo(file.FileName); //(C)
                     if (fi.Extension != ".png" && fi.Extension != ".jpg" && fi.Extension != ".gif") //(D)
                     {
-                        TempData["Errormsg"] = "Image File Extension is not valid"; //(E)
+                        TempData["Errormsg"] = "Image file must be a JPG, PNG, or GIF."; //(E)
                         return View(userDetails);
                     }
                     else
@@ -165,7 +165,7 @@ namespace MIS4200_Team_Project.Controllers
                     FileInfo fi = new FileInfo(file.FileName);
                     if (fi.Extension != ".png" && fi.Extension != ".jpg" && fi.Extension != "gif")
                 {
-                        TempData["Errormsg"] = "Image File Extension is not valid";
+                        TempData["Errormsg"] = "Image file must be a JPG, PNG, or GIF.";
                         return View(userDetails);
                     }
 else
@@ -179,6 +179,8 @@ else
                         }
                         string path = Server.MapPath("~/Images/" + imageName);
                         // there may not be a file, so use try/catch
+
+                        
                         try
                         {
                             if (System.IO.File.Exists(path))
@@ -194,6 +196,9 @@ else
                         {
                             // delete failed - probably not a real issue
                         }
+
+
+
                         // now upload the new image
                         if (fi.Name != null && fi.Name != "") // i.e., there was a file selected
                         {
