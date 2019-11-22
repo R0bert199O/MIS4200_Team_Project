@@ -6,9 +6,12 @@
 
 <h2>Index</h2>
 
+
 <p>
-    @Html.ActionLink("Create New", "Create")
+    <!-- @Html.ActionLink("Create New", "Create")-->
 </p>
+
+
 <table class="table">
     <tr>
         <th>
@@ -38,38 +41,39 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.UserDetails.firstName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Stewardship)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Culture)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Delivery_Excellence)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Innovation)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Greater_Good)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Integrity_And_Openness)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Balance)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.leaderboardID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.leaderboardID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.leaderboardID })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserDetails.firstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Stewardship)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Culture)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Delivery_Excellence)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Innovation)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Greater_Good)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Integrity_And_Openness)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Balance)
+            </td>
+            <td>
+                @Html.ActionLink("Endorse", "Edit", new { id = item.leaderboardID }) |
+               @Html.ActionLink("Details", "Details", "UserDetails", new {id = item.ID}, null)
+                <!-- @Html.ActionLink("Delete", "Delete", new { id = item.ID })-->
+            </td>
+        </tr>
+    }
 
 </table>
