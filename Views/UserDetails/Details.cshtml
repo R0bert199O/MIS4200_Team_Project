@@ -6,274 +6,501 @@
 
 <br /><br />
 
-<div class="row">
-    <div class="col-md-4">
-
-
-        <div class="panel panel-default">
-            <div align="center" class="panel-heading"><strong>Profile</strong></div>
-            <div class="panel-body">
-                <center>
-                    <strong>@Html.DisplayFor(model => model.firstName) @Html.DisplayFor(model => model.lastName)</strong>
-                    <br /><br />
-
-                    <img src="@Url.Content("~/Images/")@Model.photo" width="125" />
-
-                    <br /><br />
-
-                    <strong>@Html.DisplayNameFor(model => model.birthDate)</strong> : @Html.DisplayFor(model => model.birthDate) <br />
-                    <strong>@Html.DisplayNameFor(model => model.Email)</strong> : @Html.DisplayFor(model => model.Email) <br />
-                    <strong>@Html.DisplayNameFor(model => model.PhoneNumber)</strong> : @Html.DisplayFor(model => model.PhoneNumber) <br />
-                    <strong>@Html.DisplayNameFor(model => model.JobTitle)</strong> : @Html.DisplayFor(model => model.JobTitle) <br />
-                    <strong>@Html.DisplayNameFor(model => model.firstName)</strong> : @Html.DisplayFor(model => model.firstName) <br />
-                    <strong>@Html.DisplayNameFor(model => model.operatingGroups)</strong> : @Html.DisplayFor(model => model.operatingGroups) <br />
-                    <strong>@Html.DisplayNameFor(model => model.locations)</strong> : @Html.DisplayFor(model => model.locations) <br />
-                </center>
-            </div>
-        </div>
-    </div>
-    
-
-    <div class="col-md-8">
-        <div class="panel panel-default">
-            <div align="center" class="panel-heading"><strong>Core Value Badges</strong></div>
-            <div class="panel-body">
-                <table>
-                    <tr>
-                        <th class="text-center" width="200">Stewardship</th>
-                        <th class="text-center" width="200">Culture</th>
-                        <th class="text-center" width="200">Delivery Excellence</th>
-                        <th class="text-center" width="200">Innovation</th>
-                    </tr> 
-                    <tr>
-                        <td>
-
-                            @{
-                                int intStwdValueMax = 10; //Max Value
-                                int intStwdValueNow = 30; //Current Value FROM DATABASE
-                                string strStwdMedal = ""; //medal image path                                
-
-                                if (intStwdValueNow < 10) // Under 10 No Medal
-                                {
-                                    intStwdValueMax = 10;
-                                    strStwdMedal = "~/Images/Avatar.png";
-
-                                }
-                                else if (intStwdValueNow >= 10 && intStwdValueNow < 20) // 10-19 Bronze Medal
-                                {
-                                    intStwdValueMax = 20;
-                                    strStwdMedal = "~/Images/Medals/bronze.png";
-
-                                }
-                                else if (intStwdValueNow >= 20 && intStwdValueNow < 30) // 20-29 Silver Medal
-                                {
-
-                                    intStwdValueMax = 30;
-                                    strStwdMedal = "~/Images/Medals/silver.png";
-
-
-                                }
-                                else // 30+ gold medal
-                                {
-                                    intStwdValueMax = 30;
-                                    strStwdMedal = "~/Images/Medals/gold.png";
-                                }
-
-                                decimal decStwdWidth = Convert.ToDecimal(intStwdValueNow) / Convert.ToDecimal(intStwdValueMax) * 100;
-
-                                string strStwdProgressText = Convert.ToString(intStwdValueNow) + "/" + Convert.ToString(intStwdValueMax);
-
-                            }                            
-
-                            <center>
-                                <img src="~/Images/Medals/gold.png" width="50" />
-
-                                <div class="progress" style="width: 125px">
-                                    <div class="progress-bar" role="progressbar" style="width:@decStwdWidth%">
-                                        @strStwdProgressText
-                                    </div>
-                                </div>
-
-                            </center>
-
-                        </td>
-
-                        <td>
-                            @{
-                                int intCulValueMax = 0; //Max Value
-                                int intCulValueNow = 25; //Current Value FROM DATABASE
-                                string strCulMedal = ""; //medal image path
-
-                                if (intCulValueNow < 10) // Under 10 No Medal
-                                {
-                                    intCulValueMax = 10;
-                                    strCulMedal = "~/Images/Avatar.png";
+      <div class="row">
+          <!-- Profile Panel -->
+          <div class="col-md-4">
+
+
+              <div class="panel panel-default">
+                  <div align="center" class="panel-heading"><strong>Profile</strong></div>
+                  <div class="panel-body">
+                      <center>
+                          <strong>@Html.DisplayFor(model => model.firstName) @Html.DisplayFor(model => model.lastName)</strong>
+                          <br /><br />
+
+                          @{
+                              string strFilePath = Convert.ToString(@Url.Content("~/Images/"));
+                              string strFilePath2 = Convert.ToString(@Html.DisplayFor(model => model.photo));
+
+                              string strFilePathFull = strFilePath + strFilePath2;
+
+                              string strProfilePicture = "";
+
+
+                              if (strFilePathFull == "/Images/")
+                              {
+                                  strProfilePicture = "Avatar.png";
+                              }
+                              else
+                              {
+                                  strProfilePicture = strFilePath2;
+                              }
+                          }
+
+                          <img src="@Url.Content("~/Images/")@strProfilePicture" width="125" />
+
+                          <br /><br />
+
+                          <strong>Birthday</strong> : @Html.DisplayFor(model => model.birthDate) <br />
+                          <strong>Email</strong> : @Html.DisplayFor(model => model.Email) <br />
+                          <strong>@Html.DisplayNameFor(model => model.PhoneNumber)</strong> : @Html.DisplayFor(model => model.PhoneNumber) <br />
+                          <strong>@Html.DisplayNameFor(model => model.startDate)</strong> : @Html.DisplayFor(model => model.startDate) <br />
+                          <strong>@Html.DisplayNameFor(model => model.JobTitle)</strong> : @Html.DisplayFor(model => model.JobTitle) <br />
+                          <strong>@Html.DisplayNameFor(model => model.operatingGroups)</strong> : @Html.DisplayFor(model => model.operatingGroups) <br />
+                          <strong>@Html.DisplayNameFor(model => model.locations)</strong> : @Html.DisplayFor(model => model.locations) <br />
+                      </center>
+                  </div>
+              </div>
+          </div>
+
+          <div class="col-md-8">
+              <div class="panel panel-default">
+                  <div align="center" class="panel-heading"><strong>Core Value Badges</strong></div>
+                  <div class="panel-body">
+                      <table>
+                          <!-- Top Headings -->
+                          <tr>
+                              <th class="text-center" width="200">Stewardship</th>
+                              <th class="text-center" width="200">Culture</th>
+                              <th class="text-center" width="200">Delivery Excellence</th>
+                              <th class="text-center" width="200">Innovation</th>
+                          </tr>
+
+                          <tr>
+                              <!-- Stewardship -->
+                              <td>
+
+                                  @{
+                                      int intStwdValueMax = 10; //Max Value
+                                      int intStwdValueNow = 30; //Current Value FROM DATABASE
+                                      string strStwdMedal = ""; //medal image path
+
+                                      if (intStwdValueNow < 10) // Under 10 No Medal
+                                      {
+                                          intStwdValueMax = 10;
+                                          strStwdMedal = "cross.png";
+
+                                      }
+                                      else if (intStwdValueNow >= 10 && intStwdValueNow < 20) // 10-19 Bronze Medal
+                                      {
+                                          intStwdValueMax = 20;
+                                          strStwdMedal = "bronze.png";
+
+                                      }
+                                      else if (intStwdValueNow >= 20 && intStwdValueNow < 30) // 20-29 Silver Medal
+                                      {
+
+                                          intStwdValueMax = 30;
+                                          strStwdMedal = "silver.png";
+
+
+                                      }
+                                      else // 30+ gold medal
+                                      {
+                                          intStwdValueMax = 30;
+                                          strStwdMedal = "gold.png";
+                                      }
+
+                                      decimal decStwdWidth = Convert.ToDecimal(intStwdValueNow) / Convert.ToDecimal(intStwdValueMax) * 100;
+
+                                      string strStwdProgressText = Convert.ToString(intStwdValueNow) + "/" + Convert.ToString(intStwdValueMax);
+
+                                  }
+
+                                  <center>
+                                      <img src="~/Images/Medals/@strStwdMedal" width="50" />
 
-                                }
-                                else if (intCulValueNow >= 10 && intCulValueNow < 20) // 10-19 Bronze Medal
-                                {
-                                    intCulValueMax = 20;
-                                    strCulMedal = "~/Images/Medals/bronze.png";
+                                      <div class="progress" style="width: 125px">
+                                          <div class="progress-bar" role="progressbar" style="width:@decStwdWidth%">
+                                              @strStwdProgressText
+                                          </div>
+                                      </div>
 
-                                }
-                                else if (intCulValueNow >= 20 && intCulValueNow < 30) // 20-29 Silver Medal
-                                {
+                                  </center>
 
-                                    intCulValueMax = 30;
-                                    strCulMedal = "~/Images/Medals/silver.png";
+                              </td>
 
+                              <!-- Culture -->
+                              <td>
+                                  @{
+                                      int intCulValueMax = 0; //Max Value
+                                      int intCulValueNow = 25; //Current Value FROM DATABASE
+                                      string strCulMedal = ""; //medal image path
 
-                                }
-                                else // 30+ gold medal
-                                {
-                                    intCulValueMax = 30;
-                                    strCulMedal = "~/Images/Medals/gold.png";
-                                }
+                                      if (intCulValueNow < 10) // Under 10 No Medal
+                                      {
+                                          intCulValueMax = 10;
+                                          strCulMedal = "cross.png";
 
-                                decimal decCulWidth = Convert.ToDecimal(intCulValueNow) / Convert.ToDecimal(intCulValueMax) * 100;
+                                      }
+                                      else if (intCulValueNow >= 10 && intCulValueNow < 20) // 10-19 Bronze Medal
+                                      {
+                                          intCulValueMax = 20;
+                                          strCulMedal = "bronze.png";
 
-                                string strCulProgressText = Convert.ToString(intCulValueNow) + "/" + Convert.ToString(intCulValueMax);
+                                      }
+                                      else if (intCulValueNow >= 20 && intCulValueNow < 30) // 20-29 Silver Medal
+                                      {
 
-                            }
+                                          intCulValueMax = 30;
+                                          strCulMedal = "silver.png";
 
-                            <center>
-                                <img src="~/Images/Medals/silver.png" width="50" />
 
-                                <div class="progress" style="width: 125px">
-                                    <div class="progress-bar" role="progressbar" style="width:@decCulWidth%">
-                                        @strCulProgressText
-                                    </div>
-                                </div>
-                            </center>
+                                      }
+                                      else // 30+ gold medal
+                                      {
+                                          intCulValueMax = 30;
+                                          strCulMedal = "gold.png";
+                                      }
 
-                        </td>
-                        <td>
-                            @{
-                                int intDelExcValueMax = 10; //Max Value
-                                int intDelExcValueNow = 3; //Current Value FROM DATABASE
-                                string strDelExcMedal = ""; //medal image path
+                                      decimal decCulWidth = Convert.ToDecimal(intCulValueNow) / Convert.ToDecimal(intCulValueMax) * 100;
 
-                                if (intDelExcValueNow < 10) // Under 10 No Medal
-                                {
-                                    intDelExcValueMax = 10;
-                                    strDelExcMedal = "~/Images/Avatar.png";
+                                      string strCulProgressText = Convert.ToString(intCulValueNow) + "/" + Convert.ToString(intCulValueMax);
 
-                                }
-                                else if (intDelExcValueNow >= 10 && intDelExcValueNow < 20) // 10-19 Bronze Medal
-                                {
-                                    intDelExcValueMax = 20;
-                                    strDelExcMedal = "~/Images/Medals/bronze.png";
-
-                                }
-                                else if (intDelExcValueNow >= 20 && intDelExcValueNow < 30) // 20-29 Silver Medal
-                                {
+                                  }
 
-                                    intDelExcValueMax = 30;
-                                    strDelExcMedal = "~/Images/Medals/silver.png";
+                                  <center>
+                                      <img src="~/Images/Medals/@strCulMedal" width="50" />
 
+                                      <div class="progress" style="width: 125px">
+                                          <div class="progress-bar" role="progressbar" style="width:@decCulWidth%">
+                                              @strCulProgressText
+                                          </div>
+                                      </div>
+                                  </center>
 
-                                }
-                                else // 30+ gold medal
-                                {
-                                    intDelExcValueMax = 30;
-                                    strDelExcMedal = "~/Images/Medals/gold.png";
-                                }
+                              </td>
 
-                                decimal decDelExcWidth = Convert.ToDecimal(intDelExcValueNow) / Convert.ToDecimal(intDelExcValueMax) * 100;
+                              <!-- Delivery Excellence -->
+                              <td>
+                                  @{
+                                      int intDelExcValueMax = 10; //Max Value
+                                      int intDelExcValueNow = 3; //Current Value FROM DATABASE
+                                      string strDelExcMedal = ""; //medal image path
 
-                                string strDelExcProgressText = Convert.ToString(intDelExcValueNow) + "/" + Convert.ToString(intDelExcValueMax);
+                                      if (intDelExcValueNow < 10) // Under 10 No Medal
+                                      {
+                                          intDelExcValueMax = 10;
+                                          strDelExcMedal = "cross.png";
 
-                            }
+                                      }
+                                      else if (intDelExcValueNow >= 10 && intDelExcValueNow < 20) // 10-19 Bronze Medal
+                                      {
+                                          intDelExcValueMax = 20;
+                                          strDelExcMedal = "bronze.png";
 
-                            <center>                                
+                                      }
+                                      else if (intDelExcValueNow >= 20 && intDelExcValueNow < 30) // 20-29 Silver Medal
+                                      {
 
-                                <div class="progress" style="width: 125px">
-                                    <div class="progress-bar" role="progressbar" style="width:@decDelExcWidth%">
-                                        @strDelExcProgressText
-                                    </div>
-                                </div>
+                                          intDelExcValueMax = 30;
+                                          strDelExcMedal = "silver.png";
 
-                            </center>
 
-                        </td>
-                        <td>
-                            @{
-                                int intInnoValueMax = 10; //Max Value
-                                int intInnoValueNow = 8; //Current Value FROM DATABASE
-                                string strInnoMedal = ""; //medal image path
+                                      }
+                                      else // 30+ gold medal
+                                      {
+                                          intDelExcValueMax = 30;
+                                          strDelExcMedal = "gold.png";
+                                      }
 
-                                if (intInnoValueNow < 10) // Under 10 No Medal
-                                {
-                                    intInnoValueMax = 10;
-                                    strInnoMedal = "~/Images/Avatar.png";
+                                      decimal decDelExcWidth = Convert.ToDecimal(intDelExcValueNow) / Convert.ToDecimal(intDelExcValueMax) * 100;
 
-                                }
-                                else if (intDelExcValueNow >= 10 && intDelExcValueNow < 20) // 10-19 Bronze Medal
-                                {
-                                    intDelExcValueMax = 20;
-                                    strDelExcMedal = "~/Images/Medals/bronze.png";
+                                      string strDelExcProgressText = Convert.ToString(intDelExcValueNow) + "/" + Convert.ToString(intDelExcValueMax);
 
-                                }
-                                else if (intDelExcValueNow >= 20 && intDelExcValueNow < 30) // 20-29 Silver Medal
-                                {
+                                  }
 
-                                    intDelExcValueMax = 30;
-                                    strDelExcMedal = "~/Images/Medals/silver.png";
+                                  <center>
 
+                                      <img src="~/Images/Medals/@strDelExcMedal" width="50" />
 
-                                }
-                                else // 30+ gold medal
-                                {
-                                    intDelExcValueMax = 30;
-                                    strDelExcMedal = "~/Images/Medals/gold.png";
-                                }
+                                      <div class="progress" style="width: 125px">
+                                          <div class="progress-bar" role="progressbar" style="width:@decDelExcWidth%">
+                                              @strDelExcProgressText
+                                          </div>
+                                      </div>
 
-                                decimal decDelExcWidth = Convert.ToDecimal(intDelExcValueNow) / Convert.ToDecimal(intDelExcValueMax) * 100;
+                                  </center>
 
-                                string strDelExcProgressText = Convert.ToString(intDelExcValueNow) + "/" + Convert.ToString(intDelExcValueMax);
+                              </td>
 
-                            }
+                              <!-- Innovation -->
+                              <td>
+                                  @{
+                                      int intInnoValueMax = 10; //Max Value
+                                      int intInnoValueNow = 8; //Current Value FROM DATABASE
+                                      string strInnoMedal = ""; //medal image path
 
-                            <center>
+                                      if (intInnoValueNow < 10) // Under 10 No Medal
+                                      {
+                                          intInnoValueMax = 10;
+                                          strInnoMedal = "cross.png";
 
-                                <div class="progress" style="width: 125px">
-                                    <div class="progress-bar" role="progressbar" style="width:@decDelExcWidth%">
-                                        @strDelExcProgressText
-                                    </div>
-                                </div>
+                                      }
+                                      else if (intInnoValueNow >= 10 && intInnoValueNow < 20) // 10-19 Bronze Medal
+                                      {
+                                          intInnoValueMax = 20;
+                                          strInnoMedal = "bronze.png";
 
-                            </center>
+                                      }
+                                      else if (intInnoValueNow >= 20 && intInnoValueNow < 30) // 20-29 Silver Medal
+                                      {
 
-                        </td>
-                    </tr>
-                    <tr><td border="0"><br /></td><td border="0"><br /></td><td border="0"><br /></td><td border="0"><br /></td></tr>
-                    <tr>
-                        <th class="text-center">Greater Good</th>
-                        <th class="text-center">Integrity and Openness</th>
-                        <th class="text-center">Balance</th>                 
-                        <th></th>
-                        <td>
-                            <center> Integrity and Openness</center>
+                                          intInnoValueMax = 30;
+                                          strInnoMedal = "silver.png";
 
-                        </td>
-                        <td>
-                            <center>Balance</center>
 
-                        </td>
-                        <td>
-                        </td>
-                    </tr>
-                    </table>
+                                      }
+                                      else // 30+ gold medal
+                                      {
+                                          intInnoValueMax = 30;
+                                          strInnoMedal = "gold.png";
+                                      }
 
+                                      decimal decInnoWidth = Convert.ToDecimal(intInnoValueNow) / Convert.ToDecimal(intInnoValueMax) * 100;
 
-                </table>
+                                      string strInnoProgressText = Convert.ToString(intInnoValueNow) + "/" + Convert.ToString(intInnoValueMax);
 
+                                  }
 
+                                  <center>
+                                      <img src="~/Images/Medals/@strInnoMedal" width="50" />
 
-            </div>
-        </div>
-    </div>
-</div>
+                                      <div class="progress" style="width: 125px">
+                                          <div class="progress-bar" role="progressbar" style="width:@decInnoWidth%">
+                                              @strInnoProgressText
+                                          </div>
+                                      </div>
+
+                                  </center>
+
+                              </td>
+                          </tr>
+
+                          <tr><td border="0"><br /></td><td border="0"><br /></td><td border="0"><br /></td><td border="0"><br /></td></tr>
+
+                          <!-- Bottom Headings -->
+                          <tr>
+                              <th class="text-center">Greater Good</th>
+                              <th class="text-center">Integrity and Openness</th>
+                              <th class="text-center">Balance</th>
+                              <th class="text-center">Total</th>
+                          </tr>
+                          <tr>
+                              <!-- Greater Good-->
+                              <td>
+                                  @{
+                                      int intGGValueMax = 10; //Max Value
+                                      int intGGValueNow = 13; //Current Value FROM DATABASE
+                                      string strGGMedal = ""; //medal image path
+
+                                      if (intGGValueNow < 10) // Under 10 No Medal
+                                      {
+                                          intGGValueMax = 10;
+                                          strGGMedal = "cross.png";
+
+                                      }
+                                      else if (intGGValueNow >= 10 && intGGValueNow < 20) // 10-19 Bronze Medal
+                                      {
+                                          intGGValueMax = 20;
+                                          strGGMedal = "bronze.png";
+
+                                      }
+                                      else if (intGGValueNow >= 20 && intGGValueNow < 30) // 20-29 Silver Medal
+                                      {
+
+                                          intGGValueMax = 30;
+                                          strGGMedal = "silver.png";
+
+
+                                      }
+                                      else // 30+ gold medal
+                                      {
+                                          intGGValueMax = 30;
+                                          strGGMedal = "gold.png";
+                                      }
+
+                                      decimal decGGWidth = Convert.ToDecimal(intGGValueNow) / Convert.ToDecimal(intGGValueMax) * 100;
+
+                                      string strGGProgressText = Convert.ToString(intGGValueNow) + "/" + Convert.ToString(intGGValueMax);
+
+                                  }
+
+                                  <center>
+                                      <img src="~/Images/Medals/@strGGMedal" width="50" />
+
+                                      <div class="progress" style="width: 125px">
+                                          <div class="progress-bar" role="progressbar" style="width:@decGGWidth%">
+                                              @strGGProgressText
+                                          </div>
+                                      </div>
+
+                                  </center>
+
+                              </td>
+
+                              <!-- Integrity and Openness -->
+                              <td>
+                                  @{
+                                      int intIOValueMax = 10; //Max Value
+                                      int intIOValueNow = 0; //Current Value FROM DATABASE
+                                      string strIOMedal = ""; //medal image path
+
+                                      if (intIOValueNow < 10) // Under 10 No Medal
+                                      {
+                                          intIOValueMax = 10;
+                                          strIOMedal = "cross.png";
+
+                                      }
+                                      else if (intIOValueNow >= 10 && intIOValueNow < 20) // 10-19 Bronze Medal
+                                      {
+                                          intIOValueMax = 20;
+                                          strIOMedal = "bronze.png";
+
+                                      }
+                                      else if (intIOValueNow >= 20 && intIOValueNow < 30) // 20-29 Silver Medal
+                                      {
+
+                                          intIOValueMax = 30;
+                                          strIOMedal = "silver.png";
+
+
+                                      }
+                                      else // 30+ gold medal
+                                      {
+                                          intIOValueMax = 30;
+                                          strIOMedal = "gold.png";
+                                      }
+
+                                      decimal decIOWidth = Convert.ToDecimal(intIOValueNow) / Convert.ToDecimal(intIOValueMax) * 100;
+
+                                      string strIOProgressText = Convert.ToString(intIOValueNow) + "/" + Convert.ToString(intIOValueMax);
+
+                                  }
+
+                                  <center>
+                                      <img src="~/Images/Medals/@strIOMedal" width="50" />
+
+                                      <div class="progress" style="width: 125px">
+                                          <div class="progress-bar" role="progressbar" style="width:@decIOWidth%">
+                                              @strIOProgressText
+                                          </div>
+                                      </div>
+
+                                  </center>
+                              </td>
+                              <td>
+                                  @{
+                                      int intBalValueMax = 10; //Max Value
+                                      int intBalValueNow = 16; //Current Value FROM DATABASE
+                                      string strBalMedal = ""; //medal image path
+
+                                      if (intBalValueNow < 10) // Under 10 No Medal
+                                      {
+                                          intBalValueMax = 10;
+                                          strBalMedal = "cross.png";
+
+                                      }
+                                      else if (intBalValueNow >= 10 && intBalValueNow < 20) // 10-19 Bronze Medal
+                                      {
+                                          intBalValueMax = 20;
+                                          strBalMedal = "bronze.png";
+
+                                      }
+                                      else if (intBalValueNow >= 20 && intBalValueNow < 30) // 20-29 Silver Medal
+                                      {
+
+                                          intBalValueMax = 30;
+                                          strBalMedal = "silver.png";
+
+
+                                      }
+                                      else // 30+ gold medal
+                                      {
+                                          intBalValueMax = 30;
+                                          strBalMedal = "gold.png";
+                                      }
+
+                                      decimal decBalWidth = Convert.ToDecimal(intBalValueNow) / Convert.ToDecimal(intBalValueMax) * 100;
+
+                                      string strBalProgressText = Convert.ToString(intBalValueNow) + "/" + Convert.ToString(intBalValueMax);
+
+                                  }
+
+                                  <center>
+                                      <img src="~/Images/Medals/@strBalMedal" width="50" />
+
+                                      <div class="progress" style="width: 125px">
+                                          <div class="progress-bar" role="progressbar" style="width:@decBalWidth%">
+                                              @strBalProgressText
+                                          </div>
+                                      </div>
+
+                                  </center>
+                              </td>
+                              <td>
+
+                                  @{
+                                      int intTotalValueMax = 90; //Max Value
+                                      int intTotalValueNow = intStwdValueNow + intCulValueNow + intDelExcValueNow + intInnoValueNow + intGGValueNow + intIOValueNow + intBalValueNow; //Current Value FROM DATABASE
+                                      string strTotalMedal = ""; //medal image path
+
+                                      if (intTotalValueNow < 30) // Under 10 No Medal
+                                      {
+                                          intTotalValueMax = 30;
+                                          strTotalMedal = "cross.png";
+
+                                      }
+                                      else if (intTotalValueNow >= 30 && intTotalValueNow < 60) // 10-19 Bronze Medal
+                                      {
+                                          intTotalValueMax = 60;
+                                          strTotalMedal = "bronze.png";
+
+                                      }
+                                      else if (intTotalValueNow >= 60 && intTotalValueNow < 90) // 20-29 Silver Medal
+                                      {
+
+                                          intTotalValueMax = 90;
+                                          strTotalMedal = "silver.png";
+
+
+                                      }
+                                      else // 30+ gold medal
+                                      {
+                                          intTotalValueMax = 90;
+                                          strTotalMedal = "gold.png";
+                                      }
+
+                                      decimal decTotalWidth = Convert.ToDecimal(intTotalValueNow) / Convert.ToDecimal(intTotalValueMax) * 100;
+
+                                      string strTotalProgressText = Convert.ToString(intTotalValueNow) + "/" + Convert.ToString(intTotalValueMax);
+
+                                  }
+
+                                  <center>
+                                      <img src="~/Images/Medals/@strTotalMedal" width="50" />
+
+                                      <div class="progress" style="width: 125px">
+                                          <div class="progress-bar" role="progressbar" style="width:@decTotalWidth%">
+                                              @strTotalProgressText
+                                          </div>
+                                      </div>
+
+                                  </center>
+
+
+                              </td>
+                          </tr>
+                      </table>
+
+
+
+
+
+                  </div>
+              </div>
+          </div>
+      </div>
 <p>
 
 

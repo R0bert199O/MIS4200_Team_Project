@@ -196,6 +196,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="Images\Avatar.png" />
     <Content Include="Images\Medals\bronze.png" />
+    <Content Include="Images\Medals\cross.png" />
     <Content Include="Images\Medals\gold.png" />
     <Content Include="Images\Medals\medals.png" />
     <Content Include="Images\Medals\silver.png" />
