@@ -1,0 +1,82 @@
+﻿@model MIS4200_Team_Project.Models.CoreValueLeaderboard
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>CoreValueLeaderboard</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.UserDetails.firstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserDetails.firstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Stewardship)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Stewardship)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Culture)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Culture)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Delivery_Excellence)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Delivery_Excellence)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Innovation)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Innovation)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Greater_Good)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Greater_Good)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Integrity_And_Openness)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Integrity_And_Openness)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Balance)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Balance)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.leaderboardID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

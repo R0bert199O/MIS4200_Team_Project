@@ -71,7 +71,7 @@ namespace MIS4200_Team_Project.Models
         [Display(Name = "Profile Picture")]
         public string photo { get; set; }
 
-
+     
         public enum jobTitle
         {
             Consultant = 0,
@@ -138,6 +138,6 @@ namespace MIS4200_Team_Project.Models
             Miami = 11,
             Tampa = 12,
         }
-
+        public ICollection<CoreValueLeaderboard> Users { get; set; }
     }
 }
