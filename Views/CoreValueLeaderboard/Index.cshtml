@@ -66,9 +66,9 @@
                 @Html.DisplayFor(modelItem => item.Balance)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.leaderboardID }) |
-                @Html.ActionLink("Details", "Details", new { id = item.leaderboardID }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.leaderboardID })
+                @Html.ActionLink("Endorse", "Edit", new { id = item.leaderboardID }) |
+                @Html.ActionLink("Details", "Details", "UserDetails", new {id = item.ID}, null)
+                <!-- @Html.ActionLink("Delete", "Delete", new { id = item.leaderboardID })-->
             </td>
         </tr>
     }
