@@ -4,197 +4,266 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<br /><br />
 
 <div class="row">
-    <div class="col-md-2">
+    <div class="col-md-4">
 
 
         <div class="panel panel-default">
-            <div align="center" class="panel-heading"><strong>Profile Picture</strong></div>
+            <div align="center" class="panel-heading"><strong>Profile</strong></div>
             <div class="panel-body">
                 <center>
-                    <table>
-                        <tr>
-                            <td>
-                                <img src="@Url.Content("~/Images/")@Model.photo" width="125" />
-                            </td>
-                        </tr>
-                    </table>
+                    <strong>@Html.DisplayFor(model => model.firstName) @Html.DisplayFor(model => model.lastName)</strong>
+                    <br /><br />
+
+                    <img src="@Url.Content("~/Images/")@Model.photo" width="125" />
+
+                    <br /><br />
+
+                    <strong>@Html.DisplayNameFor(model => model.birthDate)</strong> : @Html.DisplayFor(model => model.birthDate) <br />
+                    <strong>@Html.DisplayNameFor(model => model.Email)</strong> : @Html.DisplayFor(model => model.Email) <br />
+                    <strong>@Html.DisplayNameFor(model => model.PhoneNumber)</strong> : @Html.DisplayFor(model => model.PhoneNumber) <br />
+                    <strong>@Html.DisplayNameFor(model => model.JobTitle)</strong> : @Html.DisplayFor(model => model.JobTitle) <br />
+                    <strong>@Html.DisplayNameFor(model => model.firstName)</strong> : @Html.DisplayFor(model => model.firstName) <br />
+                    <strong>@Html.DisplayNameFor(model => model.operatingGroups)</strong> : @Html.DisplayFor(model => model.operatingGroups) <br />
+                    <strong>@Html.DisplayNameFor(model => model.locations)</strong> : @Html.DisplayFor(model => model.locations) <br />
                 </center>
             </div>
         </div>
     </div>
-    <div class="col-md-5">
-        <div class="panel panel-default">
-            <div align="center" class="panel-heading"><strong>User Details</strong></div>
-            <div class="panel-body">
-                <dl class="dl-horizontal">
-                    <dt>
-                        @Html.DisplayNameFor(model => model.firstName)
-                    </dt>
+    
 
-                    <dd>
-                        @Html.DisplayFor(model => model.firstName)
-                    </dd>
-
-                    <dt>
-                        @Html.DisplayNameFor(model => model.lastName)
-                    </dt>
-
-                    <dd>
-                        @Html.DisplayFor(model => model.lastName)
-                    </dd>
-
-                    <dt>
-                        @Html.DisplayNameFor(model => model.birthDate)
-                    </dt>
-
-                    <dd>
-                        @Html.DisplayFor(model => model.birthDate)
-                    </dd>
-
-                    <dt>
-                        @Html.DisplayNameFor(model => model.Email)
-                    </dt>
-
-                    <dd>
-                        @Html.DisplayFor(model => model.Email)
-                    </dd>
-
-                    <dt>
-                        @Html.DisplayNameFor(model => model.PhoneNumber)
-                    </dt>
-
-                    <dd>
-                        @Html.DisplayFor(model => model.PhoneNumber)
-                    </dd>
-
-                    <dt>
-                        @Html.DisplayNameFor(model => model.startDate)
-                    </dt>
-
-                    <dd>
-                        @Html.DisplayFor(model => model.startDate)
-                    </dd>
-
-                    <dt>
-                        @Html.DisplayNameFor(model => model.JobTitle)
-                    </dt>
-
-                    <dd>
-                        @Html.DisplayFor(model => model.JobTitle)
-                    </dd>
-
-                    <dt>
-                        @Html.DisplayNameFor(model => model.operatingGroups)
-                    </dt>
-
-                    <dd>
-                        @Html.DisplayFor(model => model.operatingGroups)
-                    </dd>
-
-                    <dt>
-                        @Html.DisplayNameFor(model => model.locations)
-                    </dt>
-
-                    <dd>
-                        @Html.DisplayFor(model => model.locations)
-                    </dd>
-
-                </dl>
-            </div>
-        </div>
-    </div>
-
-    <div class="col-md-5">
+    <div class="col-md-8">
         <div class="panel panel-default">
             <div align="center" class="panel-heading"><strong>Core Value Badges</strong></div>
             <div class="panel-body">
-                <table border="1">
+                <table>
+                    <tr>
+                        <th class="text-center" width="200">Stewardship</th>
+                        <th class="text-center" width="200">Culture</th>
+                        <th class="text-center" width="200">Delivery Excellence</th>
+                        <th class="text-center" width="200">Innovation</th>
+                    </tr> 
                     <tr>
                         <td>
 
                             @{
+                                int intStwdValueMax = 10; //Max Value
+                                int intStwdValueNow = 30; //Current Value FROM DATABASE
+                                string strStwdMedal = ""; //medal image path                                
 
-                                int intValueMin = 0; //Min Value
-                                int intValueMax = 10; //Max Value
-                                int intValueNow = 4; //Current Value FROM DATABASE
+                                if (intStwdValueNow < 10) // Under 10 No Medal
+                                {
+                                    intStwdValueMax = 10;
+                                    strStwdMedal = "~/Images/Avatar.png";
 
-                                decimal decWidth = Convert.ToDecimal(intValueNow) / Convert.ToDecimal(intValueMax) * 100;
+                                }
+                                else if (intStwdValueNow >= 10 && intStwdValueNow < 20) // 10-19 Bronze Medal
+                                {
+                                    intStwdValueMax = 20;
+                                    strStwdMedal = "~/Images/Medals/bronze.png";
 
-                                string strProgressText = Convert.ToString(intValueNow) + "/" + Convert.ToString(intValueMax);
+                                }
+                                else if (intStwdValueNow >= 20 && intStwdValueNow < 30) // 20-29 Silver Medal
+                                {
 
-                            }
-                            <center>Stewardship</center>
-                            <div class="progress">
-                                <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar"
-                                     aria-valuenow="@intValueNow" aria-valuemin="@intValueMin" aria-valuemax="@intValueMax" style="width:@decWidth%">
-                                    @strProgressText
-                                </div>
-                            </div>
-                        </td>
+                                    intStwdValueMax = 30;
+                                    strStwdMedal = "~/Images/Medals/silver.png";
 
-                        <td>
-                            <center>Culture</center>
-                                <div class="progress">
-                                    <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar"
-                                         aria-valuenow="@intValueNow" aria-valuemin="@intValueMin" aria-valuemax="@intValueMax" style="width:@decWidth%">
-                                        @strProgressText
+
+                                }
+                                else // 30+ gold medal
+                                {
+                                    intStwdValueMax = 30;
+                                    strStwdMedal = "~/Images/Medals/gold.png";
+                                }
+
+                                decimal decStwdWidth = Convert.ToDecimal(intStwdValueNow) / Convert.ToDecimal(intStwdValueMax) * 100;
+
+                                string strStwdProgressText = Convert.ToString(intStwdValueNow) + "/" + Convert.ToString(intStwdValueMax);
+
+                            }                            
+
+                            <center>
+                                <img src="~/Images/Medals/gold.png" width="50" />
+
+                                <div class="progress" style="width: 125px">
+                                    <div class="progress-bar" role="progressbar" style="width:@decStwdWidth%">
+                                        @strStwdProgressText
                                     </div>
                                 </div>
+
+                            </center>
+
+                        </td>
+
+                        <td>
+                            @{
+                                int intCulValueMax = 0; //Max Value
+                                int intCulValueNow = 25; //Current Value FROM DATABASE
+                                string strCulMedal = ""; //medal image path
+
+                                if (intCulValueNow < 10) // Under 10 No Medal
+                                {
+                                    intCulValueMax = 10;
+                                    strCulMedal = "~/Images/Avatar.png";
+
+                                }
+                                else if (intCulValueNow >= 10 && intCulValueNow < 20) // 10-19 Bronze Medal
+                                {
+                                    intCulValueMax = 20;
+                                    strCulMedal = "~/Images/Medals/bronze.png";
+
+                                }
+                                else if (intCulValueNow >= 20 && intCulValueNow < 30) // 20-29 Silver Medal
+                                {
+
+                                    intCulValueMax = 30;
+                                    strCulMedal = "~/Images/Medals/silver.png";
+
+
+                                }
+                                else // 30+ gold medal
+                                {
+                                    intCulValueMax = 30;
+                                    strCulMedal = "~/Images/Medals/gold.png";
+                                }
+
+                                decimal decCulWidth = Convert.ToDecimal(intCulValueNow) / Convert.ToDecimal(intCulValueMax) * 100;
+
+                                string strCulProgressText = Convert.ToString(intCulValueNow) + "/" + Convert.ToString(intCulValueMax);
+
+                            }
+
+                            <center>
+                                <img src="~/Images/Medals/silver.png" width="50" />
+
+                                <div class="progress" style="width: 125px">
+                                    <div class="progress-bar" role="progressbar" style="width:@decCulWidth%">
+                                        @strCulProgressText
+                                    </div>
+                                </div>
+                            </center>
+
                         </td>
                         <td>
-                            <center>Delivery Excelence</center>
-                            <div class="progress">
-                                <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar"
-                                     aria-valuenow="@intValueNow" aria-valuemin="@intValueMin" aria-valuemax="@intValueMax" style="width:@decWidth%">
-                                    @strProgressText
+                            @{
+                                int intDelExcValueMax = 10; //Max Value
+                                int intDelExcValueNow = 3; //Current Value FROM DATABASE
+                                string strDelExcMedal = ""; //medal image path
+
+                                if (intDelExcValueNow < 10) // Under 10 No Medal
+                                {
+                                    intDelExcValueMax = 10;
+                                    strDelExcMedal = "~/Images/Avatar.png";
+
+                                }
+                                else if (intDelExcValueNow >= 10 && intDelExcValueNow < 20) // 10-19 Bronze Medal
+                                {
+                                    intDelExcValueMax = 20;
+                                    strDelExcMedal = "~/Images/Medals/bronze.png";
+
+                                }
+                                else if (intDelExcValueNow >= 20 && intDelExcValueNow < 30) // 20-29 Silver Medal
+                                {
+
+                                    intDelExcValueMax = 30;
+                                    strDelExcMedal = "~/Images/Medals/silver.png";
+
+
+                                }
+                                else // 30+ gold medal
+                                {
+                                    intDelExcValueMax = 30;
+                                    strDelExcMedal = "~/Images/Medals/gold.png";
+                                }
+
+                                decimal decDelExcWidth = Convert.ToDecimal(intDelExcValueNow) / Convert.ToDecimal(intDelExcValueMax) * 100;
+
+                                string strDelExcProgressText = Convert.ToString(intDelExcValueNow) + "/" + Convert.ToString(intDelExcValueMax);
+
+                            }
+
+                            <center>                                
+
+                                <div class="progress" style="width: 125px">
+                                    <div class="progress-bar" role="progressbar" style="width:@decDelExcWidth%">
+                                        @strDelExcProgressText
+                                    </div>
                                 </div>
-                            </div>
+
+                            </center>
+
                         </td>
                         <td>
-                            <center>Innovation</center>
-                            <div class="progress">
-                                <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar"
-                                     aria-valuenow="@intValueNow" aria-valuemin="@intValueMin" aria-valuemax="@intValueMax" style="width:@decWidth%">
-                                    @strProgressText
+                            @{
+                                int intInnoValueMax = 10; //Max Value
+                                int intInnoValueNow = 8; //Current Value FROM DATABASE
+                                string strInnoMedal = ""; //medal image path
+
+                                if (intInnoValueNow < 10) // Under 10 No Medal
+                                {
+                                    intInnoValueMax = 10;
+                                    strInnoMedal = "~/Images/Avatar.png";
+
+                                }
+                                else if (intDelExcValueNow >= 10 && intDelExcValueNow < 20) // 10-19 Bronze Medal
+                                {
+                                    intDelExcValueMax = 20;
+                                    strDelExcMedal = "~/Images/Medals/bronze.png";
+
+                                }
+                                else if (intDelExcValueNow >= 20 && intDelExcValueNow < 30) // 20-29 Silver Medal
+                                {
+
+                                    intDelExcValueMax = 30;
+                                    strDelExcMedal = "~/Images/Medals/silver.png";
+
+
+                                }
+                                else // 30+ gold medal
+                                {
+                                    intDelExcValueMax = 30;
+                                    strDelExcMedal = "~/Images/Medals/gold.png";
+                                }
+
+                                decimal decDelExcWidth = Convert.ToDecimal(intDelExcValueNow) / Convert.ToDecimal(intDelExcValueMax) * 100;
+
+                                string strDelExcProgressText = Convert.ToString(intDelExcValueNow) + "/" + Convert.ToString(intDelExcValueMax);
+
+                            }
+
+                            <center>
+
+                                <div class="progress" style="width: 125px">
+                                    <div class="progress-bar" role="progressbar" style="width:@decDelExcWidth%">
+                                        @strDelExcProgressText
+                                    </div>
                                 </div>
-                            </div>
+
+                            </center>
+
                         </td>
                     </tr>
+                    <tr><td border="0"><br /></td><td border="0"><br /></td><td border="0"><br /></td><td border="0"><br /></td></tr>
                     <tr>
-                        <td>
-                            <center>Greater Good</center>
-                            <div class="progress">
-                                <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar"
-                                     aria-valuenow="@intValueNow" aria-valuemin="@intValueMin" aria-valuemax="@intValueMax" style="width:@decWidth%">
-                                    @strProgressText
-                                </div>
-                            </div>
-                        </td>
+                        <th class="text-center">Greater Good</th>
+                        <th class="text-center">Integrity and Openness</th>
+                        <th class="text-center">Balance</th>                 
+                        <th></th>
                         <td>
                             <center> Integrity and Openness</center>
-                            <div class="progress">
-                                <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar"
-                                     aria-valuenow="@intValueNow" aria-valuemin="@intValueMin" aria-valuemax="@intValueMax" style="width:@decWidth%">
-                                    @strProgressText
-                                </div>
-                            </div>
+
                         </td>
                         <td>
                             <center>Balance</center>
-                            <div class="progress">
-                                <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar"
-                                     aria-valuenow="@intValueNow" aria-valuemin="@intValueMin" aria-valuemax="@intValueMax" style="width:@decWidth%">
-                                    @strProgressText
-                                </div>
-                            </div>
+
                         </td>
                         <td>
-                            
                         </td>
                     </tr>
+                    </table>
 
 
                 </table>
