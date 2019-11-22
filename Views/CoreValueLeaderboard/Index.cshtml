@@ -36,6 +36,9 @@
             @Html.DisplayNameFor(model => model.Balance)
         </th>
         <th></th>
+         <th>
+            @Html.DisplayNameFor(model => model.TotalPoints)
+        </th>
     </tr>
 
     @foreach (var item in Model)
@@ -64,6 +67,9 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Balance)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TotalPoints)
             </td>
             <td>
                 @Html.ActionLink("Endorse", "Edit", new { id = item.leaderboardID }) |
