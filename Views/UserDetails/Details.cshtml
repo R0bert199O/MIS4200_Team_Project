@@ -14,7 +14,13 @@
             <div align="center" class="panel-heading"><strong>Profile Picture</strong></div>
             <div class="panel-body">
                 <center>
-                    <img src="@Url.Content("~/Images/")@Model.photo" width="150" />
+                    <table>
+                        <tr>
+                            <td>
+                                <img src="@Url.Content("~/Images/")@Model.photo" width="125" />
+                            </td>
+                        </tr>
+                    </table>
                 </center>
             </div>
         </div>
@@ -105,12 +111,109 @@
         <div class="panel panel-default">
             <div align="center" class="panel-heading"><strong>Core Value Badges</strong></div>
             <div class="panel-body">
-                Badges
+                <table border="1">
+                    <tr>
+                        <td>
+
+                            @{
+
+                                int intValueMin = 0; //Min Value
+                                int intValueMax = 10; //Max Value
+                                int intValueNow = 4; //Current Value FROM DATABASE
+
+                                decimal decWidth = Convert.ToDecimal(intValueNow) / Convert.ToDecimal(intValueMax) * 100;
+
+                                string strProgressText = Convert.ToString(intValueNow) + "/" + Convert.ToString(intValueMax);
+
+                            }
+                            <center>Stewardship</center>
+                            <div class="progress">
+                                <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar"
+                                     aria-valuenow="@intValueNow" aria-valuemin="@intValueMin" aria-valuemax="@intValueMax" style="width:@decWidth%">
+                                    @strProgressText
+                                </div>
+                            </div>
+                        </td>
+
+                        <td>
+                            <center>Culture</center>
+                                <div class="progress">
+                                    <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar"
+                                         aria-valuenow="@intValueNow" aria-valuemin="@intValueMin" aria-valuemax="@intValueMax" style="width:@decWidth%">
+                                        @strProgressText
+                                    </div>
+                                </div>
+                        </td>
+                        <td>
+                            <center>Delivery Excelence</center>
+                            <div class="progress">
+                                <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar"
+                                     aria-valuenow="@intValueNow" aria-valuemin="@intValueMin" aria-valuemax="@intValueMax" style="width:@decWidth%">
+                                    @strProgressText
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <center>Innovation</center>
+                            <div class="progress">
+                                <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar"
+                                     aria-valuenow="@intValueNow" aria-valuemin="@intValueMin" aria-valuemax="@intValueMax" style="width:@decWidth%">
+                                    @strProgressText
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <center>Greater Good</center>
+                            <div class="progress">
+                                <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar"
+                                     aria-valuenow="@intValueNow" aria-valuemin="@intValueMin" aria-valuemax="@intValueMax" style="width:@decWidth%">
+                                    @strProgressText
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <center> Integrity and Openness</center>
+                            <div class="progress">
+                                <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar"
+                                     aria-valuenow="@intValueNow" aria-valuemin="@intValueMin" aria-valuemax="@intValueMax" style="width:@decWidth%">
+                                    @strProgressText
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <center>Balance</center>
+                            <div class="progress">
+                                <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar"
+                                     aria-valuenow="@intValueNow" aria-valuemin="@intValueMin" aria-valuemax="@intValueMax" style="width:@decWidth%">
+                                    @strProgressText
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            
+                        </td>
+                    </tr>
+
+
+                </table>
+
+
+
             </div>
         </div>
     </div>
 </div>
 <p>
-    <!--@Html.ActionLink("Edit", "Edit", new { id = Model.ID }) | -->
+
+
+
+    <!-- @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) | -->
+
+
     @Html.ActionLink("Back to Directory", "Index")
+
+
+
 </p>
