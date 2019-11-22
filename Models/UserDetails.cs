@@ -9,7 +9,7 @@ namespace MIS4200_Team_Project.Models
     public class UserDetails
     {
         public Guid ID { get; set; }
-
+        
 
         [Display(Name = "First Name")]
         [Required]
@@ -71,7 +71,8 @@ namespace MIS4200_Team_Project.Models
         [Display(Name = "Profile Picture")]
         public string photo { get; set; }
 
-     
+
+
         public enum jobTitle
         {
             Consultant = 0,
