@@ -17,7 +17,7 @@
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.leaderboardID)
 
-        <div class="form-group">
+        <div class=btn btn-default" onclick="alert('Now leaving the site')">
             @Html.LabelFor(model => model.Stewardship, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Stewardship, new { htmlAttributes = new { @class = "form-control" } })
@@ -32,7 +32,7 @@
                 @Html.ValidationMessageFor(model => model.Culture, "", new { @class = "text-danger" })
             </div>
         </div>
-
+    
         <div class="form-group">
             @Html.LabelFor(model => model.Delivery_Excellence, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">

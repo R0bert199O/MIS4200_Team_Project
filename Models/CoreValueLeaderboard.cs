@@ -20,6 +20,14 @@ namespace MIS4200_Team_Project.Models
         [Display(Name = "Integrity and Openness")]
         public int Integrity_And_Openness { get; set; }
         public int Balance { get; set; }
+        [Display(Name = "Total Points")]
+        public int TotalPoints
+        {
+            get
+            {
+                return Stewardship + Culture + Delivery_Excellence + Innovation + Greater_Good + Integrity_And_Openness + Balance;
+            }
+        }
 
         public Guid ID { get; set; }
         public virtual UserDetails UserDetails { get; set; }
