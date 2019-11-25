@@ -169,9 +169,18 @@
 <p>
     </br>
     </br>
+
+    @{ 
+
+        var test = ViewBag.MID;
+
+        <h1>@test</h1>
+
+    }
+
     <h2>All Employees</h2>
     </br>
-    <!--   @Html.ActionLink("Create New", "Create")-->
+       @Html.ActionLink("Create New", "Create")
 </p>
 <table class="table">
     <tr>

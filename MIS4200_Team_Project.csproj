@@ -259,6 +259,9 @@
     <Content Include="Views\CoreValueLeaderboard\Details.cshtml" />
     <Content Include="Views\CoreValueLeaderboard\Edit.cshtml" />
     <Content Include="Views\CoreValueLeaderboard\Index.cshtml" />
+    <Content Include="Views\UserDetails\NotAuthorized.cshtml" />
+    <Content Include="Views\CoreValueLeaderboard\SelfEndorse.cshtml" />
+    <Content Include="Views\CoreValueLeaderboard\MustLogin.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

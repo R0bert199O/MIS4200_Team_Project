@@ -57,9 +57,24 @@ namespace MIS4200_Team_Project.Controllers
         // GET: UserDetails/Details/5
         public ActionResult Details(Guid? id)
         {
+
             Guid userID;
             Guid.TryParse(User.Identity.GetUserId(), out userID);
 
+            
+            var coreValues = db.Users.Where(r => r.ID == id);
+
+            var DE = coreValues.Select(r => r.Delivery_Excellence == r.Delivery_Excellence);
+
+            var id2 = userID;
+
+            ViewBag.coreValues = id;
+            ViewBag.DE = userID;
+            ViewBag.DE2 = DE;
+
+            
+
+            
             if (id == null)
             {
                 id = userID;
@@ -147,6 +162,9 @@ namespace MIS4200_Team_Project.Controllers
             {
                 return View("NotAuthorized");
             }
+
+          
+          
         }
 
         // POST: UserDetails/Edit/5
@@ -156,6 +174,7 @@ namespace MIS4200_Team_Project.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "ID,firstName,lastName,birthDate,Email,PhoneNumber,startDate,JobTitle,operatingGroups,locations,photo")] UserDetails userDetails)
         {
+                                 
             if (ModelState.IsValid)
             {
                 db.Entry(userDetails).State = EntityState.Modified;
@@ -228,17 +247,31 @@ else
         // GET: UserDetails/Delete/5
         public ActionResult Delete(Guid? id)
         {
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            UserDetails userDetails = db.UserDetails.Find(id);
-            if (userDetails == null)
+            UserDetails user = db.UserDetails.Find(id);
+            if (user == null)
             {
                 return HttpNotFound();
             }
-            return View(userDetails);
+            Guid memberID;
+            Guid.TryParse(User.Identity.GetUserId(), out memberID);
+            if (user.ID == memberID)
+            {
+                return View(user);
+            }
+            else
+            {
+                return View("NotAuthorized");
+            }
+
+
         }
+
+
 
         // POST: UserDetails/Delete/5
 
