@@ -115,7 +115,7 @@ namespace MIS4200_Team_Project.Controllers
 
                 db.UserDetails.Add(userDetails);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Create", "CoreValueLeaderboard");
             }
 
             return View(userDetails);
