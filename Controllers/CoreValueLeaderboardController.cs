@@ -62,8 +62,18 @@ namespace MIS4200_Team_Project.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "leaderboardID,Stewardship,Culture,Delivery_Excellence,Innovation,Greater_Good,Integrity_And_Openness,Balance,ID")] CoreValueLeaderboard coreValueLeaderboard)
         {
+            Guid userID;
+            Guid.TryParse(User.Identity.GetUserId(), out userID);
             if (ModelState.IsValid)
             {
+                coreValueLeaderboard.Stewardship = 0;
+                coreValueLeaderboard.Culture = 0;
+                coreValueLeaderboard.Delivery_Excellence = 0;
+                coreValueLeaderboard.Innovation = 0;
+                coreValueLeaderboard.Greater_Good = 0;
+                coreValueLeaderboard.Integrity_And_Openness = 0;
+                coreValueLeaderboard.Balance = 0;
+                coreValueLeaderboard.ID = userID ;
                 db.Users.Add(coreValueLeaderboard);
                 db.SaveChanges();
                 return RedirectToAction("Index");

@@ -17,18 +17,18 @@ namespace MIS4200_Team_Project.Models
         public Guid ID { get; set; }
         [ForeignKey(name: "ID")]
         public virtual UserDetails UserDetails { get; set; }
-        public int Stewardship { get; set; }
-        public int Culture { get; set; }
+        public int? Stewardship { get; set; }
+        public int? Culture { get; set; }
         [Display(Name = "Delivery Excellence")]
-        public int Delivery_Excellence { get; set; }
-        public int Innovation { get; set; }
+        public int? Delivery_Excellence { get; set; }
+        public int? Innovation { get; set; }
         [Display(Name = "Greater Good")]
-        public int Greater_Good { get; set; }
+        public int? Greater_Good { get; set; }
         [Display(Name = "Integrity and Openness")]
-        public int Integrity_And_Openness { get; set; }
-        public int Balance { get; set; }
+        public int? Integrity_And_Openness { get; set; }
+        public int? Balance { get; set; }
         [Display(Name = "Total Points")]
-        public int TotalPoints
+        public int? TotalPoints
         {
             get
             {
