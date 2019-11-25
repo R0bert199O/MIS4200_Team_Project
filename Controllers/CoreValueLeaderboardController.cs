@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
 using MIS4200_Team_Project.DAL;
 using MIS4200_Team_Project.Models;
 
@@ -15,9 +16,19 @@ namespace MIS4200_Team_Project.Controllers
     {
         private Context2 db = new Context2();
 
+    
+
+
         // GET: CoreValueLeaderboard
         public ActionResult Index()
         {
+            Guid memberID;
+            Guid.TryParse(User.Identity.GetUserId(), out memberID);
+
+
+            ViewBag.MID = memberID;
+
+
             var users = db.Users.Include(c => c.UserDetails);
             return View(users.ToList());
         }
@@ -69,13 +80,44 @@ namespace MIS4200_Team_Project.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+
             CoreValueLeaderboard coreValueLeaderboard = db.Users.Find(id);
             if (coreValueLeaderboard == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.ID = new SelectList(db.UserDetails, "ID", "firstName", coreValueLeaderboard.ID);
-            return View(coreValueLeaderboard);
+
+            Guid memberID;
+            Guid.TryParse(User.Identity.GetUserId(), out memberID);
+
+            //USER MUST BE LOGGED IN TO ENDORSE
+            if (Convert.ToString(memberID) == "00000000-0000-0000-0000-000000000000")
+            {
+                return View("MustLogin");
+            }
+
+            //USER CANNOT ENDORSE SELF
+            else if (coreValueLeaderboard.ID == memberID)
+            {
+                return View("SelfEndorse");
+            }
+
+            //IF LOGGED IN AND NOT THE USER GO TO ENDORSE PAGE
+            else
+            {
+                // find the user's record
+                var currentUser = db.UserDetails.Find(memberID);
+                // save the current photo into TempData
+
+                ViewBag.ID = new SelectList(db.UserDetails, "ID", "firstName", coreValueLeaderboard.ID);
+                return View(coreValueLeaderboard);
+            }
+
+
+            
+
+
+
         }
 
         // POST: CoreValueLeaderboard/Edit/5

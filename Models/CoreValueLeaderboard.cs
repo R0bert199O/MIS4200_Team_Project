@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -8,8 +9,14 @@ namespace MIS4200_Team_Project.Models
 {
     public class CoreValueLeaderboard
     {
-        [Key]
+        [Key] // the data annotation is necessary because there is a field called, ID,
+              // in the table and it is not the PK for the record
         public int leaderboardID { get; set; }
+
+        //ID of person being recognized
+        public Guid ID { get; set; }
+        [ForeignKey(name: "ID")]
+        public virtual UserDetails UserDetails { get; set; }
         public int Stewardship { get; set; }
         public int Culture { get; set; }
         [Display(Name = "Delivery Excellence")]
@@ -28,9 +35,6 @@ namespace MIS4200_Team_Project.Models
                 return Stewardship + Culture + Delivery_Excellence + Innovation + Greater_Good + Integrity_And_Openness + Balance;
             }
         }
-
-        public Guid ID { get; set; }
-        public virtual UserDetails UserDetails { get; set; }
 
     }
 }
