@@ -62,19 +62,18 @@ namespace MIS4200_Team_Project.Controllers
             Guid.TryParse(User.Identity.GetUserId(), out userID);
 
             
-            var coreValues = db.Users.Where(r => r.ID == id);
+            var coreValues = db.Users.Where(r => r.ID == id).FirstOrDefault();
 
-            var DE = coreValues.Select(r => r.Delivery_Excellence == r.Delivery_Excellence);
+            //    var DE = coreValues.Select(r => r.Delivery_Excellence == r.Delivery_Excellence);
 
-            var id2 = userID;
-
-            ViewBag.coreValues = id;
-            ViewBag.DE = userID;
-            ViewBag.DE2 = DE;
-
-            
-
-            
+            ViewBag.Stewardship = coreValues.Stewardship;
+            ViewBag.Culture = coreValues.Culture;
+            ViewBag.DeliveryExcellence = coreValues.Delivery_Excellence;
+            ViewBag.Innovation = coreValues.Innovation;
+            ViewBag.GreaterGood = coreValues.Greater_Good;
+            ViewBag.Integrity = coreValues.Integrity_And_Openness;
+            ViewBag.Balance = coreValues.Balance;      
+                        
             if (id == null)
             {
                 id = userID;
