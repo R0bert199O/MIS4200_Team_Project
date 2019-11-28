@@ -7,7 +7,14 @@
 
     <ul class="nav navbar-nav navbar-right">
         <li>
-            @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Details", "UserDetails", routeValues: null, htmlAttributes: new { title = "Manage" })
+            @{
+                Guid userID;
+                Guid.TryParse(User.Identity.GetUserId(), out userID);
+
+                string strUserID = Convert.ToString(userID);
+
+                <a href="~/UserDetails/Details/@strUserID">Hello,  @User.Identity.GetUserName()!</a>
+            }
         </li>
         <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
     </ul>

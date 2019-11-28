@@ -1,36 +1,56 @@
 ﻿@model MIS4200_Team_Project.Models.CoreValueLeaderboard
 
 @{
+    Layout = null;
+}
+
+@Styles.Render("~/Content/css")
+@Scripts.Render("~/bundles/modernizr")
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/bootstrap")
+
+
+@{
 
 }
-    @using (Html.BeginForm())
-    {
+@using (Html.BeginForm())
+{
 
-        @Html.AntiForgeryToken()
+    @Html.AntiForgeryToken()
 
-<div class="form-horizontal">
-    <div class="alert alert-success">
+    <div class="form-horizontal">
+        <div class="alert alert-success">
 
-        <h2>Account Successfully Created</h2>
-        Your account has successfully been created. Please click the button to continue..
-        <br />
-        <br />
+            <h2>Account Successfully Created</h2>
+            Your account has successfully been created. Please click the button to continue..
+            <br />
+            <br />
 
-        <div class="form-group">
-            <div align="left">
-                <input type="submit" value="Continue" class="btn btn-default" />
+            <div class="form-group">
+                <div align="left">
+                    <input type="submit" value="Continue" class="btn btn-default" />
+                </div>
             </div>
         </div>
+
     </div>
 
-</div>
-    }
 
 
-    <div>
+
+
+
+
+}
+
+
+<div>
     <!--    @Html.ActionLink("Back to List", "Index")-->
-    </div>
+</div>
 
-    @section Scripts {
-        @Scripts.Render("~/bundles/jqueryval")
-    }
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+
+

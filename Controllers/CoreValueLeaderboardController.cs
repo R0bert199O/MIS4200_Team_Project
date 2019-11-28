@@ -14,21 +14,12 @@ namespace MIS4200_Team_Project.Controllers
 {
     public class CoreValueLeaderboardController : Controller
     {
-        private Context2 db = new Context2();
-
-    
+        private Context2 db = new Context2();  
 
 
         // GET: CoreValueLeaderboard
         public ActionResult Index()
         {
-            Guid memberID;
-            Guid.TryParse(User.Identity.GetUserId(), out memberID);
-
-
-            ViewBag.MID = memberID;
-
-
             var users = db.Users.Include(c => c.UserDetails);
             return View(users.ToList());
         }
@@ -51,6 +42,9 @@ namespace MIS4200_Team_Project.Controllers
         // GET: CoreValueLeaderboard/Create
         public ActionResult Create()
         {
+            
+
+
             ViewBag.ID = new SelectList(db.UserDetails, "ID", "firstName");
             return View();
         }

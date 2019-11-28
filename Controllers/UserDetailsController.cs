@@ -62,6 +62,8 @@ namespace MIS4200_Team_Project.Controllers
             Guid.TryParse(User.Identity.GetUserId(), out userID);
 
             
+
+            
             var coreValues = db.Users.Where(r => r.ID == id).FirstOrDefault();
 
             //    var DE = coreValues.Select(r => r.Delivery_Excellence == r.Delivery_Excellence);
@@ -72,7 +74,9 @@ namespace MIS4200_Team_Project.Controllers
             ViewBag.Innovation = coreValues.Innovation;
             ViewBag.GreaterGood = coreValues.Greater_Good;
             ViewBag.Integrity = coreValues.Integrity_And_Openness;
-            ViewBag.Balance = coreValues.Balance;      
+            ViewBag.Balance = coreValues.Balance;
+
+            ViewBag.userID = userID;
                         
             if (id == null)
             {
