@@ -20,6 +20,19 @@ namespace MIS4200_Team_Project.Controllers
         // GET: CoreValueLeaderboard
         public ActionResult Index()
         {
+            Guid userID;
+            Guid.TryParse(User.Identity.GetUserId(), out userID);
+
+
+            var stewardship = db.Users.Select(s => s.Stewardship);
+
+           
+
+           
+
+
+
+
             var users = db.Users.Include(c => c.UserDetails);
             return View(users.ToList());
         }

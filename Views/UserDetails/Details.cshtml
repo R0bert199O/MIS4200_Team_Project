@@ -6,56 +6,103 @@
 <br />
 <br />
 
+<a onclick="goBack()">Go Back</a>
+
+<br /><br />
+
 <div class="row">
     <!-- Profile Panel -->
     <div class="col-md-4">
 
 
         <div class="panel panel-default">
-            <div align="center" class="panel-heading"><strong>Profile</strong></div>
-            <div class="panel-body">
-                <center>
-                    <strong>@Html.DisplayFor(model => model.firstName) @Html.DisplayFor(model => model.lastName)</strong>
-                    <br /><br />
+            @{
 
-                    @{
-                        string strFilePath = Convert.ToString(@Url.Content("~/Images/"));
-                        string strFilePath2 = Convert.ToString(@Html.DisplayFor(model => model.photo));
+                string userID = Convert.ToString(ViewBag.userID);
+                string URL = HttpContext.Current.Request.Url.AbsoluteUri;
 
-                        string strFilePathFull = strFilePath + strFilePath2;
-
-                        string strProfilePicture = "";
-
-
-                        if (strFilePathFull == "/Images/")
-                        {
-                            strProfilePicture = "Avatar.png";
-                        }
-                        else
-                        {
-                            strProfilePicture = strFilePath2;
-                        }
+                //if logged in user is viewing their own profile - show edit profile button
+                if (URL.Contains(userID))
+                {
+                        <div align="center" class="panel-heading"><strong>Profile</strong> (@Html.ActionLink("edit", "Edit", new { id = Model.ID }))</div>                        
+                }
+                //if logged in and not viewing your own profie - do not show edit button
+                else
+                {
+                        <div align="center" class="panel-heading"><strong>Profile</strong></div>
                     }
+             }
 
-                    <img src="@Url.Content("~/Images/")@strProfilePicture" width="125" />
 
-                    <br /><br />
+                <div class="panel-body">
+                    <center>
+                        <strong>@Html.DisplayFor(model => model.firstName) @Html.DisplayFor(model => model.lastName)</strong>
+                        <br /><br />
 
-                    <strong>Birthday</strong> : @Html.DisplayFor(model => model.birthDate) <br />
-                    <strong>Email</strong> : @Html.DisplayFor(model => model.Email) <br />
-                    <strong>@Html.DisplayNameFor(model => model.PhoneNumber)</strong> : @Html.DisplayFor(model => model.PhoneNumber) <br />
-                    <strong>@Html.DisplayNameFor(model => model.startDate)</strong> : @Html.DisplayFor(model => model.startDate) <br />
-                    <strong>@Html.DisplayNameFor(model => model.JobTitle)</strong> : @Html.DisplayFor(model => model.JobTitle) <br />
-                    <strong>@Html.DisplayNameFor(model => model.operatingGroups)</strong> : @Html.DisplayFor(model => model.operatingGroups) <br />
-                    <strong>@Html.DisplayNameFor(model => model.locations)</strong> : @Html.DisplayFor(model => model.locations) <br />
-                </center>
+                        @{
+                            string strFilePath = Convert.ToString(@Url.Content("~/Images/"));
+                            string strFilePath2 = Convert.ToString(@Html.DisplayFor(model => model.photo));
+
+                            string strFilePathFull = strFilePath + strFilePath2;
+
+                            string strProfilePicture = "";
+
+
+                            if (strFilePathFull == "/Images/")
+                            {
+                                strProfilePicture = "Avatar.png";
+                            }
+                            else
+                            {
+                                strProfilePicture = strFilePath2;
+                            }
+                        }
+
+                        <img src="@Url.Content("~/Images/")@strProfilePicture" width="125" />
+
+                        <br /><br />
+
+                        <strong>Birthday</strong> : @Html.DisplayFor(model => model.birthDate) <br />
+                        <strong>Email</strong> : @Html.DisplayFor(model => model.Email) <br />
+                        <strong>@Html.DisplayNameFor(model => model.PhoneNumber)</strong> : @Html.DisplayFor(model => model.PhoneNumber) <br />
+                        <strong>@Html.DisplayNameFor(model => model.startDate)</strong> : @Html.DisplayFor(model => model.startDate) <br />
+                        <strong>@Html.DisplayNameFor(model => model.JobTitle)</strong> : @Html.DisplayFor(model => model.JobTitle) <br />
+                        <strong>@Html.DisplayNameFor(model => model.operatingGroups)</strong> : @Html.DisplayFor(model => model.operatingGroups) <br />
+                        <strong>@Html.DisplayNameFor(model => model.locations)</strong> : @Html.DisplayFor(model => model.locations) <br />
+                    </center>
+                </div>
             </div>
-        </div>
     </div>
 
     <div class="col-md-8">
         <div class="panel panel-default">
-            <div align="center" class="panel-heading"><strong>Core Value Badges</strong></div>
+
+            @{
+
+
+                string leaderboardID = Convert.ToString(ViewBag.CoreID);
+
+
+                //user MUST be logged in to endorse, check for this first
+                if (Request.IsAuthenticated)
+                {
+                    //if the user is on their own page they CANNOT see endorse button
+                    if (URL.Contains(userID))
+                    {
+                        <div align="center" class="panel-heading"><strong>Core Value Badges</strong></div>
+                    }
+                    //if the user is not on their own profile page SHOW the endrose link
+                    else
+                    {
+                        <div align="center" class="panel-heading"><strong>Core Value Badges (<a href="~/CoreValueLeaderboard/Edit/@leaderboardID">endorse</a>)</strong></div>
+                    }
+                }
+                else
+                {
+                    <div align="center" class="panel-heading"><strong>Core Value Badges</strong></div>
+                }
+            }
+
             <div class="panel-body">
                 <table>
                     <!-- Top Headings -->
@@ -497,25 +544,14 @@
     </div>
 </div>
 
-@{
-
-    string userID = Convert.ToString(ViewBag.userID);
-    string URL = HttpContext.Current.Request.Url.AbsoluteUri;
 
 
-    if (URL.Contains(userID))
-    {
-        <p>
-            @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
-            @Html.ActionLink("Back to Directory", "Index")
-        </p>
-    }
+    <script>
+        function goBack() {
+            window.history.back();
+        }
 
-    else
-    { 
-        <p>
-            @Html.ActionLink("Back to Directory", "Index")
-        </p>
-    }
-}
+    </script>
+
+
 

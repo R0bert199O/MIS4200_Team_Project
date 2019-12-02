@@ -59,9 +59,7 @@ namespace MIS4200_Team_Project.Controllers
         {
 
             Guid userID;
-            Guid.TryParse(User.Identity.GetUserId(), out userID);
-
-            
+            Guid.TryParse(User.Identity.GetUserId(), out userID);         
 
             
             var coreValues = db.Users.Where(r => r.ID == id).FirstOrDefault();
@@ -75,6 +73,7 @@ namespace MIS4200_Team_Project.Controllers
             ViewBag.GreaterGood = coreValues.Greater_Good;
             ViewBag.Integrity = coreValues.Integrity_And_Openness;
             ViewBag.Balance = coreValues.Balance;
+            ViewBag.CoreID = coreValues.leaderboardID;
 
             ViewBag.userID = userID;
                         

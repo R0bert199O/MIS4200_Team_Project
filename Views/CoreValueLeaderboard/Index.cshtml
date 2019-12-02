@@ -1,23 +1,17 @@
 ﻿@model IEnumerable<MIS4200_Team_Project.Models.CoreValueLeaderboard>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Leaderboard";
 }
 
 <h2>Leaderboard</h2>
-<table>
-    @{
-        ViewBag.Title = "Leaderboard";
-    }
 
-
-    <!-- <div class="jumbotron text-center" style="background-color:gray;color:blueviolet;background-image:url(https://cdn.pixabay.com/photo/2015/11/08/17/10/banner-1033936_1280.jpg)">
-         <h1>Centric's Values at their Core</h1>
-         <p></p>
-     </div>
-     -->
-
-    <!DOCTYPE HTML>
+<!-- <div class="jumbotron text-center" style="background-color:gray;color:blueviolet;background-image:url(https://cdn.pixabay.com/photo/2015/11/08/17/10/banner-1033936_1280.jpg)">
+     <h1>Centric's Values at their Core</h1>
+     <p></p>
+ </div>
+ -->
+<!--<!DOCTYPE HTML>
     <html>
 
     <div class="container">
@@ -161,19 +155,13 @@
             <div id="chartContainer" style="height: 370px; width: 100%;"></div>
             <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
         </body>
-</html>
+</html> -->
 
 
-</div>
-</table>
-<p>
-    </br>
-    </br>
+<!--  @Html.ActionLink("Create New", "Create") -->
 
-    <h2>All Employees</h2>
-    </br>
-       @Html.ActionLink("Create New", "Create")
-</p>
+<br /><br />
+
 <table class="table">
     <tr>
         <th>
@@ -200,7 +188,7 @@
         <th>
             @Html.DisplayNameFor(model => model.Balance)
         </th>
-         <th>
+        <th>
             @Html.DisplayNameFor(model => model.TotalPoints)
         </th>
     </tr>
@@ -237,7 +225,7 @@
             </td>
             <td>
                 @Html.ActionLink("Endorse", "Edit", new { id = item.leaderboardID }) |
-                @Html.ActionLink("Details", "Details", "UserDetails", new {id = item.ID}, null)
+                @Html.ActionLink("Details", "Details", "UserDetails", new { id = item.ID }, null)
                 <!-- @Html.ActionLink("Delete", "Delete", new { id = item.leaderboardID })-->
             </td>
         </tr>
