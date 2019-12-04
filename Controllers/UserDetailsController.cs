@@ -20,16 +20,15 @@ namespace MIS4200_Team_Project.Controllers
         // GET: UserDetails
         public ActionResult Index(string searchString)
         {
-            var testusers = from u in db.UserDetails select u;
-            if (!string.IsNullOrEmpty(searchString))
-            {
-                testusers = testusers.Where(u => u.lastName.Contains(searchString) || u.firstName.Contains(searchString));
-                // if here, users were found so view them
-                return View(testusers.ToList());
+            //var testusers = from u in db.UserDetails select u;
+            
+            //if (!string.IsNullOrEmpty(searchString))
+            //{
+            //    testusers = testusers.Where(u => u.lastName.Contains(searchString) || u.firstName.Contains(searchString));
+            //    // if here, users were found so view them
+            //    return View(testusers.ToList());
 
-            }
-
-
+            //}
 
             var userSearch = from o in db.UserDetails select o;
             string[] userNames; // declare the array to hold pieces of the string
@@ -51,6 +50,7 @@ namespace MIS4200_Team_Project.Controllers
                 }
                 return View(userSearch.ToList());
             }
+
             return View(db.UserDetails.ToList());
         }
 

@@ -19,14 +19,15 @@
     <table class="table">
         <tr>
             <th>
+                @Html.DisplayNameFor(model=> model.fullName)
+            </th>
+            @*<th>
                 @Html.DisplayNameFor(model => model.firstName)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.lastName)
-            </th>
-            <!--<th>
-       @Html.DisplayNameFor(model => model.birthDate)
-    </th> -->
+            </th>*@
+            
             <th>
                 @Html.DisplayNameFor(model => model.Email)
             </th>
@@ -52,11 +53,14 @@
     {
     <tr>
         <td>
+            @Html.DisplayFor(modelitem => item.fullName)
+        </td>
+        @*<td>
             @Html.DisplayFor(modelItem => item.firstName)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.lastName)
-        </td>
+        </td>*@
         <!--<td>
         @Html.DisplayFor(modelItem => item.birthDate)
     </td> -->

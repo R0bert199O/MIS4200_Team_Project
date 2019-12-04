@@ -25,12 +25,15 @@ namespace MIS4200_Team_Project.Models
         [StringLength(30)]
         public string lastName { get; set; }
 
+        [Display(Name = "Name")]
+        public string fullName => firstName + " " + lastName;
 
         [Display(Name = "Date of Birth")]
         [Required]
         [DisplayFormat(DataFormatString = "{0:d}", ApplyFormatInEditMode = true)]
         public DateTime birthDate { get; set; }
 
+       
 
         [Display(Name = "Centric Email")]
         [Required]

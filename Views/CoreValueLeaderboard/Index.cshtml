@@ -165,7 +165,7 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.UserDetails.firstName)
+            @Html.DisplayNameFor(model => model.UserDetails.fullName)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Stewardship)
@@ -197,7 +197,7 @@
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.UserDetails.firstName)
+                @Html.DisplayFor(modelItem => item.UserDetails.fullName)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Stewardship)
@@ -224,9 +224,9 @@
                 @Html.DisplayFor(modelItem => item.TotalPoints)
             </td>
             <td>
-                @Html.ActionLink("Endorse", "Edit", new { id = item.leaderboardID }) |
+                @*@Html.ActionLink("Endorse", "Edit", new { id = item.leaderboardID }) |
                 @Html.ActionLink("Details", "Details", "UserDetails", new { id = item.ID }, null)
-                <!-- @Html.ActionLink("Delete", "Delete", new { id = item.leaderboardID })-->
+                 @Html.ActionLink("Delete", "Delete", new { id = item.leaderboardID })*@
             </td>
         </tr>
     }

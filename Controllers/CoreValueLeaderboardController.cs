@@ -23,7 +23,6 @@ namespace MIS4200_Team_Project.Controllers
             Guid userID;
             Guid.TryParse(User.Identity.GetUserId(), out userID);
 
-
             var stewardship = db.Users.Select(s => s.Stewardship);     
 
            
