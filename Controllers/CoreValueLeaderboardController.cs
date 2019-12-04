@@ -127,6 +127,9 @@ namespace MIS4200_Team_Project.Controllers
                 // save the current photo into TempData
 
                 ViewBag.ID = new SelectList(db.UserDetails, "ID", "firstName", coreValueLeaderboard.ID);
+                TempData["id"] = memberID; // replace with person being edited
+
+
                 return View(coreValueLeaderboard);
             }
 
@@ -142,10 +145,11 @@ namespace MIS4200_Team_Project.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "leaderboardID,Stewardship,Culture,Delivery_Excellence,Innovation,Greater_Good,Integrity_And_Openness,Balance,ID")] CoreValueLeaderboard coreValueLeaderboard)
+        public ActionResult Edit([Bind(Include = "leaderboardID,Stewardship,Culture,Delivery_Excellence,Innovation,Greater_Good,Integrity_And_Openness,Balance")] CoreValueLeaderboard coreValueLeaderboard)
         {
             if (ModelState.IsValid)
             {
+                coreValueLeaderboard.ID = (Guid)TempData["id"];
                 db.Entry(coreValueLeaderboard).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
