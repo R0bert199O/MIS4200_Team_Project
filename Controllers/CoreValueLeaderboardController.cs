@@ -24,15 +24,9 @@ namespace MIS4200_Team_Project.Controllers
             Guid.TryParse(User.Identity.GetUserId(), out userID);
 
 
-            var stewardship = db.Users.Select(s => s.Stewardship);
+            var stewardship = db.Users.Select(s => s.Stewardship);     
 
            
-
-           
-
-
-
-
             var users = db.Users.Include(c => c.UserDetails);
             return View(users.ToList());
         }
@@ -54,10 +48,8 @@ namespace MIS4200_Team_Project.Controllers
 
         // GET: CoreValueLeaderboard/Create
         public ActionResult Create()
-        {
+        {       
             
-
-
             ViewBag.ID = new SelectList(db.UserDetails, "ID", "firstName");
             return View();
         }
@@ -93,6 +85,13 @@ namespace MIS4200_Team_Project.Controllers
         // GET: CoreValueLeaderboard/Edit/5
         public ActionResult Edit(int? id)
         {
+            // get information needed to update database correctly
+            int leaderboardID = Convert.ToInt32(HttpContext.Request.Url.AbsolutePath.Replace("/CoreValueLeaderboard/Edit/", ""));
+
+            var coreValues = db.Users.Where(r => r.leaderboardID == leaderboardID).FirstOrDefault();
+            TempData["updateMemberID"] = coreValues.ID; // ID of the person you're viewing
+
+            //begin authentication process
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -129,15 +128,10 @@ namespace MIS4200_Team_Project.Controllers
                 ViewBag.ID = new SelectList(db.UserDetails, "ID", "firstName", coreValueLeaderboard.ID);
                 TempData["id"] = memberID; // replace with person being edited
 
-
                 return View(coreValueLeaderboard);
-            }
-
-
+            }  
+                      
             
-
-
-
         }
 
         // POST: CoreValueLeaderboard/Edit/5
@@ -149,7 +143,7 @@ namespace MIS4200_Team_Project.Controllers
         {
             if (ModelState.IsValid)
             {
-                coreValueLeaderboard.ID = (Guid)TempData["id"];
+                coreValueLeaderboard.ID = (Guid)TempData["updateMemberID"];
                 db.Entry(coreValueLeaderboard).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
