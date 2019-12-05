@@ -2,69 +2,79 @@
     ViewBag.Title = "Home Page";
 }
 
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v5.0"></script>
+
+
 <div class="jumbotron" style="background-color:gray;color:blueviolet;background-image:url(https://cdn.pixabay.com/photo/2015/11/08/17/10/banner-1033936_1280.jpg)">
     <h1>Centric</h1>
-    <strong><p> class="lead">Core values & Recognition platform (Team 9)</p></strong>
+    <strong><p class="lead">Core values & Recognition platform (Team 9)</p></strong>
     <p><a href="https://centricconsulting.com/" target="_blank" class="btn btn-default btn-lg">Learn more &raquo;</a></p>
 </div>
 
 <div class="row">
     <div class="col-md-4">
-        <h2>Practice Core values</h2>
-        <p>
+        <h2>Practice Core Values</h2>
+        <p style="height: 50px">
             Visit the core values page to review Centric's core values!
         </p>
         <p><a class="background-color: green;btn btn-default" onclick="alert('Now leaving the site')" href="https://centricconsulting.com/about-us/our-story/">See practices in values &raquo;</a></p>
+        <br />
     </div>
     <div class="col-md-4">
         <h2> Reward Core values</h2>
-        <p> Visit our "recognize" page on the platform to reward coworkers who display the values!</p>
+        <p style="height: 50px"> Visit our "recognize" page on the platform to reward coworkers who display the values!</p>
         <p> <a class="background-color: green;btn btn-default" onclick="alert('Now leaving the site')" href="https://centricconsulting.com/about-us/our-story/"> See rewards &raquo;</a> </p>
+        <br />
 
     </div>
     <div class="col-md-4">
         <h2> Display Core values</h2>
-        <p> Show off the core values you've been recognized for on your profile page!</p>
+        <p style="height: 50px"> Show off the core values you've been recognized for on your profile page!</p>
         <p> <a class="background-color: green;btn btn-default" onclick="alert('Now leaving the site')" href="https://centricconsulting.com/about-us/our-story/"> See core values &raquo;</a> </p>
+        <br />
     </div>
+    <br /><br />
     <div class="row">
-        <div class="col-sm-4" style="background-color:lightgoldenrodyellow;">
-            <h3 style="color:blueviolet">Stewardship</h3>
+        <div class="col-sm-4" style="background-color:lightgoldenrodyellow; height: 150px">
+            <h3 align="center" style="color:blueviolet">Stewardship</h3>
             <p style="color:darkslategray">
                 The job of supervising or taking care of something, such as an organization or property.
                 "responsible stewardship of our company"
             </p>
         </div>
-        <div class="col-sm-4" style="background-color:goldenrod;">
-            <h3 style="color:blueviolet">Culture</h3>
+        <div class="col-sm-4" style="background-color:goldenrod; height: 150px">
+            <h3 align="center" style="color:blueviolet">Culture</h3>
             <p style="color:darkslategray">
                 the customs, arts, social institutions, and achievements of a particular nation, people, or other social group.
                 "Company culture"
             </p>
         </div>
-        <div class="col-sm-4" style="background-color:lightgoldenrodyellow;">
-            <h3 style="color:blueviolet">Delivery Excellence</h3>
+        <div class="col-sm-4" style="background-color:lightgoldenrodyellow; height: 150px">
+            <h3 align="center" style="color:blueviolet">Delivery Excellence</h3>
             <p style="color:darkslategrey">
-                the quality of being outstanding or going above and beyond what is expected without being asked     
+                the quality of being outstanding or going above and beyond what is expected without being asked
                 "a center of academic excellence"
             </p>
         </div>
     </div>
     <div class="row">
-        <div class="col-sm-4" style="background-color:goldenrod;">
-            <h3 style="color:blueviolet">Innovation</h3>
+        <div class="col-sm-4" style="background-color:goldenrod; height: 150px">
+            <h3 align="center" style="color:blueviolet">Innovation</h3>
             <p style="color:darkslategray">
-                Discovering new methods, ideas, or products through creative problem solving and thinking 
+                Discovering new methods, ideas, or products through creative problem solving and thinking
 
                 "technological innovations designed to save energy"
             </p>
         </div>
-        <div class="col-sm-4" style="background-color:lightgoldenrodyellow;">
-            <h3 style="color:blueviolet">Greater Good</h3>
+
+        <div class="col-sm-4" style="background-color:lightgoldenrodyellow; height: 150px">
+            <h3 align="center" style="color:blueviolet">Greater Good</h3>
             <p style="color:darkslategray">greater-good. Noun. (uncountable) The benefit of the public, of more people than oneself; that which is better and more correct.</p>
         </div>
-        <div class="col-sm-4" style="background-color:goldenrod;">
-            <h3 style="color:blueviolet">Integrity and Openness</h3>
+
+        <div class="col-sm-4" style="background-color:goldenrod;  height: 150px">
+            <h3 align="center" style="color:blueviolet">Integrity and Openness</h3>
             <p style="color:darkslategray">
                 the quality of being honest and having strong moral principles; moral uprightness.
                 "they are known to be a group of integrity"
@@ -72,23 +82,30 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-sm-4" style="background-color:lightgoldenrodyellow;">
-            <h3 style="color:blueviolet">Follow Centric on Twitter</h3>
+        <div class="col-sm-4" style="background-color:lightgoldenrodyellow; height: 425px">
+            <h3 align="center" style="color:blueviolet"></h3>
             <p style="color:darkslategray"></p>
-            
-            <a href="https://twitter.com/centric?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="false">Follow </a>
-            <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+            @*<a href="https://twitter.com/centric?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="false">Follow </a>
+        <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>*@
+            <div class="fb-page" data-href="https://www.facebook.com/CentricConsultingNational" data-tabs="timeline" data-width="400" data-height="400" data-small-header="true" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="false">
+                <blockquote cite="https://www.facebook.com/CentricConsultingNational" class="fb-xfbml-parse-ignore">
+                    <a href="https://www.facebook.com/CentricConsultingNational">Centric Consulting          
+                    </a>
+                </blockquote>
+            </div>
         </div>
-        <div class="col-sm-4" style="background-color:goldenrod;">
-            <h3 style="color:blueviolet"></h3>
-            <p style="color:darkslategray"></p>
-            <a class="twitter-timeline" data-height="200" href="https://twitter.com/centric?ref_src=twsrc%5Etfw">Tweets by centric</a>
-            <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-        </div>
-        <div class="col-sm-4" style="background-color:lightgoldenrodyellow;">
-            <h3 style="color:blueviolet">balance</h3>
+        <div class="col-sm-4" style="background-color:goldenrod; height: 150px">
+            <h3 align="center" style="color:blueviolet">Balance</h3>
             <p style="color:darkslategray">Living a balanced life externally and internally.</p>
             
+        </div>
+        <div class="col-sm-4" style="background-color:lightgoldenrodyellow;  height: 425px">
+            <h3 align="center" style="color:blueviolet"></h3>
+            <p style="color:darkslategray"></p>
+
+            <a class="twitter-timeline" data-height="400" href="https://twitter.com/centric?ref_src=twsrc%5Etfw">Tweets by centric</a>
+            <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
         </div>
     </div>
     <div class="row">

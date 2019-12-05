@@ -47,6 +47,9 @@
 
                             string strProfilePicture = "";
 
+                            string strJobTitle = Convert.ToString(@Html.DisplayFor(model => model.JobTitle)).Replace("_", " ");
+                            string strOpGroup = Convert.ToString(@Html.DisplayFor(model => model.operatingGroups)).Replace("_", " ");
+
 
                             if (strFilePathFull == "/Images/")
                             {
@@ -60,16 +63,23 @@
 
                         <img src="@Url.Content("~/Images/")@strProfilePicture" width="125" />
 
-                        <br /><br />
-
-                        <strong>Birthday</strong> : @Html.DisplayFor(model => model.birthDate) <br />
-                        <strong>Email</strong> : @Html.DisplayFor(model => model.Email) <br />
-                        <strong>@Html.DisplayNameFor(model => model.PhoneNumber)</strong> : @Html.DisplayFor(model => model.PhoneNumber) <br />
-                        <strong>@Html.DisplayNameFor(model => model.startDate)</strong> : @Html.DisplayFor(model => model.startDate) <br />
-                        <strong>@Html.DisplayNameFor(model => model.JobTitle)</strong> : @Html.DisplayFor(model => model.JobTitle) <br />
-                        <strong>@Html.DisplayNameFor(model => model.operatingGroups)</strong> : @Html.DisplayFor(model => model.operatingGroups) <br />
-                        <strong>@Html.DisplayNameFor(model => model.locations)</strong> : @Html.DisplayFor(model => model.locations) <br />
-                    </center>
+                        <br /><br /> 
+                        
+                        <strong>Birthday</strong> : @Html.DisplayFor(model => model.birthDate)
+                                  <br />
+                                  <strong>Email</strong> : @Html.DisplayFor(model => model.Email)
+                                  <br />
+                                  <strong>@Html.DisplayNameFor(model => model.PhoneNumber)</strong> : @Html.DisplayFor(model => model.PhoneNumber)
+                                  <br />
+                                  <strong>@Html.DisplayNameFor(model => model.startDate)</strong> : @Html.DisplayFor(model => model.startDate)
+                                  <br />
+                                  <strong>@Html.DisplayNameFor(model => model.JobTitle)</strong> : @strJobTitle
+                                  <br />
+                                  <strong>@Html.DisplayNameFor(model => model.operatingGroups)</strong> : @strOpGroup
+                                  <br />
+                                  <strong>@Html.DisplayNameFor(model => model.locations)</strong> : @Html.DisplayFor(model => model.locations)
+                                  <br />
+</center>
                 </div>
             </div>
     </div>
