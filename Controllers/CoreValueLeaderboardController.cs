@@ -48,9 +48,9 @@ namespace MIS4200_Team_Project.Controllers
                            select s;
             switch (sortOrder)
             {
-                case "total_desc":
-                    leaderboard = leaderboard.OrderByDescending(s => s.TotalPoints);
-                    break;
+                //case "total_desc":
+                //    leaderboard = leaderboard.OrderByDescending(s => s.TotalPoints);
+                //    break;
 
                 case "Stewardship":
                     leaderboard = leaderboard.OrderBy(s => s.Stewardship);
@@ -108,9 +108,9 @@ namespace MIS4200_Team_Project.Controllers
                     leaderboard = leaderboard.OrderByDescending(s => s.UserDetails.firstName);
                     break;
 
-                default:
-                    leaderboard = leaderboard.OrderBy(s => s.TotalPoints);
-                    break;
+                //default:
+                //    leaderboard = leaderboard.OrderBy(s => s.TotalPoints);
+                //    break;
             }
             return View(leaderboard.ToList());
         }
