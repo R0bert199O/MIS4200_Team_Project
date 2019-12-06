@@ -14,21 +14,110 @@ namespace MIS4200_Team_Project.Controllers
 {
     public class CoreValueLeaderboardController : Controller
     {
-        private Context2 db = new Context2();  
+        private Context2 db = new Context2();
 
 
         // GET: CoreValueLeaderboard
-        public ActionResult Index()
+        //public ActionResult Index()
+        //{
+        //    Guid userID;
+        //    Guid.TryParse(User.Identity.GetUserId(), out userID);
+
+        //    var stewardship = db.Users.Select(s => s.Stewardship);     
+
+
+        //    var users = db.Users.Include(c => c.UserDetails);
+        //    return View(users.ToList());
+        //}
+
+        public ActionResult Index(string sortOrder)
         {
-            Guid userID;
-            Guid.TryParse(User.Identity.GetUserId(), out userID);
 
-            var stewardship = db.Users.Select(s => s.Stewardship);     
+        //https://docs.microsoft.com/en-us/aspnet/mvc/overview/getting-started/getting-started-with-ef-using-mvc/sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application
 
-           
-            var users = db.Users.Include(c => c.UserDetails);
-            return View(users.ToList());
+            ViewBag.TotalSortParm = String.IsNullOrEmpty(sortOrder) ? "total_desc" : "";
+            ViewBag.StewardshipSortParm = sortOrder == "Stewardship" ? "stewardship_desc" : "Stewardship";
+            ViewBag.CultureSortParm = sortOrder == "Culture" ? "culture_desc" : "Culture";
+            ViewBag.DeliverySortParm = sortOrder == "Delivery Excellence" ? "delivery_excellence_desc" : "Delivery Excellence";
+            ViewBag.InnovationSortParm = sortOrder == "Innovation" ? "innovation_desc" : "Innovation";
+            ViewBag.GreaterSortParm = sortOrder == "Greater Good" ? "greater_good_desc" : "Greater Good";
+            ViewBag.IntegritySortParm = sortOrder == "Integrity And Openness" ? "integrity_desc" : "Integrity And Openness";
+            ViewBag.BalanceSortParm = sortOrder == "Balance" ? "balance_desc" : "Balance";
+            ViewBag.NameSortParm = sortOrder == "Name" ? "name_desc" : "Name";
+            var leaderboard = from s in db.Users
+                           select s;
+            switch (sortOrder)
+            {
+                case "total_desc":
+                    leaderboard = leaderboard.OrderByDescending(s => s.TotalPoints);
+                    break;
+
+                case "Stewardship":
+                    leaderboard = leaderboard.OrderBy(s => s.Stewardship);
+                    break;
+                case "stewardship_desc":
+                    leaderboard = leaderboard.OrderByDescending(s => s.Stewardship);
+                    break;
+
+                case "Culture":
+                    leaderboard = leaderboard.OrderBy(s => s.Culture);
+                    break;
+                case "culture_desc":
+                    leaderboard = leaderboard.OrderByDescending(s => s.Culture);
+                    break;
+
+                case "Delivery Excellence":
+                    leaderboard = leaderboard.OrderBy(s => s.Delivery_Excellence);
+                    break;
+                case "delivery_excellence_desc":
+                    leaderboard = leaderboard.OrderByDescending(s => s.Delivery_Excellence);
+                    break;
+
+                case "Innovation":
+                    leaderboard = leaderboard.OrderBy(s => s.Innovation);
+                    break;
+                case "innovation_desc":
+                    leaderboard = leaderboard.OrderByDescending(s => s.Innovation);
+                    break;
+
+                case "Greater Good":
+                    leaderboard = leaderboard.OrderBy(s => s.Greater_Good);
+                    break;
+                case "greater_good_desc":
+                    leaderboard = leaderboard.OrderByDescending(s => s.Greater_Good);
+                    break;
+
+                case "Integrity And Openness":
+                    leaderboard = leaderboard.OrderBy(s => s.Integrity_And_Openness);
+                    break;
+                case "integrity_desc":
+                    leaderboard = leaderboard.OrderByDescending(s => s.Integrity_And_Openness);
+                    break;
+
+                case "Balance":
+                    leaderboard = leaderboard.OrderBy(s => s.Balance);
+                    break;
+                case "balance_desc":
+                    leaderboard = leaderboard.OrderByDescending(s => s.Balance);
+                    break;
+
+                case "Name":
+                    leaderboard = leaderboard.OrderBy(s => s.UserDetails.firstName);
+                    break;
+                case "name_desc":
+                    leaderboard = leaderboard.OrderByDescending(s => s.UserDetails.firstName);
+                    break;
+
+                default:
+                    leaderboard = leaderboard.OrderBy(s => s.TotalPoints);
+                    break;
+            }
+            return View(leaderboard.ToList());
         }
+
+
+
+
 
         // GET: CoreValueLeaderboard/Details/5
         public ActionResult Details(int? id)
@@ -58,7 +147,7 @@ namespace MIS4200_Team_Project.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "leaderboardID,Stewardship,Culture,Delivery_Excellence,Innovation,Greater_Good,Integrity_And_Openness,Balance,ID")] CoreValueLeaderboard coreValueLeaderboard)
+        public ActionResult Create([Bind(Include = "leaderboardID,Stewardship,Culture,Delivery_Excellence,Innovation,Greater_Good,Integrity_And_Openness,Balance,TotalPoints,ID")] CoreValueLeaderboard coreValueLeaderboard)
         {
             Guid userID;
             Guid.TryParse(User.Identity.GetUserId(), out userID);
@@ -138,7 +227,7 @@ namespace MIS4200_Team_Project.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "leaderboardID,Stewardship,Culture,Delivery_Excellence,Innovation,Greater_Good,Integrity_And_Openness,Balance")] CoreValueLeaderboard coreValueLeaderboard)
+        public ActionResult Edit([Bind(Include = "leaderboardID,Stewardship,Culture,Delivery_Excellence,Innovation,Greater_Good,Integrity_And_Openness,Balance,TotalPoints")] CoreValueLeaderboard coreValueLeaderboard)
         {
             if (ModelState.IsValid)
             {

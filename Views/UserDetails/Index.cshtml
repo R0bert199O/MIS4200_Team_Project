@@ -27,9 +27,7 @@
             <th>
                 @Html.DisplayNameFor(model => model.PhoneNumber)
             </th>
-            <!--<th>
-        @Html.DisplayNameFor(model => model.startDate)
-    </th> -->
+            
             <th>
                 @Html.DisplayNameFor(model => model.JobTitle)
             </th>
@@ -72,7 +70,13 @@
         
     </td>
     <td>
-        @Html.DisplayFor(modelItem => item.locations)
+
+        @{
+
+            string strLocations = Convert.ToString(@Html.DisplayFor(modelItem => item.locations)).Replace("_", " ");
+        }
+
+        @strLocations
     </td>
     <td>        
         @Html.ActionLink("View Profile", "Details", new { id = item.ID })        
