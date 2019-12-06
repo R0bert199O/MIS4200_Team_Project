@@ -15,39 +15,30 @@
     <tr>
         <th>
             @Html.ActionLink("Name", "Index", new { sortOrder = ViewBag.NameSortParm })
-            @*@Html.DisplayNameFor(model => model.UserDetails.fullName)*@
         </th>
         <th>
             @Html.ActionLink("Stewardship", "Index", new { sortOrder = ViewBag.StewardshipSortParm })
-            @*@Html.DisplayNameFor(model => model.Stewardship)*@
         </th>
         <th>
             @Html.ActionLink("Culture", "Index", new { sortOrder = ViewBag.CultureSortParm })
-            @*@Html.DisplayNameFor(model => model.Culture)*@
         </th>
         <th>
             @Html.ActionLink("Delivery Excellence", "Index", new { sortOrder = ViewBag.DeliverySortParm })
-            @*@Html.DisplayNameFor(model => model.Delivery_Excellence)*@
         </th>
         <th>
             @Html.ActionLink("Innovation", "Index", new { sortOrder = ViewBag.InnovationSortParm })
-            @*@Html.DisplayNameFor(model => model.Innovation)*@
         </th>
         <th>
             @Html.ActionLink("Greater Good", "Index", new { sortOrder = ViewBag.GreaterSortParm })
-            @*@Html.DisplayNameFor(model => model.Greater_Good)*@
         </th>
         <th>
             @Html.ActionLink("Integrity And Openness", "Index", new { sortOrder = ViewBag.IntegritySortParm })
-            @*@Html.DisplayNameFor(model => model.Integrity_And_Openness)*@
         </th>
         <th>
             @Html.ActionLink("Balance", "Index", new { sortOrder = ViewBag.BalanceSortParm })
-            @*@Html.DisplayNameFor(model => model.Balance)*@
         </th>
-        <th>
-            @Html.ActionLink("Total Points", "Index", new { sortOrder = ViewBag.TotalSortParm })
-            @*@Html.DisplayNameFor(model => model.TotalPoints)*@
+        <th> 
+            @Html.DisplayNameFor(model => model.TotalPoints)
         </th>
     </tr>
 

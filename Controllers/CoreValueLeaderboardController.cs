@@ -35,7 +35,8 @@ namespace MIS4200_Team_Project.Controllers
 
         //https://docs.microsoft.com/en-us/aspnet/mvc/overview/getting-started/getting-started-with-ef-using-mvc/sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application
 
-            ViewBag.TotalSortParm = String.IsNullOrEmpty(sortOrder) ? "total_desc" : "";
+            //ViewBag.TotalSortParm = String.IsNullOrEmpty(sortOrder) ? "total_desc" : "";
+            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
             ViewBag.StewardshipSortParm = sortOrder == "Stewardship" ? "stewardship_desc" : "Stewardship";
             ViewBag.CultureSortParm = sortOrder == "Culture" ? "culture_desc" : "Culture";
             ViewBag.DeliverySortParm = sortOrder == "Delivery Excellence" ? "delivery_excellence_desc" : "Delivery Excellence";
@@ -43,7 +44,7 @@ namespace MIS4200_Team_Project.Controllers
             ViewBag.GreaterSortParm = sortOrder == "Greater Good" ? "greater_good_desc" : "Greater Good";
             ViewBag.IntegritySortParm = sortOrder == "Integrity And Openness" ? "integrity_desc" : "Integrity And Openness";
             ViewBag.BalanceSortParm = sortOrder == "Balance" ? "balance_desc" : "Balance";
-            ViewBag.NameSortParm = sortOrder == "Name" ? "name_desc" : "Name";
+            //ViewBag.NameSortParm = sortOrder == "Name" ? "name_desc" : "Name";
             var leaderboard = from s in db.Users
                            select s;
             switch (sortOrder)
@@ -51,6 +52,10 @@ namespace MIS4200_Team_Project.Controllers
                 //case "total_desc":
                 //    leaderboard = leaderboard.OrderByDescending(s => s.TotalPoints);
                 //    break;
+
+                case "name_desc":
+                    leaderboard = leaderboard.OrderByDescending(s => s.UserDetails.firstName);
+                    break;
 
                 case "Stewardship":
                     leaderboard = leaderboard.OrderBy(s => s.Stewardship);
@@ -103,14 +108,11 @@ namespace MIS4200_Team_Project.Controllers
 
                 case "Name":
                     leaderboard = leaderboard.OrderBy(s => s.UserDetails.firstName);
-                    break;
-                case "name_desc":
-                    leaderboard = leaderboard.OrderByDescending(s => s.UserDetails.firstName);
-                    break;
+                    break;                
 
-                //default:
-                //    leaderboard = leaderboard.OrderBy(s => s.TotalPoints);
-                //    break;
+                default:
+                    leaderboard = leaderboard.OrderBy(s => s.UserDetails.firstName);
+                    break;
             }
             return View(leaderboard.ToList());
         }
