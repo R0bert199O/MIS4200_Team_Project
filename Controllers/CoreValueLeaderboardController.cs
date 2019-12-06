@@ -16,20 +16,6 @@ namespace MIS4200_Team_Project.Controllers
     {
         private Context2 db = new Context2();
 
-
-        // GET: CoreValueLeaderboard
-        //public ActionResult Index()
-        //{
-        //    Guid userID;
-        //    Guid.TryParse(User.Identity.GetUserId(), out userID);
-
-        //    var stewardship = db.Users.Select(s => s.Stewardship);     
-
-
-        //    var users = db.Users.Include(c => c.UserDetails);
-        //    return View(users.ToList());
-        //}
-
         public ActionResult Index(string sortOrder)
         {
 
@@ -116,10 +102,6 @@ namespace MIS4200_Team_Project.Controllers
             }
             return View(leaderboard.ToList());
         }
-
-
-
-
 
         // GET: CoreValueLeaderboard/Details/5
         public ActionResult Details(int? id)
@@ -231,6 +213,26 @@ namespace MIS4200_Team_Project.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "leaderboardID,Stewardship,Culture,Delivery_Excellence,Innovation,Greater_Good,Integrity_And_Openness,Balance,TotalPoints")] CoreValueLeaderboard coreValueLeaderboard)
         {
+            //line 164
+            
+            //if (ModelState.IsValid)
+            //{
+            //    coreValueLeaderboard.Stewardship = 0;
+            //    coreValueLeaderboard.Culture = 0;
+            //    coreValueLeaderboard.Delivery_Excellence = 0;
+            //    coreValueLeaderboard.Innovation = 0;
+            //    coreValueLeaderboard.Greater_Good = 0;
+            //    coreValueLeaderboard.Integrity_And_Openness = 0;
+            //    coreValueLeaderboard.Balance = 0;
+            //    coreValueLeaderboard.ID = userID;
+            //    db.Users.Add(coreValueLeaderboard);
+            //    db.SaveChanges();
+            //    return RedirectToAction("Index");
+            //}
+
+            //ViewBag.ID = new SelectList(db.UserDetails, "ID", "firstName", coreValueLeaderboard.ID);
+            //return View(coreValueLeaderboard);
+
             if (ModelState.IsValid)
             {
                 coreValueLeaderboard.ID = (Guid)TempData["updateMemberID"];
