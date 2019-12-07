@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
-using System.Linq;
-using System.Net;
-using System.Web;
-using System.Web.Mvc;
-using Microsoft.AspNet.Identity;
+﻿using Microsoft.AspNet.Identity;
 using MIS4200_Team_Project.DAL;
 using MIS4200_Team_Project.Models;
+using System;
+using System.Data;
+using System.Linq;
+using System.Net;
+using System.Web.Mvc;
 
 namespace MIS4200_Team_Project.Controllers
 {
@@ -19,7 +16,7 @@ namespace MIS4200_Team_Project.Controllers
         public ActionResult Index(string sortOrder)
         {
 
-            
+
 
             //https://docs.microsoft.com/en-us/aspnet/mvc/overview/getting-started/getting-started-with-ef-using-mvc/sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application
 
@@ -34,7 +31,7 @@ namespace MIS4200_Team_Project.Controllers
             ViewBag.BalanceSortParm = sortOrder == "Balance" ? "balance_desc" : "Balance";
             //ViewBag.NameSortParm = sortOrder == "Name" ? "name_desc" : "Name";
             var leaderboard = from s in db.Users
-                           select s;
+                              select s;
             switch (sortOrder)
             {
                 //case "total_desc":
@@ -96,7 +93,7 @@ namespace MIS4200_Team_Project.Controllers
 
                 case "Name":
                     leaderboard = leaderboard.OrderBy(s => s.UserDetails.firstName);
-                    break;                
+                    break;
 
                 default:
                     leaderboard = leaderboard.OrderBy(s => s.UserDetails.firstName);
@@ -122,8 +119,8 @@ namespace MIS4200_Team_Project.Controllers
 
         // GET: CoreValueLeaderboard/Create
         public ActionResult Create()
-        {       
-            
+        {
+
             ViewBag.ID = new SelectList(db.UserDetails, "ID", "firstName");
             return View();
         }
@@ -146,7 +143,7 @@ namespace MIS4200_Team_Project.Controllers
                 coreValueLeaderboard.Greater_Good = 0;
                 coreValueLeaderboard.Integrity_And_Openness = 0;
                 coreValueLeaderboard.Balance = 0;
-                coreValueLeaderboard.ID = userID ;
+                coreValueLeaderboard.ID = userID;
                 db.Users.Add(coreValueLeaderboard);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -160,9 +157,11 @@ namespace MIS4200_Team_Project.Controllers
         public ActionResult Edit(int? id)
         {
             // get information needed to update database correctly
-            int leaderboardID = Convert.ToInt32(HttpContext.Request.Url.AbsolutePath.Replace("/CoreValueLeaderboard/Edit/", ""));
+
+            int leaderboardID = Convert.ToInt32(HttpContext.Request.Url.AbsolutePath.Split('/').Last());
 
             var coreValues = db.Users.Where(r => r.leaderboardID == leaderboardID).FirstOrDefault();
+
             TempData["leaderboardID"] = leaderboardID;
             TempData["updateMemberID"] = coreValues.ID; // ID of the person you're viewing
             TempData["Stewardship"] = coreValues.Stewardship;
@@ -205,9 +204,9 @@ namespace MIS4200_Team_Project.Controllers
                 TempData["id"] = memberID; // replace with person being edited
 
                 return View(coreValueLeaderboard);
-            }  
-                      
-            
+            }
+
+
         }
 
         // POST: CoreValueLeaderboard/Edit/5
@@ -226,7 +225,7 @@ namespace MIS4200_Team_Project.Controllers
                 var coreValues = db.Users.Where(r => r.leaderboardID == LBID2).FirstOrDefault();
 
                 coreValues.ID = (Guid)TempData["updateMemberID"];
-                coreValues.Stewardship = coreValues.Stewardship + 1;                
+                coreValues.Stewardship = coreValues.Stewardship + 1;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }

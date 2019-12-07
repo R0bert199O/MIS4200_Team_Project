@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.ComponentModel.DataAnnotations;
 
 namespace MIS4200_Team_Project.Models
@@ -9,7 +7,7 @@ namespace MIS4200_Team_Project.Models
     public class UserDetails
     {
         public Guid ID { get; set; }
-        
+
 
         [Display(Name = "First Name")]
         [Required]
@@ -33,7 +31,7 @@ namespace MIS4200_Team_Project.Models
         [DisplayFormat(DataFormatString = "{0:d}", ApplyFormatInEditMode = true)]
         public DateTime birthDate { get; set; }
 
-       
+
 
         [Display(Name = "Centric Email")]
         [Required]

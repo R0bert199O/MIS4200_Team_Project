@@ -1,5 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Microsoft.AspNet.Identity;
+using MIS4200_Team_Project.DAL;
+using MIS4200_Team_Project.Models;
+using System;
 using System.Data;
 using System.Data.Entity;
 using System.IO;
@@ -7,9 +9,6 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using Microsoft.AspNet.Identity;
-using MIS4200_Team_Project.DAL;
-using MIS4200_Team_Project.Models;
 
 namespace MIS4200_Team_Project.Controllers
 {
@@ -21,7 +20,7 @@ namespace MIS4200_Team_Project.Controllers
         public ActionResult Index(string searchString)
         {
             //var testusers = from u in db.UserDetails select u;
-            
+
             //if (!string.IsNullOrEmpty(searchString))
             //{
             //    testusers = testusers.Where(u => u.lastName.Contains(searchString) || u.firstName.Contains(searchString));
@@ -59,9 +58,9 @@ namespace MIS4200_Team_Project.Controllers
         {
 
             Guid userID;
-            Guid.TryParse(User.Identity.GetUserId(), out userID);         
+            Guid.TryParse(User.Identity.GetUserId(), out userID);
 
-            
+
             var coreValues = db.Users.Where(r => r.ID == id).FirstOrDefault();
 
             //    var DE = coreValues.Select(r => r.Delivery_Excellence == r.Delivery_Excellence);
@@ -76,7 +75,7 @@ namespace MIS4200_Team_Project.Controllers
             ViewBag.CoreID = coreValues.leaderboardID;
 
             ViewBag.userID = userID;
-                        
+
             if (id == null)
             {
                 id = userID;
@@ -165,8 +164,8 @@ namespace MIS4200_Team_Project.Controllers
                 return View("NotAuthorized");
             }
 
-          
-          
+
+
         }
 
         // POST: UserDetails/Edit/5
@@ -176,7 +175,7 @@ namespace MIS4200_Team_Project.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "ID,firstName,lastName,birthDate,Email,PhoneNumber,startDate,JobTitle,operatingGroups,locations,photo")] UserDetails userDetails)
         {
-                                 
+
             if (ModelState.IsValid)
             {
                 db.Entry(userDetails).State = EntityState.Modified;
@@ -185,11 +184,11 @@ namespace MIS4200_Team_Project.Controllers
                 {
                     FileInfo fi = new FileInfo(file.FileName);
                     if (fi.Extension != ".png" && fi.Extension != ".jpg" && fi.Extension != "gif")
-                {
+                    {
                         TempData["Errormsg"] = "Image file must be a JPG, PNG, or GIF.";
                         return View(userDetails);
                     }
-else
+                    else
                     {
                         // the following statement prevents the File statements from throwing Exceptions if the file isn't found
                         string imageName = "none";
@@ -201,7 +200,7 @@ else
                         string path = Server.MapPath("~/Images/" + imageName);
                         // there may not be a file, so use try/catch
 
-                        
+
                         try
                         {
                             if (System.IO.File.Exists(path))
@@ -277,9 +276,9 @@ else
 
         // POST: UserDetails/Delete/5
 
-       [HttpPost, ActionName("Delete")]
-       [ValidateAntiForgeryToken]
-       public ActionResult DeleteConfirmed(Guid id)
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(Guid id)
         {
             UserDetails userDetails = db.UserDetails.Find(id);
 
@@ -307,7 +306,7 @@ else
             return RedirectToAction("Index");
         }
 
-       
+
 
 
         protected override void Dispose(bool disposing)

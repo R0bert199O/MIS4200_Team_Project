@@ -18,19 +18,19 @@
         <div class="panel panel-default">
             @{
 
-                string userID = Convert.ToString(ViewBag.userID);
-                string URL = HttpContext.Current.Request.Url.AbsoluteUri;
+    string userID = Convert.ToString(ViewBag.userID);
+    string URL = HttpContext.Current.Request.Url.AbsoluteUri;
 
-                //if logged in user is viewing their own profile - show edit profile button
-                if (URL.Contains(userID))
-                {
+    //if logged in user is viewing their own profile - show edit profile button
+    if (URL.Contains(userID))
+    {
                         <div align="center" class="panel-heading"><strong>Profile</strong> (@Html.ActionLink("edit", "Edit", new { id = Model.ID }))</div>                        
-                }
-                //if logged in and not viewing your own profie - do not show edit button
-                else
-                {
+    }
+    //if logged in and not viewing your own profie - do not show edit button
+    else
+    {
                         <div align="center" class="panel-heading"><strong>Profile</strong></div>
-                    }
+    }
              }
 
 
@@ -40,28 +40,24 @@
                         <br /><br />
 
                         @{
-                            string strFilePath = Convert.ToString(@Url.Content("~/Images/"));
-                            string strFilePath2 = Convert.ToString(@Html.DisplayFor(model => model.photo));
+    string strJobTitle = Convert.ToString(@Html.DisplayFor(model => model.JobTitle)).Replace("_", " ");
+    string strOpGroup = Convert.ToString(@Html.DisplayFor(model => model.operatingGroups)).Replace("_", " ");
+    string strLocations = Convert.ToString(@Html.DisplayFor(model => model.locations)).Replace("_", " ");
 
-                            string strFilePathFull = strFilePath + strFilePath2;
+   
 
-                            string strProfilePicture = "";
+    if (Model.photo != null)
+    {
+                                                <img src="@Url.Content("~/Images/")@Model.photo" width="100" />
+    }
+    else
+    {
+                    <img src="~/Images/Avatar.png" width="100"/>
+        }
+    }
 
-                            string strJobTitle = Convert.ToString(@Html.DisplayFor(model => model.JobTitle)).Replace("_", " ");
-                            string strOpGroup = Convert.ToString(@Html.DisplayFor(model => model.operatingGroups)).Replace("_", " ");
-                            string strLocations = Convert.ToString(@Html.DisplayFor(model => model.locations)).Replace("_", " ");
 
-                            if (strFilePathFull == "/Images/")
-                            {
-                                strProfilePicture = "Avatar.png";
-                            }
-                            else
-                            {
-                                strProfilePicture = strFilePath2;
-                            }
-                        }
 
-                        <img src="@Url.Content("~/Images/")@strProfilePicture" width="125" />
 
                         <br /><br />
 

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using MIS4200_Team_Project.Models;
+﻿using MIS4200_Team_Project.Models;
 using System.Data.Entity;
 
 namespace MIS4200_Team_Project.DAL

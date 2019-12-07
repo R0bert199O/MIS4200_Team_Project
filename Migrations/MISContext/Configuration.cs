@@ -1,9 +1,6 @@
 namespace MIS4200_Team_Project.Migrations.MISContext
 {
-    using System;
-    using System.Data.Entity;
     using System.Data.Entity.Migrations;
-    using System.Linq;
 
     internal sealed class Configuration : DbMigrationsConfiguration<MIS4200_Team_Project.DAL.Context2>
     {
