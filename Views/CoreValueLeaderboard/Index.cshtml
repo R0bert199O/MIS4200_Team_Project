@@ -73,9 +73,7 @@
                 @Html.DisplayFor(modelItem => item.TotalPoints)
             </td>
             <td>
-                @*@Html.ActionLink("Endorse", "Edit", new { id = item.leaderboardID }) |
-                @Html.ActionLink("Details", "Details", "UserDetails", new { id = item.ID }, null)
-                 @Html.ActionLink("Delete", "Delete", new { id = item.leaderboardID })*@
+                @Html.ActionLink("Endorse", "Edit", new { id = item.leaderboardID })                
             </td>
         </tr>
     }

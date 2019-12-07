@@ -6,85 +6,103 @@
 
 <h2>Endorse</h2>
 
-
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
-    
-<div class="form-horizontal">
-    <h4>CoreValueLeaderboard</h4>
-    <hr />
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-    @Html.HiddenFor(model => model.leaderboardID)
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.Stewardship, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.Stewardship, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.Stewardship, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.Culture, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.Culture, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.Culture, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.Delivery_Excellence, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.Delivery_Excellence, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.Delivery_Excellence, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.Innovation, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.Innovation, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.Innovation, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.Greater_Good, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.Greater_Good, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.Greater_Good, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.Integrity_And_Openness, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.Integrity_And_Openness, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.Integrity_And_Openness, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.Balance, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.Balance, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.Balance, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Save" class="btn btn-default" />
-        </div>
-    </div>
-</div>
-}
-
 <div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
+    <h4>@Html.DisplayFor(model => model.UserDetails.fullName)</h4>
+    <hr />
 
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
+    <table style="border-collapse: separate; border-spacing: 10px;">        
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.Stewardship)</th>
+            <td>@Html.DisplayFor(model => model.Stewardship)</td>
+            <td>
+                @using (Html.BeginForm("Stewardship", "CoreValueLeaderboard", FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+                    <input type="submit" id="btnStewardship" value="+" class="btn-success" />
+                }
+            </td>
+        </tr>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.Culture)</th>
+            <td>@Html.DisplayFor(model => model.Culture)</td>
+            <td>
+                @using (Html.BeginForm("Culture", "CoreValueLeaderboard", FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+                    <input type="submit" id="btnCulture" value="+" class="btn-success" />
+                }
+            </td>
+        </tr>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.Delivery_Excellence)</th>
+            <td>@Html.DisplayFor(model => model.Delivery_Excellence)</td>
+            <td>
+                @using (Html.BeginForm("Delivery", "CoreValueLeaderboard", FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+                    <input type="submit" id="btnDelivery" value="+" class="btn-success" />
+                }
+            </td>
+        </tr>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.Innovation)</th>
+            <td>@Html.DisplayFor(model => model.Innovation)</td>
+            <td>
+                @using (Html.BeginForm("Innovation", "CoreValueLeaderboard", FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+                    <input type="submit" id="btnInnovation" value="+" class="btn-success" />
+                }
+            </td>
+        </tr>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.Greater_Good)</th>
+            <td>@Html.DisplayFor(model => model.Greater_Good)</td>
+            <td>
+                @using (Html.BeginForm("Greater", "CoreValueLeaderboard", FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+                    <input type="submit" id="btnGreater" value="+" class="btn-success" />
+                }
+            </td>
+        </tr>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.Integrity_And_Openness)</th>
+            <td>@Html.DisplayFor(model => model.Integrity_And_Openness)</td>
+            <td>
+                @using (Html.BeginForm("Integrity", "CoreValueLeaderboard", FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+                    <input type="submit" id="btnIntegrity" value="+" class="btn-success" />
+                }
+            </td>
+        </tr>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.Balance)</th>
+            <td>@Html.DisplayFor(model => model.Balance)</td>
+            <td>
+                @using (Html.BeginForm("Balance", "CoreValueLeaderboard", FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+                    <input type="submit" id="btnBalance" value="+" class="btn-success" />
+                }
+            </td>
+        </tr>
+    </table>             
+ 
+</div>
+<hr />
+
+
+
+
+
+    
+
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>
+
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }

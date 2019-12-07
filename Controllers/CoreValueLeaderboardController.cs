@@ -19,7 +19,9 @@ namespace MIS4200_Team_Project.Controllers
         public ActionResult Index(string sortOrder)
         {
 
-        //https://docs.microsoft.com/en-us/aspnet/mvc/overview/getting-started/getting-started-with-ef-using-mvc/sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application
+            
+
+            //https://docs.microsoft.com/en-us/aspnet/mvc/overview/getting-started/getting-started-with-ef-using-mvc/sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application
 
             //ViewBag.TotalSortParm = String.IsNullOrEmpty(sortOrder) ? "total_desc" : "";
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
@@ -161,7 +163,9 @@ namespace MIS4200_Team_Project.Controllers
             int leaderboardID = Convert.ToInt32(HttpContext.Request.Url.AbsolutePath.Replace("/CoreValueLeaderboard/Edit/", ""));
 
             var coreValues = db.Users.Where(r => r.leaderboardID == leaderboardID).FirstOrDefault();
+            TempData["leaderboardID"] = leaderboardID;
             TempData["updateMemberID"] = coreValues.ID; // ID of the person you're viewing
+            TempData["Stewardship"] = coreValues.Stewardship;
 
             //begin authentication process
             if (id == null)
@@ -209,40 +213,198 @@ namespace MIS4200_Team_Project.Controllers
         // POST: CoreValueLeaderboard/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "leaderboardID,Stewardship,Culture,Delivery_Excellence,Innovation,Greater_Good,Integrity_And_Openness,Balance,TotalPoints")] CoreValueLeaderboard coreValueLeaderboard)
+        public ActionResult Stewardship([Bind(Include = "leaderboardID,Stewardship,Culture,Delivery_Excellence,Innovation,Greater_Good,Integrity_And_Openness,Balance,TotalPoints")] CoreValueLeaderboard coreValueLeaderboard)
         {
-            //line 164
-            
-            //if (ModelState.IsValid)
-            //{
-            //    coreValueLeaderboard.Stewardship = 0;
-            //    coreValueLeaderboard.Culture = 0;
-            //    coreValueLeaderboard.Delivery_Excellence = 0;
-            //    coreValueLeaderboard.Innovation = 0;
-            //    coreValueLeaderboard.Greater_Good = 0;
-            //    coreValueLeaderboard.Integrity_And_Openness = 0;
-            //    coreValueLeaderboard.Balance = 0;
-            //    coreValueLeaderboard.ID = userID;
-            //    db.Users.Add(coreValueLeaderboard);
-            //    db.SaveChanges();
-            //    return RedirectToAction("Index");
-            //}
-
-            //ViewBag.ID = new SelectList(db.UserDetails, "ID", "firstName", coreValueLeaderboard.ID);
-            //return View(coreValueLeaderboard);
-
             if (ModelState.IsValid)
             {
-                coreValueLeaderboard.ID = (Guid)TempData["updateMemberID"];
-                db.Entry(coreValueLeaderboard).State = EntityState.Modified;
+                int LBID = Convert.ToInt32(TempData["leaderboardID"]);
+                int LBID2 = LBID;
+
+                var coreValues = db.Users.Where(r => r.leaderboardID == LBID2).FirstOrDefault();
+
+                coreValues.ID = (Guid)TempData["updateMemberID"];
+                coreValues.Stewardship = coreValues.Stewardship + 1;                
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
             ViewBag.ID = new SelectList(db.UserDetails, "ID", "firstName", coreValueLeaderboard.ID);
+
+
             return View(coreValueLeaderboard);
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Culture([Bind(Include = "leaderboardID,Stewardship,Culture,Delivery_Excellence,Innovation,Greater_Good,Integrity_And_Openness,Balance,TotalPoints")] CoreValueLeaderboard coreValueLeaderboard)
+        {
+            if (ModelState.IsValid)
+            {
+                int LBID = Convert.ToInt32(TempData["leaderboardID"]);
+                int LBID2 = LBID;
+
+                var coreValues = db.Users.Where(r => r.leaderboardID == LBID2).FirstOrDefault();
+
+                coreValues.ID = (Guid)TempData["updateMemberID"];
+                coreValues.Culture = coreValues.Culture + 1;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            ViewBag.ID = new SelectList(db.UserDetails, "ID", "firstName", coreValueLeaderboard.ID);
+
+
+            return View(coreValueLeaderboard);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Delivery([Bind(Include = "leaderboardID,Stewardship,Culture,Delivery_Excellence,Innovation,Greater_Good,Integrity_And_Openness,Balance,TotalPoints")] CoreValueLeaderboard coreValueLeaderboard)
+        {
+            if (ModelState.IsValid)
+            {
+                int LBID = Convert.ToInt32(TempData["leaderboardID"]);
+                int LBID2 = LBID;
+
+                var coreValues = db.Users.Where(r => r.leaderboardID == LBID2).FirstOrDefault();
+
+                coreValues.ID = (Guid)TempData["updateMemberID"];
+                coreValues.Delivery_Excellence = coreValues.Delivery_Excellence + 1;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            ViewBag.ID = new SelectList(db.UserDetails, "ID", "firstName", coreValueLeaderboard.ID);
+
+
+            return View(coreValueLeaderboard);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Innovation([Bind(Include = "leaderboardID,Stewardship,Culture,Delivery_Excellence,Innovation,Greater_Good,Integrity_And_Openness,Balance,TotalPoints")] CoreValueLeaderboard coreValueLeaderboard)
+        {
+            if (ModelState.IsValid)
+            {
+                int LBID = Convert.ToInt32(TempData["leaderboardID"]);
+                int LBID2 = LBID;
+
+                var coreValues = db.Users.Where(r => r.leaderboardID == LBID2).FirstOrDefault();
+
+                coreValues.ID = (Guid)TempData["updateMemberID"];
+                coreValues.Innovation = coreValues.Innovation + 1;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            ViewBag.ID = new SelectList(db.UserDetails, "ID", "firstName", coreValueLeaderboard.ID);
+
+
+            return View(coreValueLeaderboard);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Greater([Bind(Include = "leaderboardID,Stewardship,Culture,Delivery_Excellence,Innovation,Greater_Good,Integrity_And_Openness,Balance,TotalPoints")] CoreValueLeaderboard coreValueLeaderboard)
+        {
+            if (ModelState.IsValid)
+            {
+                int LBID = Convert.ToInt32(TempData["leaderboardID"]);
+                int LBID2 = LBID;
+
+                var coreValues = db.Users.Where(r => r.leaderboardID == LBID2).FirstOrDefault();
+
+                coreValues.ID = (Guid)TempData["updateMemberID"];
+                coreValues.Greater_Good = coreValues.Greater_Good + 1;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            ViewBag.ID = new SelectList(db.UserDetails, "ID", "firstName", coreValueLeaderboard.ID);
+
+
+            return View(coreValueLeaderboard);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Integrity([Bind(Include = "leaderboardID,Stewardship,Culture,Delivery_Excellence,Innovation,Greater_Good,Integrity_And_Openness,Balance,TotalPoints")] CoreValueLeaderboard coreValueLeaderboard)
+        {
+            if (ModelState.IsValid)
+            {
+                int LBID = Convert.ToInt32(TempData["leaderboardID"]);
+                int LBID2 = LBID;
+
+                var coreValues = db.Users.Where(r => r.leaderboardID == LBID2).FirstOrDefault();
+
+                coreValues.ID = (Guid)TempData["updateMemberID"];
+                coreValues.Integrity_And_Openness = coreValues.Integrity_And_Openness + 1;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            ViewBag.ID = new SelectList(db.UserDetails, "ID", "firstName", coreValueLeaderboard.ID);
+
+
+            return View(coreValueLeaderboard);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Balance([Bind(Include = "leaderboardID,Stewardship,Culture,Delivery_Excellence,Innovation,Greater_Good,Integrity_And_Openness,Balance,TotalPoints")] CoreValueLeaderboard coreValueLeaderboard)
+        {
+            if (ModelState.IsValid)
+            {
+                int LBID = Convert.ToInt32(TempData["leaderboardID"]);
+                int LBID2 = LBID;
+
+                var coreValues = db.Users.Where(r => r.leaderboardID == LBID2).FirstOrDefault();
+
+                coreValues.ID = (Guid)TempData["updateMemberID"];
+                coreValues.Balance = coreValues.Balance + 1;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            ViewBag.ID = new SelectList(db.UserDetails, "ID", "firstName", coreValueLeaderboard.ID);
+
+
+            return View(coreValueLeaderboard);
+        }
+
+
+
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult Edit([Bind(Include = "leaderboardID,Stewardship,Culture,Delivery_Excellence,Innovation,Greater_Good,Integrity_And_Openness,Balance,TotalPoints")] CoreValueLeaderboard coreValueLeaderboard)
+        //{
+        //    //line 164
+
+        //    //if (ModelState.IsValid)
+        //    //{
+        //    //    coreValueLeaderboard.Stewardship = 0;
+        //    //    coreValueLeaderboard.Culture = 0;
+        //    //    coreValueLeaderboard.Delivery_Excellence = 0;
+        //    //    coreValueLeaderboard.Innovation = 0;
+        //    //    coreValueLeaderboard.Greater_Good = 0;
+        //    //    coreValueLeaderboard.Integrity_And_Openness = 0;
+        //    //    coreValueLeaderboard.Balance = 0;
+        //    //    coreValueLeaderboard.ID = userID;
+        //    //    db.Users.Add(coreValueLeaderboard);
+        //    //    db.SaveChanges();
+        //    //    return RedirectToAction("Index");
+        //    //}
+
+        //    if (ModelState.IsValid)
+        //    {
+        //        coreValueLeaderboard.ID = (Guid)TempData["updateMemberID"];
+        //        db.Entry(coreValueLeaderboard).State = EntityState.Modified;
+        //        db.SaveChanges();
+        //        return RedirectToAction("Index");
+        //    }
+        //    ViewBag.ID = new SelectList(db.UserDetails, "ID", "firstName", coreValueLeaderboard.ID);
+
+
+        //    return View(coreValueLeaderboard);
+
+
+        //}
 
         // GET: CoreValueLeaderboard/Delete/5
         public ActionResult Delete(int? id)
