@@ -7,9 +7,49 @@
         @Styles.Render("~/Content/css")
         @Scripts.Render("~/bundles/modernizr")
 
+
+    <style>
+        .linkcolor {
+            color:#ffb612;
+            font-size:16px;
+            font-weight:bold;
+            display: block;
+            background-color:#412d5e;          
+
+        }
+
+
+         .navbar-nav > li > a{
+  color:#ffb612;
+  font-size:16px;
+  font-weight:bold;
+  display: block;
+  background-color:#412d5e;
+
+}
+
+        .navbar .navbar-nav > li > a:hover, .navbar .navbar-nav > li > a:focus {
+    
+            color: #412d5e;
+            font-size:16px;
+            font-weight:bold;
+  display: block;
+            
+            background-color: #ffb612;
+    
+    }
+
+        
+
+   
+
+
+
+    </style>
+
 </head>
 <body>
-        <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="navbar navbar-fixed-top" style="background-color:#412d5e">
             <div class="container">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -17,11 +57,11 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    @Html.ActionLink("Centric", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                   
                 </div>
                 <div class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav">
-                        <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                    <ul class="nav navbar-nav" style="link">
+                        <li>@Html.ActionLink("Home", "Index", "Home" )</li>
                         <li>@Html.ActionLink("Leaderboard", "Index", "CoreValueLeaderboard")</li>
                         <li>@Html.ActionLink("Employee Directory", "Index", "UserDetails")</li>
                         <li>@Html.ActionLink("Contact", "Contact", "Home")</li>

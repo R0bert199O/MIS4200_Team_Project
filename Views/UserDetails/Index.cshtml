@@ -1,33 +1,57 @@
 ﻿@model IEnumerable<MIS4200_Team_Project.Models.UserDetails>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Employee Directory";
 }
 
-<h2>Index</h2>
+    <style>
+        .table-striped > tbody > tr:nth-child(odd) > td
+         {
+            background-color:#d2ced9;           
+        }
+        
+        .table-striped > tbody > tr:nth-child(even) > td
+         {
+            background-color:#ffeec8;           
+        }
+        
 
-<p>
-    <!-- @Html.ActionLink("Create New", "Create") -->
+        td{
+            font-weight:bold;
+        }
+
+        
+    </style>
+
+    <h1 style="text-align:center; font-size: 50px"><span style="color:#ffb612; font-weight:600;">((</span> <span style="color:#412d5e; font-weight:600;">EMPLOYEE DIRECTORY</span> <span style="color:#ffb612; font-weight:600;">))</span></h1>
+
+<hr />
+
     @using (Html.BeginForm("Index", "userDetails", FormMethod.Get))
     {
-    <p>
-        Find by name: @Html.TextBox("searchString")
-        <input type="submit" value="Search" />
-    </p>
-}
-    
-    <table class="table">
-        <tr>
+    <p style="float:right;">
+        
+            Find by name: @Html.TextBox("searchString")
+            <input type="submit" value="Search" width="100" />        
+    </p> 
+    }
+
+<p>
+
+    <table class="table border-collapse table-striped ">
+
+
+        <tr style="background-color:#412d5e; color:#ffb612; border-style:solid; border: 3px solid #ffb612;">
             <th>
-                @Html.DisplayNameFor(model=> model.fullName)
-            </th>                        
+                @Html.DisplayNameFor(model => model.fullName)
+            </th>
             <th>
                 @Html.DisplayNameFor(model => model.Email)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.PhoneNumber)
             </th>
-            
+
             <th>
                 @Html.DisplayNameFor(model => model.JobTitle)
             </th>
@@ -40,48 +64,53 @@
             <th></th>
         </tr>
 
-    @foreach (var item in Model)
-    {
-    <tr>
-    <td>
-        @Html.DisplayFor(modelitem => item.fullName)
-    </td>        
-    <td>
-        @Html.DisplayFor(modelItem => item.Email)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.PhoneNumber)
-    </td>    
-    <td>
-        @{ 
 
-            string strJobTitle = Convert.ToString(@Html.DisplayFor(modelItem => item.JobTitle)).Replace("_", " ");
-        }
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelitem => item.fullName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PhoneNumber)
+                </td>
+                <td>
+                    @{
 
-        @strJobTitle        
-    </td>
-    <td>
-        @{
+                        string strJobTitle = Convert.ToString(@Html.DisplayFor(modelItem => item.JobTitle)).Replace("_", " ");
+                    }
 
-            string strOpGroup = Convert.ToString(@Html.DisplayFor(modelItem => item.operatingGroups)).Replace("_", " ");
-        }
+                    @strJobTitle
+                </td>
+                <td>
+                    @{
 
-        @strOpGroup
-        
-    </td>
-    <td>
+                        string strOpGroup = Convert.ToString(@Html.DisplayFor(modelItem => item.operatingGroups)).Replace("_", " ");
+                    }
 
-        @{
+                    @strOpGroup
 
-            string strLocations = Convert.ToString(@Html.DisplayFor(modelItem => item.locations)).Replace("_", " ");
-        }
+                </td>
+                <td>
 
-        @strLocations
-    </td>
-    <td>        
-        @Html.ActionLink("View Profile", "Details", new { id = item.ID })        
-    </td>
-    </tr>
+                    @{
+
+                        string strLocations = Convert.ToString(@Html.DisplayFor(modelItem => item.locations)).Replace("_", " ");
+                    }
+
+                    @strLocations
+                </td>
+                <td>
+                    @Html.ActionLink("View Profile", "Details", new { id = item.ID })
+                </td>
+            </tr>
         }
 
     </table>
+
+</p>
+
+

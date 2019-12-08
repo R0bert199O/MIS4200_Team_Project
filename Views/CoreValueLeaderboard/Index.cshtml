@@ -4,80 +4,101 @@
     ViewBag.Title = "Leaderboard";
 }
 
-<h2>Leaderboard</h2>
+<style>
+    .table-striped > tbody > tr:nth-child(odd) > td
+         {
+            background-color:#d2ced9;           
+        }
 
-
-<!--  @Html.ActionLink("Create New", "Create") -->
-@*//sort*@
-
-<br /><br />
-
-<table class="table">
-    <tr>
-        <th>
-            @Html.ActionLink("Name", "Index", new { sortOrder = ViewBag.NameSortParm })
-        </th>
-        <th>
-            @Html.ActionLink("Stewardship", "Index", new { sortOrder = ViewBag.StewardshipSortParm })
-        </th>
-        <th>
-            @Html.ActionLink("Culture", "Index", new { sortOrder = ViewBag.CultureSortParm })
-        </th>
-        <th>
-            @Html.ActionLink("Delivery Excellence", "Index", new { sortOrder = ViewBag.DeliverySortParm })
-        </th>
-        <th>
-            @Html.ActionLink("Innovation", "Index", new { sortOrder = ViewBag.InnovationSortParm })
-        </th>
-        <th>
-            @Html.ActionLink("Greater Good", "Index", new { sortOrder = ViewBag.GreaterSortParm })
-        </th>
-        <th>
-            @Html.ActionLink("Integrity And Openness", "Index", new { sortOrder = ViewBag.IntegritySortParm })
-        </th>
-        <th>
-            @Html.ActionLink("Balance", "Index", new { sortOrder = ViewBag.BalanceSortParm })
-        </th>
-        <th> 
-            @Html.DisplayNameFor(model => model.TotalPoints)
-        </th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.UserDetails.fullName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Stewardship)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Culture)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Delivery_Excellence)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Innovation)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Greater_Good)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Integrity_And_Openness)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Balance)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TotalPoints)
-            </td>
-            <td>
-                @Html.ActionLink("Endorse", "Edit", new { id = item.leaderboardID })                
-            </td>
-        </tr>
+    .table-striped > tbody > tr:nth-child(even) > td {
+        background-color: #ffeec8;
+    }
+    td {
+        font-weight: bold;
     }
 
-</table>
+    a.linkcolor{
+        color: #ffb612;
+        text-decoration: underline;
+    }
+</style>
+
+<h1 style="text-align:center; font-size: 50px"><span style="color:#ffb612; font-weight:600;">((</span> <span style="color:#412d5e; font-weight:600;">RECOGNITION LEADERBOARD</span> <span style="color:#ffb612; font-weight:600;">))</span></h1>
+
+<hr />
+
+<p>
+
+    <table class="table border-collapse table-striped">
+
+
+        <tr style="background-color:#412d5e; color:#ffb612; border-style:solid; border: 3px solid #ffb612;">
+            <th>
+                @Html.ActionLink("Name", "Index", new { sortOrder = ViewBag.NameSortParm }, new { @class = "linkcolor" })
+            </th>
+            <th>
+                @Html.ActionLink("Stewardship", "Index", new { sortOrder = ViewBag.StewardshipSortParm }, new { @class = "linkcolor" })
+            </th>
+            <th>
+                @Html.ActionLink("Culture", "Index", new { sortOrder = ViewBag.CultureSortParm }, new { @class = "linkcolor" })
+            </th>
+            <th>
+                @Html.ActionLink("Delivery Excellence", "Index", new { sortOrder = ViewBag.DeliverySortParm }, new { @class = "linkcolor" })
+            </th>
+            <th>
+                @Html.ActionLink("Innovation", "Index", new { sortOrder = ViewBag.InnovationSortParm }, new { @class = "linkcolor" })
+            </th>
+            <th>
+                @Html.ActionLink("Greater Good", "Index", new { sortOrder = ViewBag.GreaterSortParm }, new { @class = "linkcolor" })
+            </th>
+            <th>
+                @Html.ActionLink("Integrity And Openness", "Index", new { sortOrder = ViewBag.IntegritySortParm }, new { @class = "linkcolor" })
+            </th>
+            <th>
+                @Html.ActionLink("Balance", "Index", new { sortOrder = ViewBag.BalanceSortParm }, new { @class = "linkcolor" })
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TotalPoints)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UserDetails.fullName)
+                </td>
+                <td style="text-align: center;">
+                    @Html.DisplayFor(modelItem => item.Stewardship)
+                </td>
+                <td style="text-align: center;">
+                    @Html.DisplayFor(modelItem => item.Culture)
+                </td>
+                <td style="text-align: center;">
+                    @Html.DisplayFor(modelItem => item.Delivery_Excellence)
+                </td>
+                <td style="text-align: center;">
+                    @Html.DisplayFor(modelItem => item.Innovation)
+                </td>
+                <td style="text-align: center;">
+                    @Html.DisplayFor(modelItem => item.Greater_Good)
+                </td>
+                <td style="text-align: center;">
+                    @Html.DisplayFor(modelItem => item.Integrity_And_Openness)
+                </td>
+                <td style="text-align: center;">
+                    @Html.DisplayFor(modelItem => item.Balance)
+                </td>
+                <td style="text-align: center;">
+                    @Html.DisplayFor(modelItem => item.TotalPoints)
+                </td>
+                <td>
+                    @Html.ActionLink("Endorse", "Edit", new { id = item.leaderboardID })
+                </td>
+            </tr>
+        }
+
+    </table>
+    </p>
 

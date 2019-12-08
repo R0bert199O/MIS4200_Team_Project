@@ -2,19 +2,36 @@
     ViewBag.Title = "Home Page";
 }
 
+<style>
+
+    .yellowbackground {
+        background-color:#ffb612; 
+        color:#412d5e; 
+        height: 150px
+    }
+
+    .purplebackground {
+        background-color:#412d5e; 
+        color:#ffb612;
+        height: 150px       
+    }
+
+</style>
+
+
 <div id="fb-root"></div>
 <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v5.0"></script>
 
 
 <div class="jumbotron" style="background-color:gray;color:blueviolet;background-image:url(https://cdn.pixabay.com/photo/2015/11/08/17/10/banner-1033936_1280.jpg)">
-    <h1>Centric</h1>
-    <strong><p class="lead">Core values & Recognition platform (Team 9)</p></strong>
+    <h1 style="font-weight:bold; color:#412d5e">Centric</h1>
+    <p style="font-weight:bold; color:#412d5e">Core Values & Recognition Platform (Team 9)</p>
     <p><a href="https://centricconsulting.com/" target="_blank" class="btn btn-default btn-lg">Learn more &raquo;</a></p>
 </div>
 
 <div class="row">
     <div class="col-md-4">
-        <h2>Vist Centric's home site</h2>
+        <h3>Vist Centric's Home Site</h3>
         <p style="height: 50px">
             Centric Consulting is based out of Dublin, Ohio. For more information, visit the link below
         </p>
@@ -22,71 +39,69 @@
         <br />
     </div>
     <div class="col-md-4">
-        <h2>Contact Centric Directly</h2>
-        <p style="height: 50px">Follow the link below to contact Centric directly. All messages submitted on the form will be sent to Centric.</p>
+        <h3>Contact Centric</h3>
+        <p style="height: 50px">Follow the link below to contact Centric. All messages submitted on the form will be sent to Centric.</p>
         <p> <a class="background-color: green;btn btn-default" onclick="alert('Now leaving the site')" href="https://centricconsulting.com/contact/"> Centric Contact Page &raquo;</a> </p>
         <br />
 
     </div>
     <div class="col-md-4">
-        <h2>Centric's News and Events Page</h2>
+        <h3>Centric's News and Events Page</h3>
         <p style="height: 50px">Keep up to date on Centric's news and events and become part of the Centric family</p>
         <p> <a class="background-color: green;btn btn-default" onclick="alert('Now leaving the site')" href="https://centricconsulting.com/news-and-events/"> Centric's News and Events &raquo;</a> </p>
         <br />
     </div>
     <br /><br />
     <div class="row">
-        <div class="col-sm-4" style="background-color:lightgoldenrodyellow; height: 150px">
-            <h3 align="center" style="color:blueviolet">Stewardship</h3>
-            <p style="color:darkslategray">
+        <div class="col-sm-4 yellowbackground">
+            <h3 style="font-weight: 600; text-align:center;">Stewardship</h3>
+            <p>
                 The job of supervising or taking care of something, such as an organization or property.
                 "responsible stewardship of our company"
             </p>
         </div>
-        <div class="col-sm-4" style="background-color:goldenrod; height: 150px">
-            <h3 align="center" style="color:blueviolet">Culture</h3>
-            <p style="color:darkslategray">
-                the customs, arts, social institutions, and achievements of a particular nation, people, or other social group.
-                "Company culture"
+        <div class="col-sm-4 purplebackground">
+            <h3 style="font-weight: 600; text-align:center;">Culture</h3>
+            <p>
+                The customs, arts, social institutions, and achievements of a particular nation, people, or other social group.
+                "Company Culture"
             </p>
         </div>
-        <div class="col-sm-4" style="background-color:lightgoldenrodyellow; height: 150px">
-            <h3 align="center" style="color:blueviolet">Delivery Excellence</h3>
-            <p style="color:darkslategrey">
-                the quality of being outstanding or going above and beyond what is expected without being asked
+        <div class="col-sm-4 yellowbackground">
+            <h3 style="font-weight: 600; text-align:center;">Delivery Excellence</h3>
+            <p>
+                The quality of being outstanding or going above and beyond what is expected without being asked.
                 "a center of academic excellence"
             </p>
         </div>
     </div>
     <div class="row">
-        <div class="col-sm-4" style="background-color:goldenrod; height: 150px">
-            <h3 align="center" style="color:blueviolet">Innovation</h3>
-            <p style="color:darkslategray">
-                Discovering new methods, ideas, or products through creative problem solving and thinking
-
+        <div class="col-sm-4 purplebackground">
+            <h3 style="font-weight: 600; text-align:center;">Innovation</h3>
+            <p>
+                Discovering new methods, ideas, or products through creative problem solving and thinking.
                 "technological innovations designed to save energy"
             </p>
         </div>
 
-        <div class="col-sm-4" style="background-color:lightgoldenrodyellow; height: 150px">
-            <h3 align="center" style="color:blueviolet">Greater Good</h3>
-            <p style="color:darkslategray">greater-good. Noun. (uncountable) The benefit of the public, of more people than oneself; that which is better and more correct.</p>
+        <div class="col-sm-4 yellowbackground">
+            <h3 style="font-weight: 600; text-align:center;">Greater Good</h3>
+            <p>Greater-Good. Noun. (uncountable) The benefit of the public, of more people than oneself; that which is better and more correct.</p>
         </div>
 
-        <div class="col-sm-4" style="background-color:goldenrod;  height: 150px">
-            <h3 align="center" style="color:blueviolet">Integrity and Openness</h3>
-            <p style="color:darkslategray">
-                the quality of being honest and having strong moral principles; moral uprightness.
+        <div class="col-sm-4 purplebackground">
+            <h3 style="font-weight: 600; text-align:center;">Integrity and Openness</h3>
+            <p>
+                The quality of being honest and having strong moral principles; moral uprightness.
                 "they are known to be a group of integrity"
             </p>
         </div>
     </div>
     <div class="row">
-        <div class="col-sm-4" style="background-color:lightgoldenrodyellow; height: 425px">
-            <h3 align="center" style="color:blueviolet"></h3>
-            <p style="color:darkslategray"></p>
-            @*<a href="https://twitter.com/centric?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="false">Follow </a>
-        <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>*@
+        <div class="col-sm-4 yellowbackground" style="height: 425px;">
+            <h3 style="font-weight: 600; text-align:center;"></h3>
+            <p></p>
+            
             <div class="fb-page" data-href="https://www.facebook.com/CentricConsultingNational" data-tabs="timeline" data-width="400" data-height="400" data-small-header="true" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="false">
                 <blockquote cite="https://www.facebook.com/CentricConsultingNational" class="fb-xfbml-parse-ignore">
                     <a href="https://www.facebook.com/CentricConsultingNational">Centric Consulting          
@@ -94,14 +109,14 @@
                 </blockquote>
             </div>
         </div>
-        <div class="col-sm-4" style="background-color:goldenrod; height: 150px">
-            <h3 align="center" style="color:blueviolet">Balance</h3>
-            <p style="color:darkslategray">Living a balanced life externally and internally.</p>
+        <div class="col-sm-4 purplebackground">
+            <h3 style="font-weight: 600; text-align:center;">Balance</h3>
+            <p>Living a balanced life externally and internally.</p>
             
         </div>
-        <div class="col-sm-4" style="background-color:lightgoldenrodyellow;  height: 425px">
-            <h3 align="center" style="color:blueviolet"></h3>
-            <p style="color:darkslategray"></p>
+        <div class="col-sm-4 yellowbackground" style="height: 425px">
+            <h3 style="font-weight: 600; text-align:center;"></h3>
+            <p></p>
 
             <a class="twitter-timeline" data-height="400" href="https://twitter.com/centric?ref_src=twsrc%5Etfw">Tweets by centric</a>
             <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
@@ -109,7 +124,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-sm-4" style="background-color:lightgoldenrodyellow;">
+        <div class="col-sm-4" style="background-color:lightgoldenrodyellow;  color:#412d5e;">
 
             <!-- Add icon library -->
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">

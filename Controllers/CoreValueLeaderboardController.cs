@@ -15,8 +15,8 @@ namespace MIS4200_Team_Project.Controllers
 
         public ActionResult Index(string sortOrder)
         {
-
-
+           
+            ViewBag.URL = HttpContext.Request.Url.AbsolutePath;
 
             //https://docs.microsoft.com/en-us/aspnet/mvc/overview/getting-started/getting-started-with-ef-using-mvc/sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application
 
@@ -30,6 +30,10 @@ namespace MIS4200_Team_Project.Controllers
             ViewBag.IntegritySortParm = sortOrder == "Integrity And Openness" ? "integrity_desc" : "Integrity And Openness";
             ViewBag.BalanceSortParm = sortOrder == "Balance" ? "balance_desc" : "Balance";
             //ViewBag.NameSortParm = sortOrder == "Name" ? "name_desc" : "Name";
+
+            
+
+
             var leaderboard = from s in db.Users
                               select s;
             switch (sortOrder)
@@ -40,63 +44,204 @@ namespace MIS4200_Team_Project.Controllers
 
                 case "name_desc":
                     leaderboard = leaderboard.OrderByDescending(s => s.UserDetails.firstName);
+                    
+                    ViewBag.StewardArrow = "";
+                    ViewBag.CultureArrow = "";
+                    ViewBag.DeliveryArrow = "";
+                    ViewBag.InnovationArrow = "";
+                    ViewBag.GreaterArrow = "";
+                    ViewBag.IntegrityArrow = "";
+                    ViewBag.BalanceArrow = "";
+                    ViewBag.NameArrow = "glyphicon glyphicon - triangle - top";
                     break;
 
                 case "Stewardship":
                     leaderboard = leaderboard.OrderBy(s => s.Stewardship);
+                    ViewBag.NameArrow = "";
+                   
+                    ViewBag.CultureArrow = "";
+                    ViewBag.DeliveryArrow = "";
+                    ViewBag.InnovationArrow = "";
+                    ViewBag.GreaterArrow = "";
+                    ViewBag.IntegrityArrow = "";
+                    ViewBag.BalanceArrow = "";
+                    ViewBag.StewardArrow = "glyphicon glyphicon - triangle - bottom";
                     break;
+
                 case "stewardship_desc":
                     leaderboard = leaderboard.OrderByDescending(s => s.Stewardship);
+                    ViewBag.NameArrow = "";
+                    
+                    ViewBag.CultureArrow = "";
+                    ViewBag.DeliveryArrow = "";
+                    ViewBag.InnovationArrow = "";
+                    ViewBag.GreaterArrow = "";
+                    ViewBag.IntegrityArrow = "";
+                    ViewBag.BalanceArrow = "";
+                    ViewBag.StewardArrow = "glyphicon glyphicon - triangle - top";
                     break;
 
                 case "Culture":
                     leaderboard = leaderboard.OrderBy(s => s.Culture);
+                    ViewBag.NameArrow = "";
+                    ViewBag.StewardArrow = "";
+                    
+                    ViewBag.DeliveryArrow = "";
+                    ViewBag.InnovationArrow = "";
+                    ViewBag.GreaterArrow = "";
+                    ViewBag.IntegrityArrow = "";
+                    ViewBag.BalanceArrow = "";
+                    ViewBag.CultureArrow = "glyphicon glyphicon - triangle - bottom";
                     break;
                 case "culture_desc":
                     leaderboard = leaderboard.OrderByDescending(s => s.Culture);
+                    ViewBag.NameArrow = "";
+                    ViewBag.StewardArrow = "";
+                    
+                    ViewBag.DeliveryArrow = "";
+                    ViewBag.InnovationArrow = "";
+                    ViewBag.GreaterArrow = "";
+                    ViewBag.IntegrityArrow = "";
+                    ViewBag.BalanceArrow = "";
+                    ViewBag.CultureArrow = "glyphicon glyphicon - triangle - top";
                     break;
 
                 case "Delivery Excellence":
                     leaderboard = leaderboard.OrderBy(s => s.Delivery_Excellence);
+                    ViewBag.NameArrow = "";
+                    ViewBag.StewardArrow = "";
+                    ViewBag.CultureArrow = "";
+                    
+                    ViewBag.InnovationArrow = "";
+                    ViewBag.GreaterArrow = "";
+                    ViewBag.IntegrityArrow = "";
+                    ViewBag.BalanceArrow = "";
+                    ViewBag.DeliveryArrow = "glyphicon glyphicon - triangle - bottom";
                     break;
                 case "delivery_excellence_desc":
                     leaderboard = leaderboard.OrderByDescending(s => s.Delivery_Excellence);
+                    ViewBag.NameArrow = "";
+                    ViewBag.StewardArrow = "";
+                    ViewBag.CultureArrow = "";
+                    
+                    ViewBag.InnovationArrow = "";
+                    ViewBag.GreaterArrow = "";
+                    ViewBag.IntegrityArrow = "";
+                    ViewBag.BalanceArrow = "";
+                    ViewBag.DeliveryArrow = "glyphicon glyphicon - triangle - top";
                     break;
 
                 case "Innovation":
                     leaderboard = leaderboard.OrderBy(s => s.Innovation);
+                    ViewBag.NameArrow = "";
+                    ViewBag.StewardArrow = "";
+                    ViewBag.CultureArrow = "";
+                    ViewBag.DeliveryArrow = "";
+                    
+                    ViewBag.GreaterArrow = "";
+                    ViewBag.IntegrityArrow = "";
+                    ViewBag.BalanceArrow = "";
+                    ViewBag.InnovationArrow = "glyphicon glyphicon - triangle - bottom";
                     break;
                 case "innovation_desc":
                     leaderboard = leaderboard.OrderByDescending(s => s.Innovation);
+                    ViewBag.NameArrow = "";
+                    ViewBag.StewardArrow = "";
+                    ViewBag.CultureArrow = "";
+                    ViewBag.DeliveryArrow = "";
+                    
+                    ViewBag.GreaterArrow = "";
+                    ViewBag.IntegrityArrow = "";
+                    ViewBag.BalanceArrow = "";
+                    ViewBag.InnovationArrow = "glyphicon glyphicon - triangle - top";
                     break;
 
                 case "Greater Good":
                     leaderboard = leaderboard.OrderBy(s => s.Greater_Good);
+                    ViewBag.NameArrow = "";
+                    ViewBag.StewardArrow = "";
+                    ViewBag.CultureArrow = "";
+                    ViewBag.DeliveryArrow = "";
+                    ViewBag.InnovationArrow = "";
+                   
+                    ViewBag.IntegrityArrow = "";
+                    ViewBag.BalanceArrow = "";
+                    ViewBag.GreaterArrow = "glyphicon glyphicon - triangle - bottom";
                     break;
                 case "greater_good_desc":
                     leaderboard = leaderboard.OrderByDescending(s => s.Greater_Good);
+                    ViewBag.NameArrow = "";
+                    ViewBag.StewardArrow = "";
+                    ViewBag.CultureArrow = "";
+                    ViewBag.DeliveryArrow = "";
+                    ViewBag.InnovationArrow = "";
+                    
+                    ViewBag.IntegrityArrow = "";
+                    ViewBag.BalanceArrow = "";
+                    ViewBag.GreaterArrow = "glyphicon glyphicon - triangle - top";
                     break;
 
                 case "Integrity And Openness":
                     leaderboard = leaderboard.OrderBy(s => s.Integrity_And_Openness);
+                    ViewBag.NameArrow = "";
+                    ViewBag.StewardArrow = "";
+                    ViewBag.CultureArrow = "";
+                    ViewBag.DeliveryArrow = "";
+                    ViewBag.InnovationArrow = "";
+                    ViewBag.GreaterArrow = "";
+                    
+                    ViewBag.BalanceArrow = "";
+                    ViewBag.IntegrityArrow = "glyphicon glyphicon - triangle - bottom";
                     break;
                 case "integrity_desc":
                     leaderboard = leaderboard.OrderByDescending(s => s.Integrity_And_Openness);
+                    ViewBag.NameArrow = "";
+                    ViewBag.StewardArrow = "";
+                    ViewBag.CultureArrow = "";
+                    ViewBag.DeliveryArrow = "";
+                    ViewBag.InnovationArrow = "";
+                    ViewBag.GreaterArrow = "";
+                    
+                    ViewBag.BalanceArrow = "";
+                    ViewBag.IntegrityArrow = "glyphicon glyphicon - triangle - top";
                     break;
 
                 case "Balance":
                     leaderboard = leaderboard.OrderBy(s => s.Balance);
+                    ViewBag.NameArrow = "";
+                    ViewBag.StewardArrow = "";
+                    ViewBag.CultureArrow = "";
+                    ViewBag.DeliveryArrow = "";
+                    ViewBag.InnovationArrow = "";
+                    ViewBag.GreaterArrow = "";
+                    ViewBag.IntegrityArrow = "";
+                    
+                    ViewBag.BalanceArrow = "glyphicon glyphicon - triangle - bottom";
                     break;
                 case "balance_desc":
                     leaderboard = leaderboard.OrderByDescending(s => s.Balance);
-                    break;
-
-                case "Name":
-                    leaderboard = leaderboard.OrderBy(s => s.UserDetails.firstName);
+                    ViewBag.NameArrow = "";
+                    ViewBag.StewardArrow = "";
+                    ViewBag.CultureArrow = "";
+                    ViewBag.DeliveryArrow = "";
+                    ViewBag.InnovationArrow = "";
+                    ViewBag.GreaterArrow = "";
+                    ViewBag.IntegrityArrow = "";
+                    
+                    ViewBag.BalanceArrow = "glyphicon glyphicon - triangle - top";
                     break;
 
                 default:
                     leaderboard = leaderboard.OrderBy(s => s.UserDetails.firstName);
+                    
+                    ViewBag.StewardArrow = "";
+                    ViewBag.CultureArrow = "";
+                    ViewBag.DeliveryArrow = "";
+                    ViewBag.InnovationArrow = "";
+                    ViewBag.GreaterArrow = "";
+                    ViewBag.IntegrityArrow = "";
+                    ViewBag.BalanceArrow = "";
+                    ViewBag.NameArrow = "glyphicon glyphicon - triangle - bottom";
                     break;
             }
             return View(leaderboard.ToList());

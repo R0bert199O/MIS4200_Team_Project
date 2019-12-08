@@ -22,3 +22,7 @@ select,
 textarea {
     max-width: 280px;
 }
+
+.table-striped > tbody > tr:nth-child(odd) > td {
+    background-color: lightgray;
+}

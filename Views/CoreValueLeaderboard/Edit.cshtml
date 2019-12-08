@@ -1,108 +1,124 @@
 ﻿@model MIS4200_Team_Project.Models.CoreValueLeaderboard
 
 @{
-    ViewBag.Title = "Endorse";
+    ViewBag.Title = "Endorse User";
 }
 
-<h2>Endorse</h2>
 
-    <div>
-        <h4>@Html.DisplayFor(model => model.UserDetails.fullName)</h4>
-        <hr />
+    <table>
+        <tr>
+            <td>
+                <h1 style="font-size: 30px"><span style="color:#ffb612; font-weight:600;">((</span> <span style="color:#412d5e; font-weight:600;">ENDORSE USER</span> <span style="color:#ffb612; font-weight:600;">))</span></h1>
+            </td>
 
-        <table style="border-collapse: separate; border-spacing: 10px;">
-            <tr>
-                <th>@Html.DisplayNameFor(model => model.Stewardship)</th>
-                <td>@Html.DisplayFor(model => model.Stewardship)</td>
-                <td>
-                    @using (Html.BeginForm("Stewardship", "CoreValueLeaderboard", FormMethod.Post))
-                    {
-                        @Html.AntiForgeryToken()
-                        <input type="submit" id="btnStewardship" value="+" class="btn-success" />
-                    }
-                </td>
-            </tr>
-            <tr>
-                <th>@Html.DisplayNameFor(model => model.Culture)</th>
-                <td>@Html.DisplayFor(model => model.Culture)</td>
-                <td>
-                    @using (Html.BeginForm("Culture", "CoreValueLeaderboard", FormMethod.Post))
-                    {
-                        @Html.AntiForgeryToken()
-                        <input type="submit" id="btnCulture" value="+" class="btn-success" />
-                    }
-                </td>
-            </tr>
-            <tr>
-                <th>@Html.DisplayNameFor(model => model.Delivery_Excellence)</th>
-                <td>@Html.DisplayFor(model => model.Delivery_Excellence)</td>
-                <td>
-                    @using (Html.BeginForm("Delivery", "CoreValueLeaderboard", FormMethod.Post))
-                    {
-                        @Html.AntiForgeryToken()
-                        <input type="submit" id="btnDelivery" value="+" class="btn-success" />
-                    }
-                </td>
-            </tr>
-            <tr>
-                <th>@Html.DisplayNameFor(model => model.Innovation)</th>
-                <td>@Html.DisplayFor(model => model.Innovation)</td>
-                <td>
-                    @using (Html.BeginForm("Innovation", "CoreValueLeaderboard", FormMethod.Post))
-                    {
-                        @Html.AntiForgeryToken()
-                        <input type="submit" id="btnInnovation" value="+" class="btn-success" />
-                    }
-                </td>
-            </tr>
-            <tr>
-                <th>@Html.DisplayNameFor(model => model.Greater_Good)</th>
-                <td>@Html.DisplayFor(model => model.Greater_Good)</td>
-                <td>
-                    @using (Html.BeginForm("Greater", "CoreValueLeaderboard", FormMethod.Post))
-                    {
-                        @Html.AntiForgeryToken()
-                        <input type="submit" id="btnGreater" value="+" class="btn-success" />
-                    }
-                </td>
-            </tr>
-            <tr>
-                <th>@Html.DisplayNameFor(model => model.Integrity_And_Openness)</th>
-                <td>@Html.DisplayFor(model => model.Integrity_And_Openness)</td>
-                <td>
-                    @using (Html.BeginForm("Integrity", "CoreValueLeaderboard", FormMethod.Post))
-                    {
-                        @Html.AntiForgeryToken()
-                        <input type="submit" id="btnIntegrity" value="+" class="btn-success" />
-                    }
-                </td>
-            </tr>
-            <tr>
-                <th>@Html.DisplayNameFor(model => model.Balance)</th>
-                <td>@Html.DisplayFor(model => model.Balance)</td>
-                <td>
-                    @using (Html.BeginForm("Balance", "CoreValueLeaderboard", FormMethod.Post))
-                    {
-                        @Html.AntiForgeryToken()
-                        <input type="submit" id="btnBalance" value="+" class="btn-success" />
-                    }
-                </td>
-            </tr>
-        </table>
+        </tr>
+        <tr>
+            <td style="text-align:center;">
+                <h4><span style="color:#ffb612; font-weight:600;">((</span> <span style="color:#412d5e; font-weight:600;">@Html.DisplayFor(model => model.UserDetails.fullName)</span> <span style="color:#ffb612; font-weight:600;">))</span></h4>
+            </td>
+        </tr>
+    </table>
 
-    </div>
+<div>
+    
     <hr />
 
+    <table style="border-collapse: separate; border-spacing: 10px;">
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.Stewardship)</th>
+            <td>@Html.DisplayFor(model => model.Stewardship)</td>
+            <td>
+                @using (Html.BeginForm("Stewardship", "CoreValueLeaderboard", FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+                    <input type="submit" id="btnStewardship" value="+" class="btn-success" />
+                }
+            </td>
+        </tr>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.Culture)</th>
+            <td>@Html.DisplayFor(model => model.Culture)</td>
+            <td>
+                @using (Html.BeginForm("Culture", "CoreValueLeaderboard", FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+                    <input type="submit" id="btnCulture" value="+" class="btn-success" />
+                }
+            </td>
+        </tr>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.Delivery_Excellence)</th>
+            <td>@Html.DisplayFor(model => model.Delivery_Excellence)</td>
+            <td>
+                @using (Html.BeginForm("Delivery", "CoreValueLeaderboard", FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+                    <input type="submit" id="btnDelivery" value="+" class="btn-success" />
+                }
+            </td>
+        </tr>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.Innovation)</th>
+            <td>@Html.DisplayFor(model => model.Innovation)</td>
+            <td>
+                @using (Html.BeginForm("Innovation", "CoreValueLeaderboard", FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+                    <input type="submit" id="btnInnovation" value="+" class="btn-success" />
+                }
+            </td>
+        </tr>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.Greater_Good)</th>
+            <td>@Html.DisplayFor(model => model.Greater_Good)</td>
+            <td>
+                @using (Html.BeginForm("Greater", "CoreValueLeaderboard", FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+                    <input type="submit" id="btnGreater" value="+" class="btn-success" />
+                }
+            </td>
+        </tr>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.Integrity_And_Openness)</th>
+            <td>@Html.DisplayFor(model => model.Integrity_And_Openness)</td>
+            <td>
+                @using (Html.BeginForm("Integrity", "CoreValueLeaderboard", FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+                    <input type="submit" id="btnIntegrity" value="+" class="btn-success" />
+                }
+            </td>
+        </tr>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.Balance)</th>
+            <td>@Html.DisplayFor(model => model.Balance)</td>
+            <td>
+                @using (Html.BeginForm("Balance", "CoreValueLeaderboard", FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+                    <input type="submit" id="btnBalance" value="+" class="btn-success" />
+                }
+            </td>
+        </tr>
+    </table>
+
+</div>
+
+<br />
+
+<div>
+    <a onclick="goBack()">Go Back</a>
+
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+    </script>
+</div>
 
 
 
-
-
-
-    <div>
-        @Html.ActionLink("Back to List", "Index")
-    </div>
-
-    @section Scripts {
-        @Scripts.Render("~/bundles/jqueryval")
-    }
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
