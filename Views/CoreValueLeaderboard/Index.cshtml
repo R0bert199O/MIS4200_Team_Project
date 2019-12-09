@@ -17,9 +17,11 @@
         font-weight: bold;
     }
 
-    a.linkcolor{
+    a.linkcolor {
         color: #ffb612;
         text-decoration: underline;
+        font-size: 14px;
+    }
     }
 </style>
 
@@ -32,7 +34,7 @@
     <table class="table border-collapse table-striped">
 
 
-        <tr style="background-color:#412d5e; color:#ffb612; border-style:solid;">
+        <tr style="background-color:#412d5e; color:#ffb612;">
             <th>
                 @Html.ActionLink("Name", "Index", new { sortOrder = ViewBag.NameSortParm }, new { @class = "linkcolor" })
             </th>
